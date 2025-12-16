@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Empathic Learning Agent</title>
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/accessibility.css">
+    <style>
+        /* Landing page specific styles */
+        .landing-page {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #4361ee 0%, #3a0ca3 100%);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            text-align: center;
+        }
+        
+        .landing-header {
+            max-width: 800px;
+            margin-bottom: 4rem;
+        }
+        
+        .landing-header h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            color: white;
+        }
+        
+        .landing-header p {
+            font-size: 1.25rem;
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+        
+        .role-selection {
+            max-width: 1200px;
+            width: 100%;
+        }
+        
+        .role-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .role-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2.5rem;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            text-align: left;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .role-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        .role-icon {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+        
+        .role-card h2 {
+            font-size: 1.75rem;
+            margin-bottom: 1rem;
+            color: white;
+            text-align: center;
+        }
+        
+        .role-description {
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            flex-grow: 1;
+        }
+        
+        .role-features {
+            margin: 1.5rem 0;
+            list-style: none;
+        }
+        
+        .role-features li {
+            margin-bottom: 0.75rem;
+            padding-left: 1.5rem;
+            position: relative;
+            opacity: 0.9;
+        }
+        
+        .role-features li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #4cc9f0;
+        }
+        
+        .btn-role {
+            width: 100%;
+            padding: 1rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 12px;
+            margin-top: auto;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-student {
+            background: linear-gradient(135deg, #4cc9f0, #4361ee);
+            color: white;
+        }
+        
+        .btn-teacher {
+            background: linear-gradient(135deg, #f72585, #7209b7);
+            color: white;
+        }
+        
+        .btn-role:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+        
+        .existing-user {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .existing-user p {
+            margin-bottom: 1rem;
+            opacity: 0.9;
+        }
+        
+        .btn-login {
+            background: transparent;
+            border: 2px solid white;
+            color: white;
+            padding: 0.75rem 2rem;
+        }
+        
+        .btn-login:hover {
+            background: white;
+            color: #4361ee;
+        }
+        
+        @media (max-width: 768px) {
+            .landing-header h1 {
+                font-size: 2.5rem;
+            }
+            
+            .role-cards {
+                grid-template-columns: 1fr;
+            }
+            
+            .role-card {
+                padding: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <main class="landing-page" id="main-content">
+        <div class="landing-header">
+            <h1>Empathic Learning Agent</h1>
+            <p>An intelligent companion that supports students with disabilities and helps teachers monitor progress with empathy and understanding.</p>
+        </div>
+        
+        <div class="role-selection">
+            <h2 style="margin-bottom: 2rem; color: white; font-size: 2rem;">Choose Your Role to Begin</h2>
+            
+            <div class="role-cards">
+                <!-- Student Card -->
+                <div class="role-card">
+                    <div class="role-icon">🎓</div>
+                    <h2>Student</h2>
+                    <p class="role-description">I want to learn with personalized support from an empathetic AI companion.</p>
+                    
+                    <ul class="role-features">
+                        <li>Personalized learning paths</li>
+                        <li>Emotional support & motivation</li>
+                        <li>Accessibility-first design</li>
+                        <li>Progress tracking</li>
+                        <li>24/7 AI companion support</li>
+                    </ul>
+                    
+                    <button class="btn-role btn-student" onclick="selectRole('student')">
+                        Continue as Student
+                    </button>
+                </div>
+                
+                <!-- Teacher Card -->
+                <div class="role-card">
+                    <div class="role-icon">👩‍🏫</div>
+                    <h2>Teacher / Educator</h2>
+                    <p class="role-description">I want to monitor students and provide targeted support using AI insights.</p>
+                    
+                    <ul class="role-features">
+                        <li>Real-time student monitoring</li>
+                        <li>AI-powered insights & alerts</li>
+                        <li>Individual & class analytics</li>
+                        <li>Direct intervention tools</li>
+                        <li>Learning content management</li>
+                    </ul>
+                    
+                    <button class="btn-role btn-teacher" onclick="selectRole('teacher')">
+                        Continue as Teacher
+                    </button>
+                </div>
+            </div>
+            
+            <div class="existing-user">
+                <p>Already have an account?</p>
+                <a href="html/shared/login.html" class="btn btn-login">Sign In</a>
+            </div>
+        </div>
+    </main>
+    
+    <script src="js/global.js"></script>
+    <script>
+        function selectRole(role) {
+            // Save role selection
+            localStorage.setItem('selectedRole', role);
+            localStorage.setItem('userRole', role);
+            
+            // Set mock user based on role
+            if (role === 'student') {
+                localStorage.setItem('currentUser', JSON.stringify({
+                    id: 'student-001',
+                    name: 'Alex Johnson',
+                    role: 'student',
+                    disabilityType: 'dyslexia',
+                    avatar: '👨‍🎓',
+                    grade: '5th Grade',
+                    teacher: 'Ms. Rodriguez'
+                }));
+            } else {
+                localStorage.setItem('currentUser', JSON.stringify({
+                    id: 'teacher-001',
+                    name: 'Ms. Sarah Rodriguez',
+                    role: 'teacher',
+                    avatar: '👩‍🏫',
+                    subjects: ['Math', 'Science'],
+                    studentsCount: 24
+                }));
+            }
+            
+            // Redirect to login with role parameter
+            window.location.href = `html/shared/login.html?role=${role}`;
+        }
+        
+        // Check for role in URL parameter
+        const urlParams = new URLSearchParams(window.location.search);
+        const roleFromUrl = urlParams.get('role');
+        if (roleFromUrl) {
+            selectRole(roleFromUrl);
+        }
+    </script>
+</body>
+</html>

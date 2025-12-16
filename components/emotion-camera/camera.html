@@ -1,0 +1,177 @@
+<!-- components/emotion-camera/camera.html -->
+<div class="emotion-camera-component" data-component="emotion-camera">
+    <div class="camera-container">
+        <!-- Camera Header -->
+        <div class="camera-header">
+            <div class="header-left">
+                <span class="camera-icon">👁️</span>
+                <h3 class="camera-title">Learning Assistant</h3>
+            </div>
+            <div class="header-right">
+                <button class="camera-control-btn" data-action="toggle-camera" title="Toggle Camera">
+                    <span class="btn-icon">📷</span>
+                    <span class="btn-text" data-camera-status>Camera: On</span>
+                </button>
+                <button class="camera-control-btn" data-action="toggle-overlay" title="Toggle Overlay">
+                    <span class="btn-icon">🎯</span>
+                    <span class="btn-text" data-overlay-status>Overlay: On</span>
+                </button>
+                <button class="camera-control-btn" data-action="settings" title="Settings">
+                    <span class="btn-icon">⚙️</span>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Camera Feed -->
+        <div class="camera-feed-container" data-camera-feed>
+            <div class="camera-placeholder" data-camera-placeholder>
+                <div class="placeholder-icon">👤</div>
+                <p class="placeholder-text">Camera is initializing...</p>
+                <div class="loading-spinner"></div>
+            </div>
+            <video class="camera-video" autoplay playsinline muted></video>
+            <canvas class="emotion-overlay"></canvas>
+            
+            <!-- Face Detection Indicator -->
+            <div class="face-indicator" data-face-indicator>
+                <span class="indicator-dot"></span>
+                <span class="indicator-text">Face Detected</span>
+            </div>
+        </div>
+        
+        <!-- Emotion Display -->
+        <div class="emotion-display">
+            <div class="current-emotion-card">
+                <h4 class="emotion-title">Current Emotion</h4>
+                <div class="emotion-content">
+                    <div class="emotion-icon" data-emotion-icon>😊</div>
+                    <div class="emotion-details">
+                        <h3 class="emotion-name" data-emotion-name>Neutral</h3>
+                        <div class="emotion-confidence">
+                            <span class="confidence-label">Confidence:</span>
+                            <div class="confidence-bar">
+                                <div class="confidence-fill" data-confidence-fill style="width: 50%"></div>
+                            </div>
+                            <span class="confidence-value" data-confidence-value>50%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Attention Level -->
+            <div class="attention-card">
+                <h4 class="attention-title">Attention Level</h4>
+                <div class="attention-meter">
+                    <div class="meter-background">
+                        <div class="meter-fill" data-attention-fill style="width: 50%"></div>
+                        <div class="meter-labels">
+                            <span class="meter-label low">Low</span>
+                            <span class="meter-label medium">Medium</span>
+                            <span class="meter-label high">High</span>
+                        </div>
+                    </div>
+                    <div class="attention-value" data-attention-value>50%</div>
+                </div>
+                <div class="attention-tip" data-attention-tip>Focus on the screen for better detection</div>
+            </div>
+            
+            <!-- Emotion Sources -->
+            <div class="sources-card">
+                <h4 class="sources-title">Emotion Sources</h4>
+                <div class="sources-list" data-sources-list>
+                    <div class="source-item">
+                        <span class="source-icon">📷</span>
+                        <span class="source-name">Facial Analysis</span>
+                        <span class="source-status active">Active</span>
+                        <span class="source-weight">50%</span>
+                    </div>
+                    <div class="source-item">
+                        <span class="source-icon">⌨️</span>
+                        <span class="source-name">Text Analysis</span>
+                        <span class="source-status inactive">Inactive</span>
+                        <span class="source-weight">30%</span>
+                    </div>
+                    <div class="source-item">
+                        <span class="source-icon">🖱️</span>
+                        <span class="source-name">Behavior</span>
+                        <span class="source-status active">Active</span>
+                        <span class="source-weight">15%</span>
+                    </div>
+                    <div class="source-item">
+                        <span class="source-icon">👆</span>
+                        <span class="source-name">Manual</span>
+                        <span class="source-status inactive">Inactive</span>
+                        <span class="source-weight">5%</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Privacy Notice -->
+        <div class="privacy-notice">
+            <div class="privacy-header">
+                <span class="privacy-icon">🔒</span>
+                <span class="privacy-title">Privacy Notice</span>
+            </div>
+            <p class="privacy-text">
+                Your camera is used <strong>only</strong> for real-time emotion detection to personalize 
+                your learning experience. <strong>No video is stored, recorded, or shared</strong> with 
+                anyone. All processing happens locally in your browser.
+            </p>
+            <div class="privacy-actions">
+                <button class="privacy-btn" data-action="learn-more">Learn More</button>
+                <button class="privacy-btn" data-action="disable-camera">Disable Camera</button>
+            </div>
+        </div>
+        
+        <!-- Settings Modal -->
+        <div class="settings-modal" data-settings-modal>
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>Camera Settings</h3>
+                    <button class="modal-close" data-action="close-settings">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="setting-group">
+                        <label class="setting-label">
+                            <input type="checkbox" data-setting="draw-face" checked>
+                            <span>Show face detection box</span>
+                        </label>
+                    </div>
+                    <div class="setting-group">
+                        <label class="setting-label">
+                            <input type="checkbox" data-setting="draw-emotion" checked>
+                            <span>Show emotion text overlay</span>
+                        </label>
+                    </div>
+                    <div class="setting-group">
+                        <label class="setting-label">
+                            <input type="checkbox" data-setting="draw-attention" checked>
+                            <span>Show attention meter overlay</span>
+                        </label>
+                    </div>
+                    <div class="setting-group">
+                        <label class="setting-label">
+                            Detection Sensitivity
+                            <input type="range" data-setting="sensitivity" min="1" max="10" value="5">
+                        </label>
+                    </div>
+                    <div class="setting-group">
+                        <label class="setting-label">
+                            Update Frequency
+                            <select data-setting="frequency">
+                                <option value="5">5 FPS (Low CPU)</option>
+                                <option value="10" selected>10 FPS (Balanced)</option>
+                                <option value="15">15 FPS (High Accuracy)</option>
+                            </select>
+                        </label>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="modal-btn secondary" data-action="reset-settings">Reset to Default</button>
+                    <button class="modal-btn primary" data-action="save-settings">Save Settings</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

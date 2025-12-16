@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat with Learning Agent - Empathic Learning Agent</title>
+    
+    <!-- Global CSS -->
+    <link rel="stylesheet" href="../../css/global.css">
+    <link rel="stylesheet" href="../../css/accessibility.css">
+    
+    <!-- Student CSS -->
+    <link rel="stylesheet" href="../../css/student/student-global.css">
+    <link rel="stylesheet" href="../../css/student/agent.css">
+    
+    <!-- Shared Components CSS -->
+    <link rel="stylesheet" href="../../css/shared/components.css">
+    <link rel="stylesheet" href="../../css/shared/forms.css">
+    <link rel="stylesheet" href="../../css/shared/modals.css">
+</head>
+<body class="student-theme">
+    <!-- Navigation -->
+    <nav class="main-nav">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <a href="dashboard.html" class="nav-logo">🤖</a>
+                <span class="nav-title">Empathic Learning Agent</span>
+                <span class="nav-subtitle">Student Portal</span>
+            </div>
+            
+            <div class="nav-menu">
+                <a href="dashboard.html" class="nav-item">
+                    <span class="nav-icon">🏠</span>
+                    <span class="nav-text">Dashboard</span>
+                </a>
+                <a href="learning.html" class="nav-item">
+                    <span class="nav-icon">📚</span>
+                    <span class="nav-text">Learning</span>
+                </a>
+                <a href="agent-chat.html" class="nav-item active">
+                    <span class="nav-icon">💬</span>
+                    <span class="nav-text">Agent Chat</span>
+                    <span class="notification-badge" id="agentNotifications">3</span>
+                </a>
+                <a href="achievements.html" class="nav-item">
+                    <span class="nav-icon">🏆</span>
+                    <span class="nav-text">Achievements</span>
+                </a>
+                <a href="profile.html" class="nav-item">
+                    <span class="nav-icon">👤</span>
+                    <span class="nav-text">Profile</span>
+                </a>
+            </div>
+            
+            <div class="nav-actions">
+                <button class="btn btn-outline btn-sm" id="helpButton">
+                    <span>❓</span> Help
+                </button>
+                <button class="btn btn-outline btn-sm" id="logoutButton">
+                    <span>🚪</span> Logout
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="agent-chat-page">
+        <div class="agent-chat-container">
+            <!-- Sidebar -->
+            <aside class="agent-sidebar">
+                <div class="agent-profile">
+                    <div class="agent-avatar-large">🤖</div>
+                    <div class="agent-info">
+                        <h3>Learning Agent</h3>
+                        <p class="agent-status online">Online</p>
+                        <p class="agent-description">Your AI learning companion</p>
+                    </div>
+                </div>
+                
+                <div class="agent-stats">
+                    <div class="stat-item">
+                        <div class="stat-value" id="conversationCount">24</div>
+                        <div class="stat-label">Conversations</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value" id="questionsAnswered">156</div>
+                        <div class="stat-label">Questions Answered</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value" id="learningHours">42</div>
+                        <div class="stat-label">Learning Hours</div>
+                    </div>
+                </div>
+                
+                <div class="quick-actions">
+                    <h4>Quick Actions</h4>
+                    <div class="action-grid">
+                        <button class="quick-action" data-action="explain">
+                            <span class="action-icon">📝</span>
+                            <span class="action-text">Explain Concept</span>
+                        </button>
+                        <button class="quick-action" data-action="example">
+                            <span class="action-icon">🔍</span>
+                            <span class="action-text">Show Example</span>
+                        </button>
+                        <button class="quick-action" data-action="practice">
+                            <span class="action-icon">💪</span>
+                            <span class="action-text">Practice Exercise</span>
+                        </button>
+                        <button class="quick-action" data-action="break">
+                            <span class="action-icon">☕</span>
+                            <span class="action-text">Suggest Break</span>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="emotion-tracker">
+                    <h4>Current Mood</h4>
+                    <div class="emotion-display" id="currentEmotion">
+                        <span class="emotion-label">Neutral</span>
+                        <div class="emotion-confidence">
+                            <div class="confidence-bar" id="emotionConfidence" style="width: 75%"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="emotion-buttons">
+                        <button class="emotion-btn" data-emotion="happy">
+                            <span>😊</span> Happy
+                        </button>
+                        <button class="emotion-btn" data-emotion="confused">
+                            <span>🤔</span> Confused
+                        </button>
+                        <button class="emotion-btn" data-emotion="frustrated">
+                            <span>😤</span> Frustrated
+                        </button>
+                        <button class="emotion-btn" data-emotion="excited">
+                            <span>🎉</span> Excited
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="learning-context">
+                    <h4>Current Learning</h4>
+                    <div class="context-item">
+                        <span class="context-label">Subject:</span>
+                        <span class="context-value" id="currentSubject">Mathematics</span>
+                    </div>
+                    <div class="context-item">
+                        <span class="context-label">Topic:</span>
+                        <span class="context-value" id="currentTopic">Fractions</span>
+                    </div>
+                    <div class="context-item">
+                        <span class="context-label">Progress:</span>
+                        <span class="context-value" id="currentProgress">65%</span>
+                    </div>
+                </div>
+            </aside>
+            
+            <!-- Chat Area -->
+            <section class="chat-area">
+                <div class="chat-header">
+                    <div class="header-left">
+                        <h2>Chat with Learning Agent</h2>
+                        <p class="chat-subtitle">Ask questions, get explanations, or just chat about your learning!</p>
+                    </div>
+                    <div class="header-right">
+                        <button class="btn btn-outline" id="clearChat">
+                            <span>🗑️</span> Clear Chat
+                        </button>
+                        <button class="btn btn-primary" id="newTopic">
+                            <span>✨</span> New Topic
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="chat-messages" id="agentChat">
+                    <!-- Messages will be loaded here -->
+                    <div class="welcome-message">
+                        <div class="message-bubble agent">
+                            <div class="message-content">
+                                Hello! I'm your Learning Agent. I'm here to help you with your studies, answer questions, and provide support. How can I assist you today?
+                            </div>
+                            <div class="message-time">Just now</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="chat-input-area">
+                    <div class="input-tools">
+                        <button class="btn-icon" id="attachFile" title="Attach file">
+                            <span>📎</span>
+                        </button>
+                        <button class="btn-icon" id="voiceInputBtn" title="Voice input">
+                            <span>🎤</span>
+                        </button>
+                        <button class="btn-icon" id="emojiPicker" title="Add emoji">
+                            <span>😊</span>
+                        </button>
+                    </div>
+                    
+                    <textarea 
+                        id="agentMessageInput" 
+                        class="message-input" 
+                        placeholder="Type your message here... Ask questions about fractions, request explanations, or share how you're feeling!"
+                        rows="3"></textarea>
+                    
+                    <div class="input-actions">
+                        <div class="character-count">
+                            <span id="charCount">0</span>/500
+                        </div>
+                        <button class="btn btn-primary" id="sendAgentMessage">
+                            <span>✉️</span> Send
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="chat-suggestions">
+                    <h4>Suggested Questions:</h4>
+                    <div class="suggestions-grid">
+                        <button class="suggestion-btn" data-question="Can you explain fractions in simple terms?">
+                            Explain fractions simply
+                        </button>
+                        <button class="suggestion-btn" data-question="Show me an example of adding fractions">
+                            Add fractions example
+                        </button>
+                        <button class="suggestion-btn" data-question="I'm feeling stuck with this topic">
+                            I'm feeling stuck
+                        </button>
+                        <button class="suggestion-btn" data-question="What's the best way to practice fractions?">
+                            Practice suggestions
+                        </button>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Learning Panel -->
+            <aside class="learning-panel">
+                <div class="panel-section">
+                    <h3>Learning Resources</h3>
+                    <div class="resource-list">
+                        <div class="resource-item" data-resource="video_fractions">
+                            <span class="resource-icon">🎬</span>
+                            <div class="resource-info">
+                                <div class="resource-title">Fractions Video Tutorial</div>
+                                <div class="resource-desc">15 min • Visual learning</div>
+                            </div>
+                        </div>
+                        <div class="resource-item" data-resource="quiz_fractions">
+                            <span class="resource-icon">📝</span>
+                            <div class="resource-info">
+                                <div class="resource-title">Fractions Quiz</div>
+                                <div class="resource-desc">10 questions • Interactive</div>
+                            </div>
+                        </div>
+                        <div class="resource-item" data-resource="game_fractions">
+                            <span class="resource-icon">🎮</span>
+                            <div class="resource-info">
+                                <div class="resource-title">Fractions Game</div>
+                                <div class="resource-desc">Fun practice • Adaptive</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="panel-section">
+                    <h3>Recent Conversations</h3>
+                    <div class="conversation-history">
+                        <div class="history-item active">
+                            <div class="history-topic">Fractions Basics</div>
+                            <div class="history-time">Just now</div>
+                        </div>
+                        <div class="history-item">
+                            <div class="history-topic">Decimals Conversion</div>
+                            <div class="history-time">2 hours ago</div>
+                        </div>
+                        <div class="history-item">
+                            <div class="history-topic">Math Anxiety Help</div>
+                            <div class="history-time">Yesterday</div>
+                        </div>
+                        <div class="history-item">
+                            <div class="history-topic">Study Techniques</div>
+                            <div class="history-time">2 days ago</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="panel-section">
+                    <h3>Agent Insights</h3>
+                    <div class="insights-container">
+                        <div class="insight-card">
+                            <div class="insight-icon">💡</div>
+                            <div class="insight-content">
+                                <div class="insight-title">Learning Pattern</div>
+                                <div class="insight-text">You learn best with visual examples</div>
+                            </div>
+                        </div>
+                        <div class="insight-card">
+                            <div class="insight-icon">📊</div>
+                            <div class="insight-content">
+                                <div class="insight-title">Progress Alert</div>
+                                <div class="insight-text">You're improving 15% faster than average</div>
+                            </div>
+                        </div>
+                        <div class="insight-card">
+                            <div class="insight-icon">🎯</div>
+                            <div class="insight-content">
+                                <div class="insight-title">Focus Tip</div>
+                                <div class="insight-text">Try 25-minute focused sessions with breaks</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="panel-section">
+                    <h3>Voice Commands</h3>
+                    <div class="voice-commands">
+                        <div class="command-item">
+                            <span class="command-trigger">"Hey Agent, explain..."</span>
+                            <span class="command-action">Get explanation</span>
+                        </div>
+                        <div class="command-item">
+                            <span class="command-trigger">"Show me an example"</span>
+                            <span class="command-action">See examples</span>
+                        </div>
+                        <div class="command-item">
+                            <span class="command-trigger">"I need help with..."</span>
+                            <span class="command-action">Get assistance</span>
+                        </div>
+                        <div class="command-item">
+                            <span class="command-trigger">"How am I doing?"</span>
+                            <span class="command-action">Progress check</span>
+                        </div>
+                    </div>
+                    <button class="btn btn-outline btn-block" id="startVoiceSession">
+                        <span>🎤</span> Start Voice Session
+                    </button>
+                </div>
+            </aside>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Learning Agent</h4>
+                <p>Your AI-powered learning companion</p>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <a href="dashboard.html">Dashboard</a>
+                <a href="learning.html">Learning Modules</a>
+                <a href="achievements.html">Achievements</a>
+            </div>
+            <div class="footer-section">
+                <h4>Support</h4>
+                <a href="#" id="helpCenter">Help Center</a>
+                <a href="#" id="contactSupport">Contact Support</a>
+                <a href="#" id="feedback">Give Feedback</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Empathic Learning Agent. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Global JavaScript -->
+    <script src="../../js/global.js"></script>
+    <script src="../../js/config.js"></script>
+    
+    <!-- Modules -->
+    <script src="../../js/modules/auth.js"></script>
+    <script src="../../js/modules/storage.js"></script>
+    <script src="../../js/modules/utils.js"></script>
+    <script src="../../js/modules/accessibility.js"></script>
+    
+    <!-- AI Modules -->
+    <script src="../../js/ai/agent-core.js"></script>
+    <script src="../../js/ai/emotion-detector.js"></script>
+    <script src="../../js/ai/intervention-planner.js"></script>
+    
+    <!-- Student Modules -->
+    <script src="../../js/student/student-global.js"></script>
+    <script src="../../js/student/agent-interaction.js"></script>
+    
+    <!-- Shared Components -->
+    <script src="../../js/shared/components.js"></script>
+    <script src="../../js/shared/messaging.js"></script>
+</body>
+</html> 

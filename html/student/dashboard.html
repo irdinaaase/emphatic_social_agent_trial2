@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard - Empathic Learning Agent</title>
+    
+    <!-- Global CSS -->
+    <link rel="stylesheet" href="../../css/global.css">
+    <link rel="stylesheet" href="../../css/accessibility.css">
+    
+    <!-- Shared Components CSS -->
+    <link rel="stylesheet" href="../../css/shared/components.css">
+    <link rel="stylesheet" href="../../css/shared/forms.css">
+    
+    <!-- Student CSS -->
+    <link rel="stylesheet" href="../../css/student/student-global.css">
+    <link rel="stylesheet" href="../../css/student/dashboard.css">
+    
+    <style>
+        /* Dashboard-specific styles */
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: var(--space-6);
+            margin-top: var(--space-6);
+        }
+        
+        .welcome-section {
+            grid-column: span 12;
+        }
+        
+        .progress-section {
+            grid-column: span 8;
+        }
+        
+        .achievements-section {
+            grid-column: span 4;
+        }
+        
+        .lessons-section {
+            grid-column: span 6;
+        }
+        
+        .focus-section {
+            grid-column: span 6;
+        }
+        
+        .activity-section {
+            grid-column: span 12;
+        }
+        
+        /* Focus circle */
+        .focus-circle {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
+            border: 8px solid;
+            transition: all 0.3s ease;
+        }
+        
+        .focus-circle.good {
+            border-color: var(--success-color);
+            color: var(--success-color);
+        }
+        
+        .focus-circle.warning {
+            border-color: var(--warning-color);
+            color: var(--warning-color);
+        }
+        
+        .focus-circle.poor {
+            border-color: var(--danger-color);
+            color: var(--danger-color);
+        }
+        
+        .circle-value {
+            font-size: var(--text-2xl);
+            font-weight: 700;
+        }
+        
+        .circle-label {
+            font-size: var(--text-sm);
+            color: var(--text-secondary);
+        }
+        
+        /* Lesson items */
+        .lessons-list {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-4);
+        }
+        
+        .lesson-item {
+            display: flex;
+            align-items: center;
+            gap: var(--space-4);
+            padding: var(--space-4);
+            background: var(--light-1);
+            border-radius: var(--radius);
+            border: 1px solid var(--light-3);
+            transition: all 0.3s ease;
+        }
+        
+        .lesson-item:hover {
+            background: white;
+            border-color: var(--primary-color);
+            transform: translateY(-2px);
+        }
+        
+        .lesson-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: var(--radius);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+        
+        .lesson-icon.math { background: rgba(67, 97, 238, 0.1); color: var(--primary-color); }
+        .lesson-icon.reading { background: rgba(245, 158, 11, 0.1); color: var(--warning-color); }
+        .lesson-icon.science { background: rgba(74, 222, 128, 0.1); color: var(--success-color); }
+        .lesson-icon.writing { background: rgba(239, 68, 68, 0.1); color: var(--danger-color); }
+        
+        .lesson-info {
+            flex: 1;
+        }
+        
+        .lesson-title {
+            font-weight: 600;
+            margin-bottom: var(--space-1);
+        }
+        
+        .lesson-meta {
+            display: flex;
+            gap: var(--space-3);
+            font-size: var(--text-sm);
+            color: var(--text-secondary);
+            margin-bottom: var(--space-2);
+        }
+        
+        .lesson-difficulty {
+            padding: var(--space-1) var(--space-2);
+            border-radius: var(--radius-full);
+            font-size: var(--text-xs);
+            font-weight: 600;
+        }
+        
+        .lesson-difficulty.beginner { background: rgba(74, 222, 128, 0.1); color: var(--success-color); }
+        .lesson-difficulty.intermediate { background: rgba(245, 158, 11, 0.1); color: var(--warning-color); }
+        .lesson-difficulty.advanced { background: rgba(239, 68, 68, 0.1); color: var(--danger-color); }
+        
+        .lesson-progress-bar {
+            height: 4px;
+            background: var(--light-3);
+            border-radius: var(--radius-full);
+            overflow: hidden;
+            margin-top: var(--space-2);
+        }
+        
+        .lesson-progress-bar .progress-fill {
+            height: 100%;
+            background: var(--primary-color);
+            border-radius: var(--radius-full);
+            transition: width 0.3s ease;
+        }
+        
+        /* Achievements grid */
+        .achievements-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--space-3);
+            margin-bottom: var(--space-6);
+        }
+        
+        .achievement-badge {
+            background: white;
+            border-radius: var(--radius);
+            padding: var(--space-3);
+            text-align: center;
+            border: 2px solid var(--light-3);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .achievement-badge.earned {
+            border-color: var(--warning-color);
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .achievement-badge:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow);
+        }
+        
+        .achievement-icon {
+            font-size: 2rem;
+            margin-bottom: var(--space-2);
+        }
+        
+        .achievement-name {
+            font-size: var(--text-xs);
+            font-weight: 600;
+            color: var(--dark-1);
+        }
+        
+        .achievement-date {
+            font-size: var(--text-xs);
+            color: var(--text-secondary);
+            margin-top: var(--space-1);
+        }
+        
+        /* Focus tools */
+        .focus-tools-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: var(--space-3);
+            margin-top: var(--space-4);
+        }
+        
+        .focus-tool {
+            background: white;
+            border-radius: var(--radius);
+            padding: var(--space-4);
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 1px solid var(--light-3);
+        }
+        
+        .focus-tool:hover {
+            background: var(--light-1);
+            border-color: var(--primary-color);
+            transform: translateY(-2px);
+        }
+        
+        .tool-icon {
+            font-size: 2rem;
+            margin-bottom: var(--space-2);
+        }
+        
+        .tool-name {
+            font-weight: 600;
+            margin-bottom: var(--space-1);
+        }
+        
+        .tool-desc {
+            font-size: var(--text-xs);
+            color: var(--text-secondary);
+        }
+        
+        /* Activity timeline */
+        .activity-timeline {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-4);
+        }
+        
+        .activity-item {
+            display: flex;
+            gap: var(--space-4);
+            padding-bottom: var(--space-4);
+            border-bottom: 1px solid var(--light-3);
+        }
+        
+        .activity-item:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+        
+        .activity-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: var(--radius);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+        }
+        
+        .activity-icon.lesson_start { background: rgba(67, 97, 238, 0.1); color: var(--primary-color); }
+        .activity-icon.lesson_complete { background: rgba(74, 222, 128, 0.1); color: var(--success-color); }
+        .activity-icon.achievement { background: rgba(245, 158, 11, 0.1); color: var(--warning-color); }
+        
+        .activity-content {
+            flex: 1;
+        }
+        
+        .activity-title {
+            font-weight: 600;
+            margin-bottom: var(--space-1);
+        }
+        
+        .activity-description {
+            font-size: var(--text-sm);
+            color: var(--text-secondary);
+            margin-bottom: var(--space-1);
+        }
+        
+        .activity-time {
+            font-size: var(--text-xs);
+            color: var(--text-light);
+        }
+        
+        /* Agent status widget */
+        .agent-status-widget {
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+            padding: var(--space-4);
+            background: rgba(67, 97, 238, 0.05);
+            border-radius: var(--radius);
+            border: 1px solid rgba(67, 97, 238, 0.2);
+            margin-top: var(--space-4);
+        }
+        
+        .agent-avatar-small {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--primary-color);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+        }
+        
+        .agent-status-content {
+            flex: 1;
+        }
+        
+        .agent-status-text {
+            margin-bottom: var(--space-2);
+        }
+        
+        .status-online {
+            color: var(--success-color);
+            font-weight: 600;
+        }
+        
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .dashboard-grid {
+                grid-template-columns: repeat(6, 1fr);
+            }
+            
+            .welcome-section,
+            .activity-section {
+                grid-column: span 6;
+            }
+            
+            .progress-section,
+            .lessons-section,
+            .focus-section,
+            .achievements-section {
+                grid-column: span 3;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+                gap: var(--space-4);
+            }
+            
+            .welcome-section,
+            .progress-section,
+            .achievements-section,
+            .lessons-section,
+            .focus-section,
+            .activity-section {
+                grid-column: span 1;
+            }
+            
+            .focus-tools-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .achievements-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body class="student-theme">
+    <!-- Header will be inserted by StudentGlobal -->
+    
+    <main class="student-main">
+        <div class="container">
+            <!-- Welcome Section -->
+            <section id="welcome-section" class="welcome-section">
+                <!-- Filled by JavaScript -->
+            </section>
+            
+            <div class="dashboard-grid">
+                <!-- Progress Overview -->
+                <section id="progress-overview" class="progress-section">
+                    <!-- Filled by JavaScript -->
+                </section>
+                
+                <!-- Achievements -->
+                <section id="achievements-section" class="achievements-section">
+                    <!-- Filled by JavaScript -->
+                </section>
+                
+                <!-- Today's Lessons -->
+                <section id="today-lessons" class="lessons-section">
+                    <!-- Filled by JavaScript -->
+                </section>
+                
+                <!-- Focus Tools -->
+                <section id="focus-tools" class="focus-section">
+                    <!-- Filled by JavaScript -->
+                </section>
+                
+                <!-- Activity Feed -->
+                <section id="activity-feed" class="activity-section">
+                    <!-- Filled by JavaScript -->
+                </section>
+            </div>
+        </div>
+    </main>
+    
+    <!-- Global JavaScript -->
+    <script src="../../js/global.js"></script>
+    <script src="../../js/config.js"></script>
+    
+    <!-- Modules -->
+    <script src="../../js/modules/auth.js"></script>
+    <script src="../../js/modules/storage.js"></script>
+    <script src="../../js/modules/api.js"></script>
+    
+    <!-- AI Modules -->
+    <script src="../../js/ai/agent-core.js"></script>
+    <script src="../../js/ai/emotion-detector.js"></script>
+    <script src="../../js/ai/focus-monitor.js"></script>
+    <script src="../../js/ai/engagement-tracker.js"></script>
+    <script src="../../js/ai/intervention-planner.js"></script>
+    
+    <!-- Student Global -->
+    <script src="../../js/student/student-global.js"></script>
+    
+    <!-- Dashboard Specific -->
+    <script src="../../js/student/dashboard.js"></script>
+    
+    <script>
+        // Check authentication on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            if (!Auth.isLoggedIn() || !Auth.isStudent()) {
+                window.location.href = '../../index.html';
+            }
+        });
+    </script>
+</body>
+</html>

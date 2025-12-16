@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Monitoring - Empathic Learning Agent</title>
+    
+    <!-- Global CSS -->
+    <link rel="stylesheet" href="../../css/global.css">
+    <link rel="stylesheet" href="../../css/accessibility.css">
+    
+    <!-- Shared Components CSS -->
+    <link rel="stylesheet" href="../../css/shared/components.css">
+    
+    <!-- Teacher CSS -->
+    <link rel="stylesheet" href="../../css/teacher/teacher-global.css">
+    <link rel="stylesheet" href="../../css/teacher/monitoring.css">
+    
+    <!-- Emotion Camera CSS -->
+    <link rel="stylesheet" href="../../../components/emotion-camera/camera.css">
+    
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="teacher-theme">
+    <!-- Header will be inserted by TeacherGlobal -->
+    
+    <main class="teacher-main">
+        <div class="monitoring-dashboard">
+            <div class="dashboard-header">
+                <div class="header-title">
+                    <h1>Live Monitoring</h1>
+                    <p>Real-time tracking of student engagement, focus, and emotional states</p>
+                </div>
+                <div class="header-actions">
+                    <button class="btn btn-secondary" id="refresh-monitoring">
+                        <span>🔄</span> Refresh
+                    </button>
+                    <button class="btn btn-primary" id="start-session">
+                        <span>▶️</span> Start Monitoring Session
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Real-time Status Grid -->
+            <div class="status-grid">
+                <div class="status-card status-active">
+                    <div class="status-icon">👨‍🎓</div>
+                    <div class="status-content">
+                        <div class="status-value" id="active-students">0</div>
+                        <div class="status-label">Active Students</div>
+                    </div>
+                </div>
+                
+                <div class="status-card status-focus">
+                    <div class="status-icon">🎯</div>
+                    <div class="status-content">
+                        <div class="status-value" id="avg-focus">0%</div>
+                        <div class="status-label">Avg Focus Level</div>
+                    </div>
+                </div>
+                
+                <div class="status-card status-engagement">
+                    <div class="status-icon">📈</div>
+                    <div class="status-content">
+                        <div class="status-value" id="avg-engagement">0%</div>
+                        <div class="status-label">Avg Engagement</div>
+                    </div>
+                </div>
+                
+                <div class="status-card status-emotion">
+                    <div class="status-icon">😊</div>
+                    <div class="status-content">
+                        <div class="status-value" id="positive-emotions">0%</div>
+                        <div class="status-label">Positive Emotions</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="monitoring-grid">
+                <!-- Left Column: Student Grid -->
+                <div class="student-monitoring">
+                    <div class="section-header">
+                        <h2 class="section-title">Live Student Status</h2>
+                        <div class="section-actions">
+                            <select id="filter-status" class="select-control select-control-sm">
+                                <option value="all">All Students</option>
+                                <option value="active">Active Only</option>
+                                <option value="needs-attention">Needs Attention</option>
+                                <option value="focused">Highly Focused</option>
+                                <option value="distracted">Distracted</option>
+                            </select>
+                            <input type="text" id="search-students" class="form-control form-control-sm" placeholder="Search students...">
+                        </div>
+                    </div>
+                    
+                    <div class="students-grid" id="students-grid">
+                        <!-- Students will be loaded dynamically -->
+                    </div>
+                </div>
+                
+                <!-- Right Column: Charts and Details -->
+                <div class="analytics-panel">
+                    <!-- Emotion Monitoring Panel -->
+                    <div class="chart-container">
+                        <div class="chart-header">
+                            <h3 class="chart-title">Live Emotion Monitoring</h3>
+                            <button class="btn btn-sm btn-secondary" id="toggle-camera-view">
+                                <span>📷</span> Show/Hide Camera
+                            </button>
+                        </div>
+                        <div class="chart-wrapper" id="emotion-camera-container" style="display: none;">
+                            <!-- Teacher view of emotion camera (for demo purposes) -->
+                            <div class="teacher-emotion-view">
+                                <div data-component="emotion-camera"></div>
+                                <div class="teacher-controls">
+                                    <button class="btn btn-sm" id="start-all-cameras">Start All Cameras</button>
+                                    <button class="btn btn-sm" id="stop-all-cameras">Stop All Cameras</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Focus Heatmap -->
+                    <div class="chart-container">
+                        <div class="chart-header">
+                            <h3 class="chart-title">Focus Level Heatmap</h3>
+                            <div class="time-selector">
+                                <button class="time-btn active" data-time="live">Live</button>
+                                <button class="time-btn" data-time="hour">1 Hour</button>
+                                <button class="time-btn" data-time="day">Today</button>
+                            </div>
+                        </div>
+                        <div class="chart-wrapper">
+                            <canvas id="focus-heatmap"></canvas>
+                        </div>
+                    </div>
+                    
+                    <!-- Emotion Distribution -->
+                    <div class="chart-container">
+                        <div class="chart-header">
+                            <h3 class="chart-title">Emotion Distribution</h3>
+                        </div>
+                        <div class="chart-wrapper">
+                            <canvas id="emotion-chart"></canvas>
+                        </div>
+                    </div>
+                    
+                    <!-- Activity Stream -->
+                    <div class="activity-stream">
+                        <div class="stream-header">
+                            <h3 class="stream-title">Recent Activity</h3>
+                            <button class="btn btn-sm btn-secondary" id="clear-activity">Clear</button>
+                        </div>
+                        <div class="stream-list" id="activity-stream">
+                            <!-- Activity items will be added here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Selected Student Details -->
+            <div class="student-details-panel" id="student-details">
+                <div class="details-header">
+                    <h3>Student Details</h3>
+                    <button class="btn-icon" id="close-details">×</button>
+                </div>
+                <div class="details-content">
+                    <div class="student-summary" id="selected-student-summary">
+                        <!-- Selected student summary will appear here -->
+                    </div>
+                    <div class="student-emotion-data" id="student-emotion-data">
+                        <!-- Student-specific emotion data will appear here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <!-- Global JavaScript -->
+    <script src="../../js/global.js"></script>
+    <script src="../../js/config.js"></script>
+    
+    <!-- Modules -->
+    <script src="../../js/modules/auth.js"></script>
+    <script src="../../js/modules/storage.js"></script>
+    <script src="../../js/modules/api.js"></script>
+    
+    <!-- Teacher Global -->
+    <script src="../../js/teacher/teacher-global.js"></script>
+
+    <!-- AI Modules -->
+    <script src="../../js/ai/webcam-emotion.js"></script> <!-- Added this -->
+    <script src="../../js/ai/emotion-fusion.js"></script>
+    <script src="../../js/ai/emotion-integration.js"></script>
+    <script src="../../../components/emotion-camera/camera.js"></script> <!-- Fixed path -->
+    
+    <!-- Setup Script -->
+    <script src="../../js/setup/emotion-setup.js"></script>
+    
+    <!-- Monitoring Specific -->
+    <script src="monitoring.js"></script>
+    
+    <script>
+        // Check authentication on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            if (!Auth.isLoggedIn() || !Auth.isTeacher()) {
+                window.location.href = '../../index.html';
+            }
+            
+            // Toggle camera view for teachers
+            document.getElementById('toggle-camera-view')?.addEventListener('click', () => {
+                const container = document.getElementById('emotion-camera-container');
+                container.style.display = container.style.display === 'none' ? 'block' : 'none';
+            });
+        });
+    </script>
+</body>
+</html>

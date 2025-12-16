@@ -1,0 +1,215 @@
+/* components/agent-avatar/avatar.css */
+
+.agent-avatar-container {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-3);
+}
+
+.agent-avatar {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    box-shadow: var(--shadow-lg);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.agent-avatar:hover {
+    transform: scale(1.05);
+    box-shadow: var(--shadow-xl);
+}
+
+.agent-avatar.small {
+    width: 60px;
+    height: 60px;
+}
+
+.agent-avatar.medium {
+    width: 90px;
+    height: 90px;
+}
+
+.agent-avatar.large {
+    width: 150px;
+    height: 150px;
+}
+
+.avatar-default {
+    font-size: 3.5rem;
+    animation: pulse 2s infinite;
+}
+
+.agent-avatar.small .avatar-default {
+    font-size: 1.75rem;
+}
+
+.agent-avatar.medium .avatar-default {
+    font-size: 2.5rem;
+}
+
+.agent-avatar.large .avatar-default {
+    font-size: 4.5rem;
+}
+
+.agent-status {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    background: var(--light-1);
+    padding: var(--space-2) var(--space-3);
+    border-radius: var(--radius-full);
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+}
+
+.status-indicator {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+}
+
+.status-indicator.status-online {
+    background: var(--success-color);
+    box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.2);
+    animation: pulse 2s infinite;
+}
+
+.status-indicator.status-away {
+    background: var(--warning-color);
+    box-shadow: 0 0 0 2px rgba(255, 152, 0, 0.2);
+}
+
+.status-indicator.status-busy {
+    background: var(--danger-color);
+    box-shadow: 0 0 0 2px rgba(244, 67, 54, 0.2);
+}
+
+.status-indicator.status-offline {
+    background: var(--text-light);
+    box-shadow: 0 0 0 2px rgba(158, 158, 158, 0.2);
+}
+
+.agent-mood {
+    background: rgba(255, 193, 7, 0.1);
+    padding: var(--space-2) var(--space-3);
+    border-radius: var(--radius);
+    font-size: var(--text-sm);
+    color: var(--warning-dark);
+    border: 1px solid rgba(255, 193, 7, 0.2);
+    animation: fadeIn 0.3s ease;
+}
+
+.mood-label {
+    font-weight: 600;
+    margin-right: var(--space-1);
+}
+
+.mood-value {
+    font-weight: 500;
+}
+
+.avatar-loading {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    animation: fadeIn 0.3s ease;
+}
+
+.loading-dots {
+    display: flex;
+    gap: 4px;
+}
+
+.loading-dots .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--primary-color);
+    animation: bounce 1.4s infinite ease-in-out both;
+}
+
+.loading-dots .dot:nth-child(1) {
+    animation-delay: -0.32s;
+}
+
+.loading-dots .dot:nth-child(2) {
+    animation-delay: -0.16s;
+}
+
+/* Avatar expressions */
+.agent-avatar.happy .avatar-emoji {
+    animation: bounce 1s ease infinite;
+}
+
+.agent-avatar.thinking .avatar-emoji {
+    animation: rotate 3s linear infinite;
+}
+
+.agent-avatar.listening .avatar-emoji {
+    animation: pulse 1.5s ease infinite;
+}
+
+.agent-avatar.speaking .avatar-emoji {
+    animation: talk 0.5s ease infinite alternate;
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.7;
+    }
+}
+
+@keyframes talk {
+    0% {
+        transform: scale(1);
+    }
+    100% {
+        transform: scale(1.1);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}

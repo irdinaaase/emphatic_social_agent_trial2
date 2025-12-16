@@ -1,0 +1,1139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learning Hub - Mickey Mouse Face Detection</title>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Font for Disney feel -->
+    <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&family=Fredoka+One&display=swap" rel="stylesheet">
+    
+    <style>
+        /* MICKEY MOUSE THEME - DISNEY STYLE */
+        :root {
+            --mickey-red: #e60000;
+            --mickey-yellow: #ffcc00;
+            --mickey-black: #000000;
+            --mickey-white: #ffffff;
+            --mickey-blue: #0066cc;
+            --mickey-bg: #ffcccc;
+            --mickey-skin: #ffcc99;
+        }
+        
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: 'Fredoka One', cursive;
+            background: linear-gradient(135deg, #ffe6e6 0%, #ffcccc 100%);
+            min-height: 100vh;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(255, 255, 255, 0.8) 2px, transparent 2px),
+                radial-gradient(circle at 90% 80%, rgba(255, 255, 255, 0.8) 2px, transparent 2px);
+            background-size: 40px 40px;
+        }
+        
+        .learning-hub {
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+        }
+        
+        /* MICKEY MOUSE HEADER */
+        .mickey-header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 30px;
+            position: relative;
+        }
+        
+        .mickey-ears {
+            position: relative;
+            width: 200px;
+            height: 100px;
+        }
+        
+        .ear {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            background: var(--mickey-black);
+            border-radius: 50%;
+            border: 4px solid var(--mickey-red);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        
+        .ear-left {
+            left: 20px;
+            top: -40px;
+        }
+        
+        .ear-right {
+            right: 20px;
+            top: -40px;
+        }
+        
+        .ear-inner {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background: var(--mickey-white);
+            border-radius: 50%;
+            top: 25px;
+            left: 25px;
+        }
+        
+        h1 {
+            color: var(--mickey-red);
+            font-size: 3rem;
+            margin: 0 20px;
+            text-align: center;
+            text-shadow: 
+                3px 3px 0 var(--mickey-black),
+                6px 6px 0 rgba(230, 0, 0, 0.2);
+            letter-spacing: 2px;
+            background: linear-gradient(45deg, var(--mickey-red), #ff3333);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .subtitle {
+            color: var(--mickey-blue);
+            font-size: 1.4rem;
+            margin-bottom: 40px;
+            text-align: center;
+            font-family: 'Comic Neue', cursive;
+            font-weight: 700;
+            text-shadow: 2px 2px 0 var(--mickey-white);
+            background: var(--mickey-yellow);
+            padding: 15px;
+            border-radius: 50px;
+            border: 4px dashed var(--mickey-red);
+            max-width: 800px;
+            margin: 20px auto 40px;
+            box-shadow: 0 8px 0 var(--mickey-black);
+        }
+        
+        /* LEARNING CONTENT GRID - MICKEY STYLE */
+        .modules-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+        
+        .module-card {
+            background: linear-gradient(145deg, var(--mickey-white), #f2f2f2);
+            border-radius: 25px;
+            padding: 25px;
+            box-shadow: 
+                0 10px 0 var(--mickey-black),
+                0 15px 20px rgba(0,0,0,0.2);
+            border: 5px solid var(--mickey-black);
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .module-card:hover {
+            transform: translateY(-10px) rotate(1deg);
+            box-shadow: 
+                0 15px 0 var(--mickey-black),
+                0 25px 30px rgba(0,0,0,0.3);
+            border-color: var(--mickey-red);
+        }
+        
+        .module-card::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            background: linear-gradient(45deg, var(--mickey-red), var(--mickey-yellow));
+            z-index: -1;
+            border-radius: 30px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .module-card:hover::before {
+            opacity: 0.1;
+        }
+        
+        .module-title {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: var(--mickey-red);
+            text-shadow: 2px 2px 0 var(--mickey-yellow);
+            font-family: 'Fredoka One', cursive;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .module-title i {
+            color: var(--mickey-black);
+            background: var(--mickey-yellow);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 3px solid var(--mickey-black);
+        }
+        
+        .module-desc {
+            color: var(--mickey-blue);
+            font-size: 1.1rem;
+            line-height: 1.6;
+            font-family: 'Comic Neue', cursive;
+            padding-left: 10px;
+            border-left: 4px solid var(--mickey-yellow);
+        }
+        
+        /* MICKEY FACE DETECTION OVERLAY */
+        #face-overlay {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            width: 320px;
+            height: 240px;
+            pointer-events: none;
+            z-index: 9999;
+            border: 5px solid var(--mickey-black);
+            border-radius: 20px;
+            background: var(--mickey-white);
+            overflow: hidden;
+            box-shadow: 
+                0 8px 0 var(--mickey-black),
+                0 15px 25px rgba(0,0,0,0.3);
+        }
+        
+        #face-overlay::before {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            background: linear-gradient(45deg, var(--mickey-red), var(--mickey-yellow));
+            z-index: -1;
+            border-radius: 25px;
+        }
+        
+        #face-status {
+            position: fixed;
+            top: 280px;
+            right: 20px;
+            width: 320px;
+            padding: 20px;
+            background: var(--mickey-white);
+            color: var(--mickey-black);
+            border-radius: 20px;
+            z-index: 9999;
+            font-family: 'Fredoka One', cursive;
+            font-size: 14px;
+            line-height: 1.5;
+            border: 5px solid var(--mickey-black);
+            box-shadow: 0 8px 0 var(--mickey-black);
+        }
+        
+        /* MICKEY START BUTTON */
+        #start-face-detection {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            padding: 20px 40px;
+            background: linear-gradient(145deg, var(--mickey-red), #cc0000);
+            color: var(--mickey-white);
+            border: none;
+            border-radius: 50px;
+            font-size: 1.3rem;
+            font-weight: bold;
+            cursor: pointer;
+            z-index: 10000;
+            box-shadow: 
+                0 8px 0 var(--mickey-black),
+                0 15px 25px rgba(230, 0, 0, 0.4);
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            font-family: 'Fredoka One', cursive;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            animation: bounce 2s infinite;
+        }
+        
+        #start-face-detection:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 
+                0 12px 0 var(--mickey-black),
+                0 20px 30px rgba(230, 0, 0, 0.6);
+        }
+        
+        #start-face-detection:active {
+            transform: translateY(2px);
+            box-shadow: 
+                0 4px 0 var(--mickey-black),
+                0 8px 15px rgba(230, 0, 0, 0.4);
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+        
+        /* DEBUG PANEL - MICKEY STYLE */
+        .console-log {
+            position: fixed;
+            bottom: 120px;
+            right: 20px;
+            width: 320px;
+            height: 180px;
+            padding: 20px;
+            background: var(--mickey-black);
+            color: var(--mickey-yellow);
+            border-radius: 20px;
+            z-index: 9999;
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+            max-height: 200px;
+            overflow-y: auto;
+            border: 5px solid var(--mickey-red);
+            box-shadow: 0 8px 0 var(--mickey-black);
+        }
+        
+        .console-log::before {
+            content: 'DEBUG CONSOLE';
+            position: absolute;
+            top: -15px;
+            left: 20px;
+            background: var(--mickey-red);
+            color: var(--mickey-white);
+            padding: 5px 15px;
+            border-radius: 10px;
+            font-family: 'Fredoka One', cursive;
+            font-size: 12px;
+            border: 3px solid var(--mickey-black);
+        }
+        
+        .debug-line {
+            margin-bottom: 8px;
+            padding: 8px;
+            border-bottom: 2px solid var(--mickey-red);
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+        }
+        
+        /* EMOTION STATUS - MICKEY STYLE */
+        .emotion-status {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: var(--mickey-white);
+            color: var(--mickey-black);
+            padding: 25px;
+            border-radius: 25px;
+            z-index: 9999;
+            min-width: 250px;
+            border: 5px solid var(--mickey-black);
+            box-shadow: 
+                0 8px 0 var(--mickey-black),
+                0 15px 25px rgba(0,0,0,0.2);
+        }
+        
+        .emotion-status::before {
+            content: 'MOOD';
+            position: absolute;
+            top: -15px;
+            left: 20px;
+            background: var(--mickey-yellow);
+            color: var(--mickey-black);
+            padding: 5px 20px;
+            border-radius: 10px;
+            font-family: 'Fredoka One', cursive;
+            font-size: 14px;
+            border: 3px solid var(--mickey-black);
+        }
+        
+        .emotion-value {
+            font-size: 2.5rem;
+            font-weight: 900;
+            margin: 15px 0;
+            color: var(--mickey-red);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-family: 'Fredoka One', cursive;
+            text-shadow: 3px 3px 0 var(--mickey-yellow);
+        }
+        
+        /* CAMERA VIDEO - MICKEY STYLE */
+        #video {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            width: 320px;
+            height: 240px;
+            object-fit: cover;
+            transform: scaleX(-1);
+            border-radius: 15px;
+            opacity: 0.9;
+            z-index: 9998;
+            border: 5px solid var(--mickey-blue);
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.3);
+        }
+        
+        /* MESH POINT STYLES - MICKEY COLORS */
+        .mesh-point {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: var(--mickey-red);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            z-index: 10001;
+            border: 2px solid var(--mickey-white);
+            box-shadow: 0 0 5px var(--mickey-black);
+        }
+        
+        .eye-point {
+            width: 8px;
+            height: 8px;
+            background: var(--mickey-black);
+            box-shadow: 
+                0 0 15px var(--mickey-yellow),
+                0 0 30px var(--mickey-yellow);
+            animation: twinkle 1s infinite alternate;
+        }
+        
+        .mouth-point {
+            width: 6px;
+            height: 6px;
+            background: var(--mickey-blue);
+            box-shadow: 0 0 10px var(--mickey-blue);
+        }
+        
+        .face-box {
+            position: absolute;
+            border: 4px solid var(--mickey-yellow);
+            border-radius: 15px;
+            box-shadow: 
+                0 0 20px var(--mickey-yellow),
+                0 0 40px var(--mickey-yellow);
+            z-index: 10000;
+            animation: glow 1.5s infinite alternate;
+            background: rgba(255, 204, 0, 0.1);
+        }
+        
+        @keyframes twinkle {
+            from { opacity: 0.7; transform: translate(-50%, -50%) scale(1); }
+            to { opacity: 1; transform: translate(-50%, -50%) scale(1.2); }
+        }
+        
+        @keyframes glow {
+            from { 
+                box-shadow: 
+                    0 0 10px var(--mickey-yellow),
+                    0 0 20px var(--mickey-yellow);
+                border-color: var(--mickey-yellow);
+            }
+            to { 
+                box-shadow: 
+                    0 0 25px var(--mickey-yellow),
+                    0 0 50px var(--mickey-yellow);
+                border-color: #ffea00;
+            }
+        }
+        
+        /* MICKEY MOUSE CURSOR */
+        body {
+            cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='15' fill='%23000'/%3E%3Ccircle cx='16' cy='16' r='12' fill='%23FF0000'/%3E%3Ccircle cx='10' cy='10' r='4' fill='%23000'/%3E%3Ccircle cx='22' cy='10' r='4' fill='%23000'/%3E%3C/svg%3E") 16 16, auto;
+        }
+        
+        /* RESPONSIVE DESIGN */
+        @media (max-width: 768px) {
+            .learning-hub {
+                padding: 15px;
+            }
+            
+            .modules-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .mickey-header {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .ear {
+                width: 60px;
+                height: 60px;
+            }
+            
+            .ear-left {
+                left: 50%;
+                transform: translateX(-80px);
+            }
+            
+            .ear-right {
+                right: 50%;
+                transform: translateX(80px);
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+                margin-top: 40px;
+            }
+            
+            #face-overlay,
+            #face-status,
+            .console-log {
+                width: 280px;
+                right: 10px;
+            }
+            
+            #face-overlay {
+                height: 210px;
+            }
+            
+            .emotion-status {
+                left: 10px;
+                right: 10px;
+                min-width: auto;
+            }
+            
+            #start-face-detection {
+                bottom: 20px;
+                right: 20px;
+                left: 20px;
+                width: calc(100% - 40px);
+                justify-content: center;
+            }
+        }
+        
+        /* MICKEY DECORATIONS */
+        .mickey-dot {
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            background: var(--mickey-red);
+            border-radius: 50%;
+            border: 3px solid var(--mickey-black);
+            z-index: -1;
+            animation: float 20s infinite linear;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0) rotate(0deg); }
+            100% { transform: translateY(-100vh) rotate(360deg); }
+        }
+        
+        /* POLKA DOTS BACKGROUND ELEMENTS */
+        .polka-dot {
+            position: fixed;
+            width: 40px;
+            height: 40px;
+            background: var(--mickey-yellow);
+            border-radius: 50%;
+            border: 4px solid var(--mickey-white);
+            z-index: -1;
+            opacity: 0.3;
+        }
+        
+        /* SCROLLBAR STYLING */
+        .console-log::-webkit-scrollbar {
+            width: 12px;
+        }
+        
+        .console-log::-webkit-scrollbar-track {
+            background: var(--mickey-red);
+            border-radius: 6px;
+            border: 3px solid var(--mickey-black);
+        }
+        
+        .console-log::-webkit-scrollbar-thumb {
+            background: var(--mickey-yellow);
+            border-radius: 6px;
+            border: 3px solid var(--mickey-black);
+        }
+        
+        /* MOUSE HOVER EFFECTS */
+        .module-card:hover .module-title i {
+            animation: spin 0.5s linear;
+            background: var(--mickey-red);
+            color: var(--mickey-white);
+        }
+        
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    
+    <!-- MICKEY MOUSE DECORATIONS -->
+    <div class="polka-dot" style="top: 10%; left: 5%;"></div>
+    <div class="polka-dot" style="top: 20%; right: 10%;"></div>
+    <div class="polka-dot" style="bottom: 30%; left: 15%;"></div>
+    <div class="mickey-dot" style="top: 15%; right: 20%; animation-delay: -5s;"></div>
+    <div class="mickey-dot" style="top: 40%; left: 8%; animation-delay: -10s;"></div>
+    
+    <!-- EMOTION STATUS -->
+    <div class="emotion-status" id="emotion-status">
+        <div style="font-size: 14px; color: #666; margin-bottom: 5px; font-family: 'Comic Neue', cursive;">
+            <i class="fas fa-smile"></i> CURRENT EMOTION
+        </div>
+        <div class="emotion-value" id="current-emotion">HAPPY!</div>
+        <div style="font-size: 12px; color: #666;" id="confidence">
+            Ready for fun learning!
+        </div>
+    </div>
+    
+    <!-- FACE DETECTION OVERLAY -->
+    <div id="face-overlay"></div>
+    
+    <!-- CAMERA VIDEO -->
+    <video id="video" autoplay playsinline muted></video>
+    
+    <!-- STATUS DISPLAY -->
+    <div id="face-status">
+        <div style="color: var(--mickey-red); font-weight: bold; margin-bottom: 15px; font-size: 16px;">
+            <i class="fas fa-magic"></i> MICKEY FACE DETECTION
+        </div>
+        <div id="status-text" style="color: var(--mickey-blue);">
+            Oh boy! Click START to begin!
+        </div>
+    </div>
+    
+    <!-- DEBUG PANEL -->
+    <div class="console-log" id="console-log">
+        <div id="debug-logs">
+            <div class="debug-line">Welcome to Mickey's Learning Hub!</div>
+            <div class="debug-line">Face detection ready to play!</div>
+        </div>
+    </div>
+    
+    <!-- START BUTTON -->
+    <button id="start-face-detection">
+        <i class="fas fa-play-circle" id="btn-icon"></i>
+        <span id="btn-text">START THE SHOW!</span>
+    </button>
+    
+    <!-- HIDDEN CANVAS FOR PROCESSING -->
+    <canvas id="canvas" style="display: none;"></canvas>
+    
+    <!-- LEARNING CONTENT -->
+    <main class="learning-hub">
+        <!-- MICKEY MOUSE HEADER -->
+        <div class="mickey-header">
+            <div class="mickey-ears">
+                <div class="ear ear-left">
+                    <div class="ear-inner"></div>
+                </div>
+                <div class="ear ear-right">
+                    <div class="ear-inner"></div>
+                </div>
+            </div>
+            <h1>MICKEY'S LEARNING HUB</h1>
+        </div>
+        
+        <p class="subtitle">
+            <i class="fas fa-magic"></i> 
+            Oh boy! Learn with Mickey's magical face detection!
+            <i class="fas fa-hat-wizard"></i>
+        </p>
+        
+        <div class="modules-grid">
+            <div class="module-card">
+                <div class="module-title">
+                    <i class="fas fa-calculator"></i>
+                    Mickey's Math Magic
+                </div>
+                <div class="module-desc">
+                    Learn counting and arithmetic with Mickey and his friends! Perfect for young learners.
+                </div>
+            </div>
+            
+            <div class="module-card">
+                <div class="module-title">
+                    <i class="fas fa-book-reader"></i>
+                    Disney Story Time
+                </div>
+                <div class="module-desc">
+                    Read along with Mickey, Minnie, and all your favorite Disney characters!
+                </div>
+            </div>
+            
+            <div class="module-card">
+                <div class="module-title">
+                    <i class="fas fa-flask"></i>
+                    Goofy's Science Lab
+                </div>
+                <div class="module-desc">
+                    Join Goofy for fun science experiments and discoveries! Safety goggles optional!
+                </div>
+            </div>
+            
+            <div class="module-card">
+                <div class="module-title">
+                    <i class="fas fa-music"></i>
+                    Donald's Music Class
+                </div>
+                <div class="module-desc">
+                    Learn about music, rhythm, and instruments with Donald Duck! No quacking required!
+                </div>
+            </div>
+            
+            <div class="module-card">
+                <div class="module-title">
+                    <i class="fas fa-paint-brush"></i>
+                    Art with Mickey
+                </div>
+                <div class="module-desc">
+                    Paint and draw with Mickey Mouse! Create your own Disney masterpiece!
+                </div>
+            </div>
+            
+            <div class="module-card">
+                <div class="module-title">
+                    <i class="fas fa-globe-americas"></i>
+                    Pluto's World Tour
+                </div>
+                <div class="module-desc">
+                    Travel around the world with Pluto! Learn about different countries and cultures!
+                </div>
+            </div>
+        </div>
+        
+        <!-- MICKEY MOUSE SIGNATURE -->
+        <div style="text-align: center; margin-top: 50px; padding: 20px;">
+            <div style="display: inline-block; background: var(--mickey-white); padding: 15px 30px; border-radius: 50px; border: 5px solid var(--mickey-black);">
+                <span style="color: var(--mickey-red); font-family: 'Comic Neue', cursive; font-size: 1.2rem;">
+                    <i class="fas fa-mouse-pointer"></i> 
+                    Presented by Mickey Mouse • 
+                    <i class="fas fa-magic"></i> 
+                    Disney Learning 2024 •
+                    <i class="fas fa-heart"></i>
+                </span>
+            </div>
+        </div>
+    </main>
+
+    <!-- SAME JAVASCRIPT AS BEFORE (but with Mickey-themed messages) -->
+    <script>
+        console.log("🧢 OH BOY! MICKEY'S FACE DETECTOR IS HERE!");
+        
+        let isDetecting = false;
+        let videoStream = null;
+        let human = null;
+        let lastUpdate = 0;
+        
+        // ELEMENTS
+        const video = document.getElementById('video');
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+        const faceOverlay = document.getElementById('face-overlay');
+        const startBtn = document.getElementById('start-face-detection');
+        const statusText = document.getElementById('status-text');
+        const emotionText = document.getElementById('current-emotion');
+        const confidenceText = document.getElementById('confidence');
+        const debugLogs = document.getElementById('debug-logs');
+        const btnText = document.getElementById('btn-text');
+        const btnIcon = document.getElementById('btn-icon');
+        
+        // MICKEY-THEMED EMOTIONS
+        const mickeyEmotions = {
+            happy: ["HA-HA!", "OH BOY!", "WOW!", "GREAT!"],
+            neutral: ["READY!", "OKAY!", "HELLO!", "HI THERE!"],
+            focused: ["LEARNING!", "THINKING!", "WATCHING!", "FOCUSED!"],
+            surprised: ["GOSH!", "OH MY!", "WOWZERS!", "YIKES!"]
+        };
+        
+        // LOG TO CONSOLE AND SCREEN
+        function log(message) {
+            console.log(message);
+            const now = new Date();
+            const timeString = `${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}:${now.getSeconds().toString().padStart(2, '0')}`;
+            
+            const logLine = document.createElement('div');
+            logLine.className = 'debug-line';
+            logLine.textContent = `[${timeString}] ${message}`;
+            debugLogs.appendChild(logLine);
+            
+            // Keep only last 10 lines
+            const lines = debugLogs.querySelectorAll('.debug-line');
+            if (lines.length > 10) {
+                lines[0].remove();
+            }
+            
+            // Scroll to bottom
+            debugLogs.scrollTop = debugLogs.scrollHeight;
+        }
+        
+        // UPDATE STATUS WITH MICKEY PHRASES
+        function updateStatus(message, isError = false) {
+            if (isError) {
+                statusText.innerHTML = `<span style="color: #ff3333"><i class="fas fa-exclamation-triangle"></i> Oh no! ${message}</span>`;
+            } else {
+                const mickeyPhrases = ["Hot dog!", "Oh boy!", "Gosh!", "Ha-ha!"];
+                const randomPhrase = mickeyPhrases[Math.floor(Math.random() * mickeyPhrases.length)];
+                statusText.innerHTML = `<i class="fas fa-magic"></i> ${randomPhrase} ${message}`;
+            }
+        }
+        
+        // UPDATE EMOTION WITH MICKEY FLAIR
+        function updateEmotion(emotion, confidence = 'Having fun!') {
+            const emotionArray = mickeyEmotions[emotion.toLowerCase()] || mickeyEmotions.neutral;
+            const randomEmotion = emotionArray[Math.floor(Math.random() * emotionArray.length)];
+            emotionText.textContent = randomEmotion;
+            confidenceText.textContent = confidence;
+            
+            // Color based on emotion
+            const colors = {
+                happy: '#e60000',    // Mickey Red
+                neutral: '#0066cc',  // Mickey Blue
+                focused: '#ffcc00',  // Mickey Yellow
+                surprised: '#ff33cc' // Pink
+            };
+            
+            emotionText.style.color = colors[emotion.toLowerCase()] || '#e60000';
+            emotionText.style.textShadow = `3px 3px 0 ${colors[emotion.toLowerCase()] || '#e60000'}40`;
+        }
+        
+        // CLEAR MESH OVERLAY
+        function clearMeshOverlay() {
+            faceOverlay.innerHTML = '';
+        }
+        
+        // DRAW FACE MESH WITH MICKEY COLORS
+        function drawFaceMesh(face) {
+            clearMeshOverlay();
+            
+            // Scale from canvas to overlay (canvas 640x480, overlay 320x240)
+            const scaleX = 320 / 640;
+            const scaleY = 240 / 480;
+            
+            // Draw face box
+            if (face.box) {
+                const [x, y, width, height] = face.box;
+                const boxDiv = document.createElement('div');
+                boxDiv.className = 'face-box';
+                boxDiv.style.cssText = `
+                    left: ${x * scaleX}px;
+                    top: ${y * scaleY}px;
+                    width: ${width * scaleX}px;
+                    height: ${height * scaleY}px;
+                `;
+                faceOverlay.appendChild(boxDiv);
+            }
+            
+            // Draw mesh points
+            if (face.mesh && face.mesh.length > 0) {
+                log(`🎨 Drawing ${face.mesh.length} magic points!`);
+                
+                // Draw ALL points as red dots
+                face.mesh.forEach((point, index) => {
+                    if (point && point.length >= 2) {
+                        const pointDiv = document.createElement('div');
+                        pointDiv.className = 'mesh-point';
+                        pointDiv.style.cssText = `
+                            left: ${point[0] * scaleX}px;
+                            top: ${point[1] * scaleY}px;
+                        `;
+                        faceOverlay.appendChild(pointDiv);
+                    }
+                });
+                
+                // Draw eye points (black with yellow glow - like Mickey's eyes)
+                const leftEyeIndices = [33, 133, 157, 158, 159, 160, 161, 173];
+                const rightEyeIndices = [362, 263, 386, 387, 388, 389, 390, 374];
+                
+                [...leftEyeIndices, ...rightEyeIndices].forEach(idx => {
+                    if (face.mesh[idx]) {
+                        const eyeDiv = document.createElement('div');
+                        eyeDiv.className = 'mesh-point eye-point';
+                        eyeDiv.style.cssText = `
+                            left: ${face.mesh[idx][0] * scaleX}px;
+                            top: ${face.mesh[idx][1] * scaleY}px;
+                        `;
+                        faceOverlay.appendChild(eyeDiv);
+                    }
+                });
+                
+                // Draw mouth points (blue like Mickey's shorts)
+                const mouthIndices = [61, 185, 40, 39, 37, 0, 267, 269, 270, 409];
+                mouthIndices.forEach(idx => {
+                    if (face.mesh[idx]) {
+                        const mouthDiv = document.createElement('div');
+                        mouthDiv.className = 'mesh-point mouth-point';
+                        mouthDiv.style.cssText = `
+                            left: ${face.mesh[idx][0] * scaleX}px;
+                            top: ${face.mesh[idx][1] * scaleY}px;
+                        `;
+                        faceOverlay.appendChild(mouthDiv);
+                    }
+                });
+            }
+        }
+        
+        // LOAD HUMAN.JS
+        async function loadHumanJS() {
+            try {
+                log('🔄 Loading Mickey\'s magic AI...');
+                updateStatus('Loading magic AI...');
+                
+                // Import Human.js
+                const { Human } = await import('https://cdn.jsdelivr.net/npm/@vladmandic/human/dist/human.esm.js');
+                
+                // SIMPLE CONFIG THAT WORKS
+                const config = {
+                    backend: 'webgl',
+                    modelBasePath: 'https://cdn.jsdelivr.net/npm/@vladmandic/human/models',
+                    face: {
+                        enabled: true,
+                        detector: {
+                            enabled: true,
+                            modelPath: 'blazeface.json',
+                            maxDetected: 1,
+                            minConfidence: 0.3
+                        },
+                        mesh: {
+                            enabled: true,
+                            modelPath: 'facemesh.json'
+                        },
+                        iris: { enabled: false },
+                        emotion: { enabled: false }
+                    }
+                };
+                
+                log('🔄 Creating magic detector...');
+                human = new Human(config);
+                
+                await human.load();
+                log('✅ Magic AI loaded! Hot dog!');
+                return true;
+                
+            } catch (error) {
+                log(`❌ Oh no! Magic failed: ${error.message}`);
+                updateStatus(`Magic failed: ${error.message}`, true);
+                return false;
+            }
+        }
+        
+        // PROCESS FRAME FOR MESH DETECTION
+        async function processMeshFrame() {
+            if (!isDetecting || !video || !human) return;
+            
+            try {
+                // Draw video to canvas (mirrored)
+                ctx.save();
+                ctx.scale(-1, 1);
+                ctx.drawImage(video, -canvas.width, 0, canvas.width, canvas.height);
+                ctx.restore();
+                
+                // Detect faces with mesh
+                const result = await human.detect(canvas);
+                
+                if (result.face && result.face.length > 0) {
+                    const face = result.face[0];
+                    
+                    // Draw mesh overlay
+                    drawFaceMesh(face);
+                    
+                    // Update emotion based on facial features
+                    updateEmotionFromMesh(face);
+                    
+                    // Log every 2 seconds
+                    if (Date.now() - lastUpdate > 2000) {
+                        log(`✅ Face found! ${face.mesh?.length || 0} magic points!`);
+                        lastUpdate = Date.now();
+                    }
+                    
+                    updateStatus(`Found ${face.mesh?.length || 0} facial landmarks!`);
+                    
+                } else {
+                    clearMeshOverlay();
+                    updateStatus('Looking for a smiling face...');
+                    updateEmotion('neutral', 'Say cheese!');
+                }
+                
+            } catch (error) {
+                log(`❌ Oops! Detection error: ${error.message}`);
+            }
+            
+            // Continue processing
+            if (isDetecting) {
+                requestAnimationFrame(processMeshFrame);
+            }
+        }
+        
+        // EMOTION DETECTION FROM MESH
+        function updateEmotionFromMesh(face) {
+            if (!face.mesh || face.mesh.length < 10) {
+                updateEmotion('neutral', 'Say cheese!');
+                return;
+            }
+            
+            const meshPoints = face.mesh.length;
+            
+            // Simple emotion detection
+            let emotion = 'happy';
+            let confidence = `${meshPoints} magic points found!`;
+            
+            updateEmotion(emotion, confidence);
+        }
+        
+        // START/STOP DETECTION
+        async function toggleDetection() {
+            if (isDetecting) {
+                // STOP DETECTION
+                isDetecting = false;
+                btnText.textContent = 'START THE SHOW!';
+                btnIcon.className = 'fas fa-play-circle';
+                startBtn.style.background = 'linear-gradient(145deg, #e60000, #cc0000)';
+                
+                if (videoStream) {
+                    videoStream.getTracks().forEach(track => track.stop());
+                    videoStream = null;
+                }
+                
+                clearMeshOverlay();
+                video.style.display = 'none';
+                updateStatus('Show stopped!');
+                updateEmotion('neutral', 'Show\'s over!');
+                log('⏹️ Magic show ended!');
+                
+            } else {
+                // START DETECTION
+                btnText.innerHTML = 'GETTING READY...';
+                btnIcon.className = 'fas fa-spinner fa-spin';
+                startBtn.style.background = 'linear-gradient(145deg, #ffcc00, #e6b800)';
+                startBtn.disabled = true;
+                
+                try {
+                    // 1. GET CAMERA ACCESS
+                    log('📹 Asking for camera permission...');
+                    updateStatus('Asking for camera...');
+                    
+                    videoStream = await navigator.mediaDevices.getUserMedia({
+                        video: {
+                            width: { ideal: 640 },
+                            height: { ideal: 480 },
+                            facingMode: 'user'
+                        },
+                        audio: false
+                    });
+                    
+                    video.srcObject = videoStream;
+                    video.style.display = 'block';
+                    await video.play();
+                    
+                    // Set canvas size
+                    canvas.width = 640;
+                    canvas.height = 480;
+                    
+                    log('✅ Camera ready! Hot dog!');
+                    updateStatus('Camera ready, loading magic...');
+                    
+                    // 2. LOAD HUMAN.JS
+                    const humanLoaded = await loadHumanJS();
+                    
+                    if (!humanLoaded) {
+                        throw new Error('Magic spell failed!');
+                    }
+                    
+                    // 3. START DETECTION LOOP
+                    isDetecting = true;
+                    btnText.textContent = 'STOP THE SHOW';
+                    btnIcon.className = 'fas fa-stop-circle';
+                    startBtn.style.background = 'linear-gradient(145deg, #0066cc, #0055aa)';
+                    startBtn.disabled = false;
+                    
+                    log('🎩 Starting magic face detection...');
+                    updateStatus('Abracadabra! Detecting...');
+                    
+                    // Start processing frames
+                    processMeshFrame();
+                    
+                } catch (error) {
+                    log(`❌ Gosh! Error: ${error.message}`);
+                    updateStatus(`Oh no! ${error.message}`, true);
+                    
+                    btnText.textContent = 'TRY AGAIN';
+                    btnIcon.className = 'fas fa-redo';
+                    startBtn.style.background = 'linear-gradient(145deg, #e60000, #cc0000)';
+                    startBtn.disabled = false;
+                }
+            }
+        }
+        
+        // EVENT LISTENERS
+        startBtn.addEventListener('click', toggleDetection);
+        
+        // AUTO-START ON PAGE LOAD
+        window.addEventListener('load', () => {
+            log('🎪 Welcome to Mickey\'s Learning Hub!');
+            log('🎭 Click START for magical face detection!');
+            log('🎯 Press F key for quick start!');
+            
+            updateStatus('Ready for fun!');
+            updateEmotion('happy', 'Let\'s learn!');
+            
+            // Create more floating Mickey dots
+            for (let i = 0; i < 10; i++) {
+                setTimeout(() => {
+                    const dot = document.createElement('div');
+                    dot.className = 'mickey-dot';
+                    dot.style.left = `${Math.random() * 100}%`;
+                    dot.style.top = `${Math.random() * 100}%`;
+                    dot.style.animationDelay = `-${Math.random() * 20}s`;
+                    dot.style.width = `${15 + Math.random() * 20}px`;
+                    dot.style.height = dot.style.width;
+                    document.body.appendChild(dot);
+                }, i * 500);
+            }
+        });
+        
+        // KEYBOARD SHORTCUT: Press 'F' to toggle detection
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'f' || e.key === 'F') {
+                toggleDetection();
+                log('⌨️ Magic keyboard shortcut!');
+            }
+        });
+        
+        // TEST FUNCTION FOR CONSOLE
+        window.mickeysMagicShow = async function() {
+            log('🎪 Starting Mickey\'s magic show!');
+            
+            if (!isDetecting) {
+                await toggleDetection();
+            } else {
+                log('🎭 Magic show already running!');
+            }
+        };
+        
+        // CONSOLE MESSAGES
+        console.log("🧢 OH BOY! MICKEY'S MAGIC IS READY!");
+        console.log("🎩 Press 'F' key for instant magic!");
+        console.log("🎨 Click the red button for face detection!");
+        console.log("🔮 Run mickeysMagicShow() in console!");
+        
+    </script>
+</body>
+</html>

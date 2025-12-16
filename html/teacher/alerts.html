@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alerts - Teacher Dashboard - Empathic Learning Agent</title>
+    
+    <!-- Global CSS -->
+    <link rel="stylesheet" href="../../css/global.css">
+    <link rel="stylesheet" href="../../css/accessibility.css">
+    
+    <!-- Teacher CSS -->
+    <link rel="stylesheet" href="../../css/teacher/teacher-global.css">
+    <link rel="stylesheet" href="../../css/teacher/alerts.css">
+    
+    <!-- Shared Components CSS -->
+    <link rel="stylesheet" href="../../css/shared/components.css">
+    <link rel="stylesheet" href="../../css/shared/forms.css">
+    <link rel="stylesheet" href="../../css/shared/modals.css">
+</head>
+<body class="teacher-theme">
+    <!-- Navigation -->
+    <nav class="main-nav">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <a href="dashboard.html" class="nav-logo">👩‍🏫</a>
+                <span class="nav-title">Empathic Learning Agent</span>
+                <span class="nav-subtitle">Teacher Dashboard</span>
+            </div>
+            
+            <div class="nav-menu">
+                <a href="dashboard.html" class="nav-item">
+                    <span class="nav-icon">📊</span>
+                    <span class="nav-text">Dashboard</span>
+                </a>
+                <a href="students.html" class="nav-item">
+                    <span class="nav-icon">👥</span>
+                    <span class="nav-text">Students</span>
+                </a>
+                <a href="monitoring.html" class="nav-item">
+                    <span class="nav-icon">👁️</span>
+                    <span class="nav-text">Monitoring</span>
+                </a>
+                <a href="alerts.html" class="nav-item active">
+                    <span class="nav-icon">🔔</span>
+                    <span class="nav-text">Alerts</span>
+                    <span class="notification-badge" id="alertsCount">12</span>
+                </a>
+                <a href="analytics.html" class="nav-item">
+                    <span class="nav-icon">📈</span>
+                    <span class="nav-text">Analytics</span>
+                </a>
+                <a href="content-editor.html" class="nav-item">
+                    <span class="nav-icon">✏️</span>
+                    <span class="nav-text">Content</span>
+                </a>
+            </div>
+            
+            <div class="nav-actions">
+                <div class="teacher-info">
+                    <span class="teacher-name" id="teacherName">Ms. Anderson</span>
+                    <span class="teacher-class">Grade 5 Mathematics</span>
+                </div>
+                <button class="btn btn-outline btn-sm" id="helpButton">
+                    <span>❓</span> Help
+                </button>
+                <button class="btn btn-outline btn-sm" id="logoutButton">
+                    <span>🚪</span> Logout
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="alerts-dashboard">
+        <!-- Header -->
+        <div class="alerts-header">
+            <div class="header-title">
+                <h1>Student Alerts</h1>
+                <p>Monitor and respond to student alerts, interventions, and notifications</p>
+            </div>
+            <div class="header-actions">
+                <button class="btn btn-outline" id="refreshAlerts">
+                    <span>🔄</span> Refresh
+                </button>
+                <button class="btn btn-primary" id="createAlert">
+                    <span>➕</span> Create Alert
+                </button>
+                <button class="btn btn-secondary" id="alertSettings">
+                    <span>⚙️</span> Settings
+                </button>
+            </div>
+        </div>
+
+        <!-- Filters -->
+        <div class="alert-filters">
+            <div class="filter-group">
+                <span class="filter-label">Status:</span>
+                <div class="filter-tags">
+                    <span class="filter-tag active" data-status="all">All</span>
+                    <span class="filter-tag" data-status="unread">Unread</span>
+                    <span class="filter-tag" data-status="read">Read</span>
+                    <span class="filter-tag" data-status="resolved">Resolved</span>
+                </div>
+            </div>
+            
+            <div class="filter-group">
+                <span class="filter-label">Severity:</span>
+                <div class="filter-tags">
+                    <span class="filter-tag active" data-severity="all">All</span>
+                    <span class="filter-tag" data-severity="high">High</span>
+                    <span class="filter-tag" data-severity="medium">Medium</span>
+                    <span class="filter-tag" data-severity="low">Low</span>
+                </div>
+            </div>
+            
+            <div class="filter-group">
+                <span class="filter-label">Type:</span>
+                <div class="filter-tags">
+                    <span class="filter-tag active" data-type="all">All</span>
+                    <span class="filter-tag" data-type="focus">Focus</span>
+                    <span class="filter-tag" data-type="emotion">Emotion</span>
+                    <span class="filter-tag" data-type="progress">Progress</span>
+                    <span class="filter-tag" data-type="engagement">Engagement</span>
+                </div>
+            </div>
+            
+            <div class="search-bar">
+                <input type="text" id="searchAlerts" placeholder="Search alerts...">
+            </div>
+        </div>
+
+        <!-- Summary Cards -->
+        <div class="alerts-summary" id="alertsSummary">
+            <!-- Summary cards will be loaded here -->
+            <div class="summary-card total">
+                <div class="summary-icon">📋</div>
+                <div class="summary-content">
+                    <div class="summary-value">48</div>
+                    <div class="summary-label">Total Alerts</div>
+                </div>
+            </div>
+            <div class="summary-card unread">
+                <div class="summary-icon">🔔</div>
+                <div class="summary-content">
+                    <div class="summary-value">12</div>
+                    <div class="summary-label">Unread</div>
+                </div>
+            </div>
+            <div class="summary-card high">
+                <div class="summary-icon">⚠️</div>
+                <div class="summary-content">
+                    <div class="summary-value">5</div>
+                    <div class="summary-label">High Priority</div>
+                </div>
+            </div>
+            <div class="summary-card resolved">
+                <div class="summary-icon">✅</div>
+                <div class="summary-content">
+                    <div class="summary-value">28</div>
+                    <div class="summary-label">Resolved</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Alerts Table -->
+        <div class="alerts-table-container">
+            <table class="alerts-table">
+                <thead class="table-header">
+                    <tr>
+                        <th class="alert-select">
+                            <input type="checkbox" id="selectAllAlerts">
+                        </th>
+                        <th class="alert-student">Student</th>
+                        <th class="alert-type">Type</th>
+                        <th class="alert-severity">Severity</th>
+                        <th class="alert-message">Message</th>
+                        <th class="alert-time">Time</th>
+                        <th class="alert-actions">Actions</th>
+                    </tr>
+                </thead>
+                <tbody class="table-body" id="alertsTableBody">
+                    <!-- Alerts will be loaded here -->
+                    <tr class="alert-row unread focus" data-alert-id="alert1">
+                        <td class="alert-select">
+                            <input type="checkbox" class="alert-checkbox" data-alert-id="alert1">
+                        </td>
+                        <td class="alert-student">
+                            <div class="student-cell">
+                                <div class="student-avatar">M</div>
+                                <div class="student-info">
+                                    <div class="student-name">Maria Garcia</div>
+                                    <div class="student-grade">Grade 5A</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="alert-type">
+                            <span class="type-badge badge-focus">Focus</span>
+                        </td>
+                        <td class="alert-severity">
+                            <span class="severity-badge severity-high">High</span>
+                        </td>
+                        <td class="alert-message">
+                            <div class="message-preview">Focus level dropped by 40% in the last 15 minutes. Showing signs of distraction.</div>
+                            <div class="alert-tags">
+                                <span class="alert-tag tag-new">NEW</span>
+                                <span class="alert-tag">attention</span>
+                                <span class="alert-tag">intervention</span>
+                            </div>
+                        </td>
+                        <td class="alert-time">15 min ago</td>
+                        <td class="alert-actions">
+                            <div class="action-buttons">
+                                <button class="btn-icon view-alert" data-alert-id="alert1" title="View details">
+                                    <span>👁️</span>
+                                </button>
+                                <button class="btn-icon mark-read" data-alert-id="alert1" title="Mark as read">
+                                    <span>📖</span>
+                                </button>
+                                <button class="btn-icon resolve-alert" data-alert-id="alert1" title="Resolve">
+                                    <span>✅</span>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    
+                    <tr class="alert-row unread progress" data-alert-id="alert2">
+                        <td class="alert-select">
+                            <input type="checkbox" class="alert-checkbox" data-alert-id="alert2">
+                        </td>
+                        <td class="alert-student">
+                            <div class="student-cell">
+                                <div class="student-avatar">S</div>
+                                <div class="student-info">
+                                    <div class="student-name">Sarah Williams</div>
+                                    <div class="student-grade">Grade 5B</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="alert-type">
+                            <span class="type-badge badge-progress">Progress</span>
+                        </td>
+                        <td class="alert-severity">
+                            <span class="severity-badge severity-medium">Medium</span>
+                        </td>
+                        <td class="alert-message">
+                            <div class="message-preview">Falling behind in Mathematics. Current score is 20% below class average.</div>
+                            <div class="alert-tags">
+                                <span class="alert-tag tag-new">NEW</span>
+                                <span class="alert-tag">math</span>
+                                <span class="alert-tag">support</span>
+                            </div>
+                        </td>
+                        <td class="alert-time">1 hour ago</td>
+                        <td class="alert-actions">
+                            <div class="action-buttons">
+                                <button class="btn-icon view-alert" data-alert-id="alert2" title="View details">
+                                    <span>👁️</span>
+                                </button>
+                                <button class="btn-icon mark-read" data-alert-id="alert2" title="Mark as read">
+                                    <span>📖</span>
+                                </button>
+                                <button class="btn-icon resolve-alert" data-alert-id="alert2" title="Resolve">
+                                    <span>✅</span>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    
+                    <tr class="alert-row read emotion" data-alert-id="alert3">
+                        <td class="alert-select">
+                            <input type="checkbox" class="alert-checkbox" data-alert-id="alert3">
+                        </td>
+                        <td class="alert-student">
+                            <div class="student-cell">
+                                <div class="student-avatar">A</div>
+                                <div class="student-info">
+                                    <div class="student-name">Alex Johnson</div>
+                                    <div class="student-grade">Grade 5A</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="alert-type">
+                            <span class="type-badge badge-emotion">Emotion</span>
+                        </td>
+                        <td class="alert-severity">
+                            <span class="severity-badge severity-low">Low</span>
+                        </td>
+                        <td class="alert-message">
+                            <div class="message-preview">Appears to be frustrated with current exercise. May need encouragement.</div>
+                            <div class="alert-tags">
+                                <span class="alert-tag">emotion</span>
+                                <span class="alert-tag">support</span>
+                            </div>
+                        </td>
+                        <td class="alert-time">2 hours ago</td>
+                        <td class="alert-actions">
+                            <div class="action-buttons">
+                                <button class="btn-icon view-alert" data-alert-id="alert3" title="View details">
+                                    <span>👁️</span>
+                                </button>
+                                <button class="btn-icon mark-read" data-alert-id="alert3" title="Mark as unread">
+                                    <span>📖</span>
+                                </button>
+                                <button class="btn-icon resolve-alert" data-alert-id="alert3" title="Resolve">
+                                    <span>✅</span>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Bulk Actions -->
+        <div class="bulk-actions" id="bulkActions">
+            <div class="bulk-selection">
+                <span id="selectedCount">0 alerts selected</span>
+                <button class="btn btn-link" id="clearSelection">Clear selection</button>
+            </div>
+            <div class="bulk-buttons">
+                <button class="btn btn-secondary" id="bulkMarkRead">Mark as Read</button>
+                <button class="btn btn-secondary" id="bulkMarkUnread">Mark as Unread</button>
+                <button class="btn btn-danger" id="bulkDelete">Delete Selected</button>
+            </div>
+        </div>
+
+        <!-- Pagination -->
+        <div class="pagination">
+            <button class="pagination-btn" id="prevPage" disabled>
+                <span>←</span> Previous
+            </button>
+            <div class="pagination-numbers">
+                <button class="pagination-btn active">1</button>
+                <button class="pagination-btn">2</button>
+                <button class="pagination-btn">3</button>
+                <span class="pagination-dots">...</span>
+                <button class="pagination-btn">10</button>
+            </div>
+            <button class="pagination-btn" id="nextPage">
+                Next <span>→</span>
+            </button>
+            <span class="pagination-info">Showing 1-10 of 48 alerts</span>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Teacher Dashboard</h4>
+                <p>Monitor and support student learning</p>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <a href="dashboard.html">Dashboard</a>
+                <a href="students.html">Student Management</a>
+                <a href="analytics.html">Analytics</a>
+            </div>
+            <div class="footer-section">
+                <h4>Support</h4>
+                <a href="#" id="teacherHelp">Teacher Guide</a>
+                <a href="#" id="contactAdmin">Contact Admin</a>
+                <a href="#" id="systemStatus">System Status</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Empathic Learning Agent. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Global JavaScript -->
+    <script src="../../js/global.js"></script>
+    <script src="../../js/config.js"></script>
+    
+    <!-- Modules -->
+    <script src="../../js/modules/auth.js"></script>
+    <script src="../../js/modules/storage.js"></script>
+    <script src="../../js/modules/utils.js"></script>
+    <script src="../../js/modules/accessibility.js"></script>
+    
+    <!-- Teacher Modules -->
+    <script src="../../js/teacher/teacher-global.js"></script>
+    <script src="../../js/teacher/alerts.js"></script>
+    
+    <!-- Shared Components -->
+    <script src="../../js/shared/components.js"></script>
+</body>
+</html>

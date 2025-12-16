@@ -1,0 +1,30 @@
+<!-- components/agent-avatar/avatar.html -->
+<div class="agent-avatar-container" id="agentAvatarContainer">
+    <div class="agent-avatar" id="agentAvatar">
+        <!-- Avatar image or SVG will be inserted here -->
+        <div class="avatar-default" id="avatarDefault">
+            <span class="avatar-emoji">🤖</span>
+        </div>
+    </div>
+    
+    <!-- Status indicator -->
+    <div class="agent-status" id="agentStatus">
+        <span class="status-indicator status-online"></span>
+        <span class="status-text">Online</span>
+    </div>
+    
+    <!-- Mood indicator (optional) -->
+    <div class="agent-mood" id="agentMood" style="display: none;">
+        <span class="mood-label">Feeling:</span>
+        <span class="mood-value" id="moodValue">😊 Happy</span>
+    </div>
+    
+    <!-- Loading animation -->
+    <div class="avatar-loading" id="avatarLoading" style="display: none;">
+        <div class="loading-dots">
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+        </div>
+    </div>
+</div>

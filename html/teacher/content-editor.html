@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Content Editor - Empathic Learning</title>
+    
+    <!-- Global CSS -->
+    <link rel="stylesheet" href="../../css/global.css">
+    <link rel="stylesheet" href="../../css/accessibility.css">
+    
+    <!-- Teacher CSS -->
+    <link rel="stylesheet" href="../../css/teacher/teacher-global.css">
+    
+    <!-- Shared Components -->
+    <link rel="stylesheet" href="../../css/shared/components.css">
+    <link rel="stylesheet" href="../../css/shared/forms.css">
+    <link rel="stylesheet" href="../../css/shared/modals.css">
+    
+    <!-- Content Editor Specific -->
+    <link rel="stylesheet" href="../../css/teacher/content-editor.css">
+</head>
+<body class="teacher-interface">
+    <!-- Navigation Header -->
+    <div id="navigation-header"></div>
+    
+    <main class="content-editor">
+        <!-- Editor Header -->
+        <header class="editor-header">
+            <div class="header-left">
+                <h1>Content Editor</h1>
+                <p class="subtitle">Create and manage learning materials</p>
+            </div>
+            
+            <div class="header-right">
+                <div class="editor-actions">
+                    <button class="btn btn-secondary" id="previewContent">
+                        <span>👁️</span> Preview
+                    </button>
+                    <button class="btn btn-secondary" id="saveDraft">
+                        <span>💾</span> Save Draft
+                    </button>
+                    <button class="btn btn-primary" id="publishContent">
+                        <span>🚀</span> Publish
+                    </button>
+                </div>
+            </div>
+        </header>
+        
+        <!-- Editor Layout -->
+        <div class="editor-layout">
+            <!-- Left Sidebar - Content Structure -->
+            <aside class="editor-sidebar">
+                <div class="sidebar-section">
+                    <h3>Content Library</h3>
+                    <div class="library-actions">
+                        <button class="btn btn-outline btn-block" id="newModule">
+                            <span>+</span> New Module
+                        </button>
+                        <button class="btn btn-outline btn-block" id="importContent">
+                            <span>📥</span> Import
+                        </button>
+                    </div>
+                    
+                    <div class="content-tree">
+                        <div class="tree-header">
+                            <h4>Course Structure</h4>
+                            <button class="btn-icon" id="expandAll">
+                                <span>↕</span>
+                            </button>
+                        </div>
+                        <div class="tree-container" id="contentTree">
+                            <!-- Dynamic content tree will be loaded here -->
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="sidebar-section">
+                    <h3>Learning Objectives</h3>
+                    <div class="objectives-list" id="objectivesList">
+                        <!-- Dynamic objectives will be loaded here -->
+                    </div>
+                    <button class="btn-text" id="addObjective">
+                        <span>+</span> Add Objective
+                    </button>
+                </div>
+                
+                <div class="sidebar-section">
+                    <h3>AI Suggestions</h3>
+                    <div class="ai-suggestions" id="aiSuggestions">
+                        <div class="suggestion-item">
+                            <div class="suggestion-icon">💡</div>
+                            <div class="suggestion-content">
+                                <div class="suggestion-text">Add an interactive exercise here</div>
+                                <button class="btn-text btn-sm">Apply</button>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="btn-text" id="refreshSuggestions">
+                        <span>🔄</span> Get More Suggestions
+                    </button>
+                </div>
+            </aside>
+            
+            <!-- Main Editor Area -->
+            <section class="editor-main">
+                <div class="editor-toolbar">
+                    <div class="toolbar-group">
+                        <button class="toolbar-btn" data-format="heading" title="Heading">
+                            <span>H</span>
+                        </button>
+                        <button class="toolbar-btn" data-format="bold" title="Bold">
+                            <span>B</span>
+                        </button>
+                        <button class="toolbar-btn" data-format="italic" title="Italic">
+                            <span>I</span>
+                        </button>
+                        <button class="toolbar-btn" data-format="list" title="List">
+                            <span>•</span>
+                        </button>
+                    </div>
+                    
+                    <div class="toolbar-group">
+                        <button class="toolbar-btn" data-insert="image" title="Insert Image">
+                            <span>🖼️</span>
+                        </button>
+                        <button class="toolbar-btn" data-insert="video" title="Insert Video">
+                            <span>🎬</span>
+                        </button>
+                        <button class="toolbar-btn" data-insert="quiz" title="Insert Quiz">
+                            <span>❓</span>
+                        </button>
+                        <button class="toolbar-btn" data-insert="interactive" title="Interactive Element">
+                            <span>🔄</span>
+                        </button>
+                    </div>
+                    
+                    <div class="toolbar-group">
+                        <select id="contentType" class="toolbar-select">
+                            <option value="lesson">Lesson</option>
+                            <option value="exercise">Exercise</option>
+                            <option value="quiz">Quiz</option>
+                            <option value="project">Project</option>
+                        </select>
+                        
+                        <select id="difficultyLevel" class="toolbar-select">
+                            <option value="beginner">Beginner</option>
+                            <option value="intermediate" selected>Intermediate</option>
+                            <option value="advanced">Advanced</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="editor-content">
+                    <div class="content-metadata">
+                        <div class="metadata-field">
+                            <label for="contentTitle">Title</label>
+                            <input type="text" id="contentTitle" placeholder="Enter content title..." value="Introduction to Fractions">
+                        </div>
+                        
+                        <div class="metadata-row">
+                            <div class="metadata-field">
+                                <label for="subject">Subject</label>
+                                <select id="subject">
+                                    <option value="math">Mathematics</option>
+                                    <option value="science">Science</option>
+                                    <option value="english">English</option>
+                                    <option value="history">History</option>
+                                </select>
+                            </div>
+                            
+                            <div class="metadata-field">
+                                <label for="gradeLevel">Grade Level</label>
+                                <select id="gradeLevel">
+                                    <option value="5">Grade 5</option>
+                                    <option value="6">Grade 6</option>
+                                    <option value="7">Grade 7</option>
+                                </select>
+                            </div>
+                            
+                            <div class="metadata-field">
+                                <label for="estimatedTime">Estimated Time</label>
+                                <input type="text" id="estimatedTime" placeholder="e.g., 30 mins" value="45 minutes">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Rich Text Editor -->
+                    <div class="rich-editor" id="richEditor" contenteditable="true">
+                        <h2>Introduction to Fractions</h2>
+                        <p>Fractions represent parts of a whole. They consist of two numbers:</p>
+                        <ul>
+                            <li><strong>Numerator:</strong> The top number (how many parts you have)</li>
+                            <li><strong>Denominator:</strong> The bottom number (how many equal parts the whole is divided into)</li>
+                        </ul>
+                        
+                        <div class="interactive-element">
+                            <div class="element-header">
+                                <span class="element-icon">🔄</span>
+                                <span class="element-title">Interactive Example</span>
+                            </div>
+                            <p>Drag the slider to see how fractions work:</p>
+                            <div class="slider-container">
+                                <input type="range" min="1" max="8" value="4" class="fraction-slider">
+                                <div class="fraction-visualization">
+                                    <div class="visualization-area" id="fractionVisual">
+                                        <!-- Visual will be generated by JS -->
+                                    </div>
+                                    <div class="fraction-display" id="fractionDisplay">4/8 = 1/2</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Quiz Builder (Conditional) -->
+                    <div class="quiz-builder" id="quizBuilder" style="display: none;">
+                        <div class="builder-header">
+                            <h3>Quiz Builder</h3>
+                            <button class="btn btn-secondary" id="addQuestion">
+                                <span>+</span> Add Question
+                            </button>
+                        </div>
+                        <div class="questions-list" id="questionsList">
+                            <!-- Dynamic questions will be loaded here -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Right Sidebar - Properties & Preview -->
+            <aside class="properties-sidebar">
+                <div class="properties-tabs">
+                    <button class="tab-btn active" data-tab="properties">Properties</button>
+                    <button class="tab-btn" data-tab="preview">Preview</button>
+                    <button class="tab-btn" data-tab="analytics">Analytics</button>
+                </div>
+                
+                <div class="properties-content">
+                    <!-- Properties Tab -->
+                    <div class="tab-pane active" id="propertiesTab">
+                        <div class="property-group">
+                            <h4>Accessibility</h4>
+                            <div class="property-item">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" id="altText" checked>
+                                    <span>Require alt text for images</span>
+                                </label>
+                            </div>
+                            <div class="property-item">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" id="keyboardNav" checked>
+                                    <span>Keyboard navigation enabled</span>
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <div class="property-group">
+                            <h4>Learning Settings</h4>
+                            <div class="property-item">
+                                <label>Difficulty Adaption</label>
+                                <select id="difficultyAdaption">
+                                    <option value="auto">Auto-adjust based on performance</option>
+                                    <option value="manual">Manual difficulty levels</option>
+                                    <option value="fixed">Fixed difficulty</option>
+                                </select>
+                            </div>
+                            <div class="property-item">
+                                <label>Feedback Type</label>
+                                <select id="feedbackType">
+                                    <option value="immediate">Immediate feedback</option>
+                                    <option value="delayed">Delayed feedback</option>
+                                    <option value="hints">Progressive hints</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="property-group">
+                            <h4>AI Monitoring</h4>
+                            <div class="property-item">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" id="emotionTracking" checked>
+                                    <span>Emotion tracking enabled</span>
+                                </label>
+                            </div>
+                            <div class="property-item">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" id="focusMonitoring" checked>
+                                    <span>Focus monitoring enabled</span>
+                                </label>
+                            </div>
+                            <div class="property-item">
+                                <label>Alert Threshold</label>
+                                <input type="range" id="alertThreshold" min="1" max="100" value="30">
+                                <span class="threshold-value">30%</span>
+                            </div>
+                        </div>
+                        
+                        <div class="property-group">
+                            <h4>Sharing & Collaboration</h4>
+                            <div class="property-item">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" id="allowComments">
+                                    <span>Allow student comments</span>
+                                </label>
+                            </div>
+                            <div class="property-item">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" id="peerReview">
+                                    <span>Enable peer review</span>
+                                </label>
+                            </div>
+                            <div class="property-item">
+                                <label>Collaboration Level</label>
+                                <select id="collaborationLevel">
+                                    <option value="individual">Individual work</option>
+                                    <option value="pairs">Pair work</option>
+                                    <option value="groups">Group work</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Preview Tab -->
+                    <div class="tab-pane" id="previewTab">
+                        <div class="preview-container">
+                            <div class="preview-header">
+                                <h4>Mobile Preview</h4>
+                                <div class="device-selector">
+                                    <button class="device-btn active" data-device="mobile">📱</button>
+                                    <button class="device-btn" data-device="tablet">📟</button>
+                                    <button class="device-btn" data-device="desktop">🖥️</button>
+                                </div>
+                            </div>
+                            <div class="preview-frame" id="previewFrame">
+                                <!-- Content preview will be loaded here -->
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Analytics Tab -->
+                    <div class="tab-pane" id="analyticsTab">
+                        <div class="analytics-preview">
+                            <h4>Content Analytics</h4>
+                            <div class="analytics-stats">
+                                <div class="stat-item">
+                                    <div class="stat-value">85%</div>
+                                    <div class="stat-label">Completion Rate</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-value">72%</div>
+                                    <div class="stat-label">Average Score</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-value">3.2</div>
+                                    <div class="stat-label">Avg Time (min)</div>
+                                </div>
+                            </div>
+                            <div class="analytics-chart">
+                                <div class="chart-placeholder">
+                                    <p>Engagement analytics will appear here</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+        </div>
+        
+        <!-- Bottom Panel -->
+        <div class="editor-bottom-panel">
+            <div class="panel-header">
+                <h3>Media Library</h3>
+                <div class="panel-actions">
+                    <button class="btn btn-secondary" id="uploadMedia">
+                        <span>📤</span> Upload
+                    </button>
+                    <button class="btn btn-secondary" id="browseLibrary">
+                        <span>🔍</span> Browse
+                    </button>
+                </div>
+            </div>
+            <div class="media-grid" id="mediaLibrary">
+                <!-- Dynamic media items will be loaded here -->
+            </div>
+        </div>
+    </main>
+    
+    <!-- Global JavaScript -->
+    <script src="../../js/global.js"></script>
+    <script src="../../js/config.js"></script>
+    
+    <!-- Modules -->
+    <script src="../../js/modules/auth.js"></script>
+    <script src="../../js/modules/storage.js"></script>
+    <script src="../../js/modules/utils.js"></script>
+    <script src="../../js/modules/accessibility.js"></script>
+    
+    <!-- Teacher JS -->
+    <script src="../../js/teacher/teacher-global.js"></script>
+    <script src="../../js/teacher/content-editor.js"></script>
+    
+    <!-- Shared Components -->
+    <script src="../../js/shared/components.js"></script>
+</body>
+</html>

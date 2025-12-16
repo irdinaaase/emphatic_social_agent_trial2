@@ -1,0 +1,52 @@
+{
+  "app": {
+    "name": "Empathic Learning Agent",
+    "version": "1.0.0",
+    "environment": "development",
+    "debug": true
+  },
+  "api": {
+    "baseUrl": "https://api.empathic-learning.com/v1",
+    "timeout": 30000,
+    "retryAttempts": 3
+  },
+  "features": {
+    "emotionTracking": true,
+    "focusMonitoring": true,
+    "voiceInteraction": true,
+    "offlineMode": true,
+    "multiLanguage": false,
+    "accessibility": true
+  },
+  "limits": {
+    "maxChatHistory": 100,
+    "maxFileSize": 10485760,
+    "maxSessionsPerDay": 10,
+    "sessionTimeout": 1800000
+  },
+  "analytics": {
+    "enabled": true,
+    "provider": "mixpanel",
+    "trackingId": "UA-XXXXXXXXX-X",
+    "anonymizeIp": true
+  },
+  "notifications": {
+    "desktopNotifications": true,
+    "soundEnabled": true,
+    "vibrationEnabled": false,
+    "reminderInterval": 3600000
+  },
+  "privacy": {
+    "dataRetentionDays": 30,
+    "autoDeleteInactiveAccounts": 180,
+    "encryptStorage": true,
+    "allowTelemetry": true
+  },
+  "ui": {
+    "defaultTheme": "light",
+    "animationSpeed": "normal",
+    "fontSize": "medium",
+    "highContrast": false,
+    "reducedMotion": false
+  }
+}

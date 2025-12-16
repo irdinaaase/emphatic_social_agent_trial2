@@ -1,0 +1,193 @@
+<!-- components/header/header.html -->
+<header class="main-header" id="mainHeader">
+    <!-- Top Bar -->
+    <div class="header-top">
+        <div class="container">
+            <!-- Logo -->
+            <div class="header-logo">
+                <a href="/" class="logo-link">
+                    <span class="logo-icon">🤖</span>
+                    <span class="logo-text">
+                        <span class="logo-primary">Empathic</span>
+                        <span class="logo-secondary">Learning</span>
+                    </span>
+                </a>
+            </div>
+            
+            <!-- Main Navigation -->
+            <nav class="header-nav" id="headerNav">
+                <!-- Navigation items will be dynamically loaded based on user role -->
+            </nav>
+            
+            <!-- User Actions -->
+            <div class="header-actions">
+                <!-- Search -->
+                <div class="header-search">
+                    <button class="search-toggle" id="searchToggle">
+                        <span class="search-icon">🔍</span>
+                    </button>
+                    <div class="search-container" id="searchContainer">
+                        <input type="text" class="search-input" id="searchInput" 
+                               placeholder="Search for lessons, topics, or help...">
+                        <button class="search-clear" id="searchClear">✕</button>
+                    </div>
+                </div>
+                
+                <!-- Notifications -->
+                <div class="header-notifications">
+                    <button class="notification-btn" id="notificationBtn">
+                        <span class="notification-icon">🔔</span>
+                        <span class="notification-badge" id="notificationCount">3</span>
+                    </button>
+                    <div class="notification-dropdown" id="notificationDropdown">
+                        <div class="notification-header">
+                            <h3>Notifications</h3>
+                            <button class="btn-text" id="markAllRead">Mark all as read</button>
+                        </div>
+                        <div class="notification-list" id="notificationList">
+                            <!-- Notifications will be loaded here -->
+                        </div>
+                        <div class="notification-footer">
+                            <a href="#" class="btn-text" id="viewAllNotifications">View all notifications</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Messages -->
+                <div class="header-messages">
+                    <button class="message-btn" id="messageBtn">
+                        <span class="message-icon">💬</span>
+                        <span class="message-badge" id="messageCount">2</span>
+                    </button>
+                    <div class="message-dropdown" id="messageDropdown">
+                        <div class="message-header">
+                            <h3>Messages</h3>
+                            <button class="btn-text" id="newMessage">New Message</button>
+                        </div>
+                        <div class="message-list" id="messageList">
+                            <!-- Messages will be loaded here -->
+                        </div>
+                        <div class="message-footer">
+                            <a href="#" class="btn-text" id="viewAllMessages">View all messages</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- User Profile -->
+                <div class="header-profile">
+                    <button class="profile-btn" id="profileBtn">
+                        <div class="profile-avatar" id="profileAvatar">U</div>
+                        <div class="profile-info">
+                            <div class="profile-name" id="profileName">User Name</div>
+                            <div class="profile-role" id="profileRole">Student</div>
+                        </div>
+                        <span class="profile-arrow">▼</span>
+                    </button>
+                    <div class="profile-dropdown" id="profileDropdown">
+                        <div class="profile-dropdown-header">
+                            <div class="profile-dropdown-avatar" id="dropdownAvatar">U</div>
+                            <div class="profile-dropdown-info">
+                                <div class="profile-dropdown-name" id="dropdownName">User Name</div>
+                                <div class="profile-dropdown-email" id="dropdownEmail">user@example.com</div>
+                            </div>
+                        </div>
+                        <div class="profile-dropdown-menu">
+                            <a href="/html/student/profile.html" class="dropdown-item">
+                                <span class="dropdown-icon">👤</span>
+                                <span class="dropdown-text">My Profile</span>
+                            </a>
+                            <a href="/html/shared/settings.html" class="dropdown-item">
+                                <span class="dropdown-icon">⚙️</span>
+                                <span class="dropdown-text">Settings</span>
+                            </a>
+                            <a href="#" class="dropdown-item" id="helpCenterLink">
+                                <span class="dropdown-icon">❓</span>
+                                <span class="dropdown-text">Help Center</span>
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <a href="#" class="dropdown-item" id="feedbackLink">
+                                <span class="dropdown-icon">💬</span>
+                                <span class="dropdown-text">Give Feedback</span>
+                            </a>
+                            <a href="#" class="dropdown-item" id="aboutLink">
+                                <span class="dropdown-icon">ℹ️</span>
+                                <span class="dropdown-text">About</span>
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <button class="dropdown-item dropdown-danger" id="logoutBtn">
+                                <span class="dropdown-icon">🚪</span>
+                                <span class="dropdown-text">Logout</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Mobile Menu Toggle -->
+                <button class="mobile-menu-toggle" id="mobileMenuToggle">
+                    <span class="menu-icon"></span>
+                    <span class="menu-icon"></span>
+                    <span class="menu-icon"></span>
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Secondary Bar (Contextual) -->
+    <div class="header-secondary" id="headerSecondary">
+        <div class="container">
+            <!-- Page Title & Breadcrumbs -->
+            <div class="page-header">
+                <h1 class="page-title" id="pageTitle">Dashboard</h1>
+                <nav class="breadcrumbs" id="breadcrumbs">
+                    <a href="/" class="breadcrumb-item">Home</a>
+                    <span class="breadcrumb-separator">/</span>
+                    <span class="breadcrumb-item active">Dashboard</span>
+                </nav>
+            </div>
+            
+            <!-- Context Actions -->
+            <div class="context-actions" id="contextActions">
+                <!-- Contextual buttons will be loaded here based on page -->
+            </div>
+            
+            <!-- Progress Indicator -->
+            <div class="progress-indicator" id="progressIndicator">
+                <div class="progress-label">Daily Progress</div>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 65%"></div>
+                </div>
+                <div class="progress-value">65%</div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Mobile Navigation -->
+    <div class="mobile-nav-overlay" id="mobileNavOverlay"></div>
+    <nav class="mobile-nav" id="mobileNav">
+        <div class="mobile-nav-header">
+            <div class="mobile-profile">
+                <div class="mobile-avatar" id="mobileAvatar">U</div>
+                <div class="mobile-user-info">
+                    <div class="mobile-user-name" id="mobileUserName">User Name</div>
+                    <div class="mobile-user-email" id="mobileUserEmail">user@example.com</div>
+                </div>
+            </div>
+            <button class="mobile-nav-close" id="mobileNavClose">✕</button>
+        </div>
+        
+        <div class="mobile-nav-menu" id="mobileNavMenu">
+            <!-- Mobile menu items will be loaded here -->
+        </div>
+        
+        <div class="mobile-nav-footer">
+            <a href="/html/shared/settings.html" class="mobile-nav-item">
+                <span class="mobile-nav-icon">⚙️</span>
+                <span class="mobile-nav-text">Settings</span>
+            </a>
+            <button class="mobile-nav-item mobile-nav-danger" id="mobileLogoutBtn">
+                <span class="mobile-nav-icon">🚪</span>
+                <span class="mobile-nav-text">Logout</span>
+            </button>
+        </div>
+    </nav>
+</header>

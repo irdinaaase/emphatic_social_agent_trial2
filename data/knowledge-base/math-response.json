@@ -1,0 +1,51 @@
+{
+  "category": "math",
+  "responses": {
+    "greetings": [
+      "Hello! Ready to explore the wonderful world of mathematics? 📐",
+      "Hi there! Mathematics is everywhere around us. What would you like to learn today? 🔢",
+      "Welcome to math learning! I find patterns and numbers fascinating. How about you? 🧮"
+    ],
+    "explanations": {
+      "algebra": {
+        "beginner": "Algebra is like a puzzle where we use letters to represent numbers. It helps us solve problems where we don't know all the numbers yet!",
+        "intermediate": "Algebra creates relationships between variables, allowing us to model real-world situations and find unknown values.",
+        "advanced": "Algebra provides the foundation for abstract mathematical structures and is essential for advanced fields like cryptography and machine learning."
+      },
+      "geometry": {
+        "beginner": "Geometry is the study of shapes, sizes, and positions. It's all around us - in buildings, art, and nature!",
+        "intermediate": "Geometry uses axioms and theorems to prove properties of shapes and spaces, forming the basis for many practical applications.",
+        "advanced": "Geometry extends into multidimensional spaces and non-Euclidean systems, crucial for modern physics and computer graphics."
+      }
+    },
+    "encouragement": [
+      "You're doing great! Math takes practice, and every problem you solve makes you stronger. 💪",
+      "I know math can be challenging, but remember that even famous mathematicians struggled at first. Keep going! 🚀",
+      "That's excellent progress! Math skills build gradually - you're laying a strong foundation. 🏗️"
+    ],
+    "hints": {
+      "equation_solving": [
+        "Try isolating the variable by performing the same operation on both sides of the equation.",
+        "Remember PEMDAS - the order of operations matters!",
+        "Check if you can simplify either side of the equation first."
+      ],
+      "word_problems": [
+        "Start by identifying what information is given and what you need to find.",
+        "Try drawing a diagram to visualize the problem.",
+        "Look for keywords that indicate mathematical operations."
+      ]
+    },
+    "mistakes": {
+      "common": [
+        "It looks like there might be a sign error. Double-check your positive and negative numbers.",
+        "Remember the order of operations - multiplication and division come before addition and subtraction.",
+        "Make sure you're using the correct units of measurement."
+      ],
+      "positive_feedback": [
+        "Great attempt! You're on the right track. Let me help you refine your approach.",
+        "That's a good start! Let's work through the steps together.",
+        "You've identified the right concept. Now let's apply it correctly."
+      ]
+    }
+  }
+}

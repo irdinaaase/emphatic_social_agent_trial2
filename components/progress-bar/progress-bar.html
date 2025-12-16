@@ -1,0 +1,30 @@
+<!-- components/progress-bar/progress-bar.html -->
+<div class="progress-bar-container" id="progressBarContainer">
+    <div class="progress-header">
+        <div class="progress-title" id="progressTitle">Progress</div>
+        <div class="progress-value" id="progressValue">0%</div>
+    </div>
+    
+    <div class="progress-track" id="progressTrack">
+        <div class="progress-fill" id="progressFill" style="width: 0%"></div>
+        <div class="progress-milestones" id="progressMilestones"></div>
+    </div>
+    
+    <div class="progress-details">
+        <div class="progress-label" id="progressLabel">Starting...</div>
+        <div class="progress-time" id="progressTime">Estimated: --:--</div>
+    </div>
+    
+    <!-- Optional: Progress breakdown -->
+    <div class="progress-breakdown" id="progressBreakdown" style="display: none;">
+        <div class="breakdown-title">Progress Breakdown</div>
+        <div class="breakdown-items" id="breakdownItems"></div>
+    </div>
+    
+    <!-- Optional: Action buttons -->
+    <div class="progress-actions" id="progressActions" style="display: none;">
+        <button class="btn btn-secondary btn-sm" id="pauseProgress">Pause</button>
+        <button class="btn btn-primary btn-sm" id="resumeProgress">Resume</button>
+        <button class="btn btn-outline btn-sm" id="resetProgress">Reset</button>
+    </div>
+</div>

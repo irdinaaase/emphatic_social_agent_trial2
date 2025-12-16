@@ -1,0 +1,733 @@
+/* css/teacher/monitoring.css */
+/* Live Monitoring Page Styles */
+
+.monitoring-dashboard {
+    padding: var(--space-6);
+}
+
+.dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--space-8);
+    flex-wrap: wrap;
+    gap: var(--space-4);
+}
+
+.header-title h1 {
+    color: var(--primary-color);
+    margin-bottom: var(--space-2);
+}
+
+.header-title p {
+    color: var(--text-secondary);
+    max-width: 600px;
+}
+
+.header-actions {
+    display: flex;
+    gap: var(--space-3);
+    flex-wrap: wrap;
+}
+
+/* Status Grid */
+.status-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--space-4);
+    margin-bottom: var(--space-6);
+}
+
+.status-card {
+    background: white;
+    border-radius: var(--radius);
+    padding: var(--space-6);
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    box-shadow: var(--shadow);
+    transition: all 0.3s ease;
+}
+
+.status-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+}
+
+.status-card.status-active {
+    border-left: 4px solid var(--success-color);
+}
+
+.status-card.status-focus {
+    border-left: 4px solid var(--primary-color);
+}
+
+.status-card.status-engagement {
+    border-left: 4px solid var(--info-color);
+}
+
+.status-card.status-emotion {
+    border-left: 4px solid var(--accent-color);
+}
+
+.status-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: var(--radius);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    color: white;
+}
+
+.status-active .status-icon {
+    background: linear-gradient(135deg, var(--success-color), #4ade80);
+}
+
+.status-focus .status-icon {
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+}
+
+.status-engagement .status-icon {
+    background: linear-gradient(135deg, var(--info-color), #60a5fa);
+}
+
+.status-emotion .status-icon {
+    background: linear-gradient(135deg, var(--accent-color), #f472b6);
+}
+
+.status-content {
+    flex: 1;
+}
+
+.status-value {
+    font-size: var(--text-2xl);
+    font-weight: 700;
+    color: var(--dark-1);
+    margin-bottom: var(--space-1);
+}
+
+.status-label {
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+}
+
+/* Monitoring Grid */
+.monitoring-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: var(--space-6);
+    margin-bottom: var(--space-8);
+}
+
+@media (max-width: 1200px) {
+    .monitoring-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Student Monitoring */
+.student-monitoring {
+    background: white;
+    border-radius: var(--radius);
+    padding: var(--space-6);
+    box-shadow: var(--shadow);
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--space-4);
+    flex-wrap: wrap;
+    gap: var(--space-3);
+}
+
+.section-title {
+    font-size: var(--text-lg);
+    font-weight: 600;
+    color: var(--dark-1);
+    margin: 0;
+}
+
+.section-actions {
+    display: flex;
+    gap: var(--space-2);
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.students-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: var(--space-4);
+    max-height: 600px;
+    overflow-y: auto;
+    padding: var(--space-2);
+}
+
+.student-card {
+    background: var(--light-1);
+    border-radius: var(--radius);
+    padding: var(--space-4);
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    position: relative;
+    border: 2px solid transparent;
+}
+
+.student-card:hover {
+    border-color: var(--primary-color);
+    background: white;
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-sm);
+}
+
+.student-card.selected {
+    border-color: var(--primary-color);
+    background: rgba(67, 97, 238, 0.05);
+}
+
+.student-card.needs-attention {
+    border-color: var(--warning-color);
+    background: rgba(245, 158, 11, 0.05);
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { border-color: rgba(245, 158, 11, 0.5); }
+    50% { border-color: var(--warning-color); }
+    100% { border-color: rgba(245, 158, 11, 0.5); }
+}
+
+.student-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 1.25rem;
+    flex-shrink: 0;
+}
+
+.student-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.student-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--space-2);
+}
+
+.student-name {
+    font-weight: 600;
+    color: var(--dark-1);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.student-status {
+    font-size: var(--text-xs);
+    padding: var(--space-1) var(--space-2);
+    border-radius: var(--radius-full);
+    font-weight: 500;
+}
+
+.status-active { background: var(--success-light); color: var(--success-dark); }
+.status-inactive { background: var(--light-3); color: var(--text-secondary); }
+.status-away { background: var(--warning-light); color: var(--warning-dark); }
+
+.student-metrics {
+    display: flex;
+    gap: var(--space-3);
+    margin-bottom: var(--space-2);
+}
+
+.metric {
+    display: flex;
+    align-items: center;
+    gap: var(--space-1);
+    font-size: var(--text-sm);
+}
+
+.metric-icon {
+    font-size: 1.25rem;
+}
+
+.metric-focus .metric-icon { color: var(--primary-color); }
+.metric-engagement .metric-icon { color: var(--info-color); }
+.metric-emotion .metric-icon { color: var(--accent-color); }
+
+.metric-value {
+    font-weight: 600;
+    color: var(--dark-1);
+}
+
+.metric-label {
+    color: var(--text-secondary);
+}
+
+.student-progress {
+    margin-top: var(--space-2);
+}
+
+.progress-bar {
+    height: 6px;
+    background: var(--light-3);
+    border-radius: var(--radius-full);
+    overflow: hidden;
+    margin-bottom: var(--space-1);
+}
+
+.progress-fill {
+    height: 100%;
+    border-radius: var(--radius-full);
+    transition: width 1s ease;
+}
+
+.progress-focus { background: var(--primary-color); }
+.progress-engagement { background: var(--info-color); }
+.progress-emotion { background: var(--accent-color); }
+
+.progress-labels {
+    display: flex;
+    justify-content: space-between;
+    font-size: var(--text-xs);
+    color: var(--text-secondary);
+}
+
+/* Analytics Panel */
+.analytics-panel {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+}
+
+.chart-container {
+    background: white;
+    border-radius: var(--radius);
+    padding: var(--space-6);
+    box-shadow: var(--shadow);
+}
+
+.chart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--space-4);
+    flex-wrap: wrap;
+    gap: var(--space-3);
+}
+
+.chart-title {
+    font-size: var(--text-lg);
+    font-weight: 600;
+    color: var(--dark-1);
+    margin: 0;
+}
+
+.time-selector {
+    display: flex;
+    gap: var(--space-1);
+}
+
+.time-btn {
+    padding: var(--space-1) var(--space-3);
+    border-radius: var(--radius);
+    background: var(--light-1);
+    border: 1px solid var(--light-3);
+    color: var(--text-secondary);
+    font-size: var(--text-sm);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.time-btn:hover {
+    background: var(--light-2);
+}
+
+.time-btn.active {
+    background: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+}
+
+.chart-wrapper {
+    height: 200px;
+    position: relative;
+}
+
+/* Activity Stream */
+.activity-stream {
+    background: white;
+    border-radius: var(--radius);
+    padding: var(--space-6);
+    box-shadow: var(--shadow);
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.stream-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--space-4);
+}
+
+.stream-title {
+    font-size: var(--text-lg);
+    font-weight: 600;
+    color: var(--dark-1);
+    margin: 0;
+}
+
+.stream-list {
+    flex: 1;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+}
+
+.stream-item {
+    padding: var(--space-3);
+    border-radius: var(--radius);
+    background: var(--light-1);
+    border-left: 4px solid;
+    transition: all 0.2s ease;
+}
+
+.stream-item:hover {
+    background: var(--light-2);
+    transform: translateX(2px);
+}
+
+.stream-item.info { border-left-color: var(--info-color); }
+.stream-item.success { border-left-color: var(--success-color); }
+.stream-item.warning { border-left-color: var(--warning-color); }
+.stream-item.danger { border-left-color: var(--danger-color); }
+
+.stream-content {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-3);
+}
+
+.stream-icon {
+    font-size: 1.25rem;
+    flex-shrink: 0;
+}
+
+.stream-text {
+    flex: 1;
+    font-size: var(--text-sm);
+}
+
+.stream-meta {
+    display: flex;
+    justify-content: space-between;
+    margin-top: var(--space-1);
+    font-size: var(--text-xs);
+    color: var(--text-light);
+}
+
+/* Student Details Panel */
+.student-details-panel {
+    position: fixed;
+    right: -400px;
+    top: 0;
+    width: 400px;
+    height: 100vh;
+    background: white;
+    box-shadow: var(--shadow-xl);
+    z-index: 1000;
+    transition: right 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.student-details-panel.active {
+    right: 0;
+}
+
+.details-header {
+    padding: var(--space-6);
+    border-bottom: 1px solid var(--light-3);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--light-1);
+}
+
+.details-header h3 {
+    margin: 0;
+    color: var(--dark-1);
+}
+
+.details-content {
+    flex: 1;
+    overflow-y: auto;
+    padding: var(--space-6);
+}
+
+.student-summary {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+}
+
+.student-header-large {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    margin-bottom: var(--space-4);
+}
+
+.student-avatar-large {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 2rem;
+}
+
+.student-info-large {
+    flex: 1;
+}
+
+.student-name-large {
+    font-size: var(--text-xl);
+    font-weight: 700;
+    color: var(--dark-1);
+    margin-bottom: var(--space-1);
+}
+
+.student-details-large {
+    color: var(--text-secondary);
+    margin-bottom: var(--space-2);
+}
+
+.student-status-badge {
+    display: inline-block;
+    padding: var(--space-1) var(--space-3);
+    border-radius: var(--radius-full);
+    font-size: var(--text-xs);
+    font-weight: 500;
+}
+
+.detail-metrics {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-4);
+}
+
+.detail-metric {
+    text-align: center;
+    padding: var(--space-4);
+    background: var(--light-1);
+    border-radius: var(--radius);
+    transition: all 0.2s ease;
+}
+
+.detail-metric:hover {
+    background: var(--light-2);
+    transform: translateY(-2px);
+}
+
+.metric-value-large {
+    font-size: var(--text-2xl);
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-bottom: var(--space-1);
+}
+
+.metric-label-large {
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+}
+
+.detail-charts {
+    display: grid;
+    gap: var(--space-4);
+}
+
+.mini-chart {
+    height: 100px;
+    background: var(--light-1);
+    border-radius: var(--radius);
+    padding: var(--space-4);
+}
+
+.detail-actions {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+}
+
+/* Empty States */
+.empty-state {
+    text-align: center;
+    padding: var(--space-8) var(--space-4);
+    color: var(--text-light);
+    grid-column: 1 / -1;
+}
+
+.empty-icon {
+    font-size: 3rem;
+    margin-bottom: var(--space-4);
+    opacity: 0.3;
+}
+
+.empty-message {
+    font-size: var(--text-lg);
+    margin-bottom: var(--space-2);
+    color: var(--text-secondary);
+}
+
+.empty-submessage {
+    font-size: var(--text-sm);
+    color: var(--text-light);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .monitoring-dashboard {
+        padding: var(--space-4);
+    }
+    
+    .dashboard-header {
+        flex-direction: column;
+        align-items: stretch;
+        gap: var(--space-4);
+    }
+    
+    .header-actions {
+        justify-content: stretch;
+    }
+    
+    .header-actions .btn {
+        flex: 1;
+        min-width: 0;
+    }
+    
+    .status-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .students-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .section-header {
+        flex-direction: column;
+        align-items: stretch;
+        gap: var(--space-3);
+    }
+    
+    .section-actions {
+        justify-content: stretch;
+    }
+    
+    .student-details-panel {
+        width: 100%;
+        right: -100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .monitoring-dashboard {
+        padding: var(--space-3);
+    }
+    
+    .status-card {
+        flex-direction: column;
+        text-align: center;
+        padding: var(--space-4);
+    }
+    
+    .student-card {
+        flex-direction: column;
+        text-align: center;
+        padding: var(--space-4);
+    }
+    
+    .student-metrics {
+        justify-content: center;
+    }
+    
+    .detail-metrics {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Loading Animation */
+.loading-shimmer {
+    background: linear-gradient(90deg, var(--light-1) 25%, var(--light-2) 50%, var(--light-1) 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+    border-radius: var(--radius);
+}
+
+@keyframes shimmer {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+}
+
+/* Real-time Indicators */
+.real-time-indicator {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    margin-right: var(--space-1);
+    animation: pulse 2s infinite;
+}
+
+.indicator-live { background: var(--success-color); }
+.indicator-warning { background: var(--warning-color); }
+.indicator-offline { background: var(--text-light); }
+
+/* Custom Scrollbar */
+.students-grid::-webkit-scrollbar,
+.stream-list::-webkit-scrollbar,
+.details-content::-webkit-scrollbar {
+    width: 6px;
+}
+
+.students-grid::-webkit-scrollbar-track,
+.stream-list::-webkit-scrollbar-track,
+.details-content::-webkit-scrollbar-track {
+    background: var(--light-1);
+    border-radius: var(--radius-full);
+}
+
+.students-grid::-webkit-scrollbar-thumb,
+.stream-list::-webkit-scrollbar-thumb,
+.details-content::-webkit-scrollbar-thumb {
+    background: var(--light-3);
+    border-radius: var(--radius-full);
+}
+
+.students-grid::-webkit-scrollbar-thumb:hover,
+.stream-list::-webkit-scrollbar-thumb:hover,
+.details-content::-webkit-scrollbar-thumb:hover {
+    background: var(--text-light);
+}

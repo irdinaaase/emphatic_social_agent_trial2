@@ -1,0 +1,37 @@
+{
+  "student_profiles": [
+    {
+      "id": "student_001",
+      "name": "Alex Johnson",
+      "age": 14,
+      "grade": "8th",
+      "learning_style": "visual",
+      "interests": ["math", "programming", "robotics"],
+      "strengths": ["logical thinking", "problem solving"],
+      "challenges": ["writing essays", "memorization"],
+      "goals": ["improve algebra skills", "learn basic programming"]
+    },
+    {
+      "id": "student_002",
+      "name": "Samantha Chen",
+      "age": 16,
+      "grade": "10th",
+      "learning_style": "auditory",
+      "interests": ["biology", "music", "art"],
+      "strengths": ["creative thinking", "pattern recognition"],
+      "challenges": ["math anxiety", "test taking"],
+      "goals": ["understand genetics", "improve chemistry grades"]
+    }
+  ],
+  "teacher_profiles": [
+    {
+      "id": "teacher_001",
+      "name": "Mr. Rodriguez",
+      "subject": "Mathematics",
+      "grade_levels": ["9th", "10th", "11th"],
+      "teaching_style": "interactive",
+      "specialties": ["algebra", "calculus"],
+      "preferred_tools": ["visual aids", "group work"]
+    }
+  ]
+}

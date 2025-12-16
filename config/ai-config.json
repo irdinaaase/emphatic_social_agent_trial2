@@ -1,0 +1,99 @@
+{
+  "agent": {
+    "name": "Empathy",
+    "personality": "encouraging",
+    "responseSpeed": "normal",
+    "humorLevel": "moderate",
+    "formality": "casual"
+  },
+  "emotionDetection": {
+    "enabled": true,
+    "model": "emotion-v1",
+    "confidenceThreshold": 0.7,
+    "checkInterval": 5000,
+    "useWebcam": false,
+    "useTextAnalysis": true
+  },
+  "focusMonitoring": {
+    "enabled": true,
+    "checkInterval": 10000,
+    "attentionThreshold": 0.5,
+    "distractionThreshold": 0.8,
+    "interventionThreshold": 0.3
+  },
+  "learningAdaptation": {
+    "enabled": true,
+    "styleDetection": true,
+    "paceAdjustment": true,
+    "difficultyScaling": true,
+    "personalizationDepth": "medium"
+  },
+  "responseGeneration": {
+    "engine": "gpt-3.5-turbo",
+    "temperature": 0.7,
+    "maxTokens": 500,
+    "contextWindow": 10,
+    "useTemplates": true,
+    "fallbackResponses": true
+  },
+  "interventions": {
+    "breakSuggestion": {
+      "enabled": true,
+      "interval": 1800000,
+      "minFocusLevel": 0.4
+    },
+    "encouragement": {
+      "enabled": true,
+      "frustrationThreshold": 0.6,
+      "interval": 300000
+    },
+    "simplification": {
+      "enabled": true,
+      "confusionThreshold": 0.7,
+      "maxAttempts": 3
+    },
+    "celebration": {
+      "enabled": true,
+      "achievementThreshold": 0.8,
+      "milestoneRewards": true
+    }
+  },
+  "knowledgeBase": {
+    "subjects": ["math", "science", "language", "history", "general"],
+    "difficultyLevels": ["beginner", "intermediate", "advanced"],
+    "updateFrequency": "weekly",
+    "localCache": true
+  },
+  "voice": {
+    "synthesis": {
+      "enabled": true,
+      "defaultVoice": "Google UK English Female",
+      "rate": 0.9,
+      "pitch": 1.0,
+      "volume": 1.0
+    },
+    "recognition": {
+      "enabled": true,
+      "language": "en-US",
+      "continuous": false,
+      "interimResults": true
+    }
+  },
+  "models": {
+    "emotion": {
+      "path": "/data/ai-models/emotion-model.json",
+      "version": "1.2.0",
+      "size": "2.3MB"
+    },
+    "engagement": {
+      "path": "/data/ai-models/engagement-model.json",
+      "version": "1.1.0",
+      "size": "1.8MB"
+    },
+    "learning": {
+      "path": "/data/ai-models/learning-style-model.json",
+      "version": "1.0.0",
+      "size": "3.1MB"
+    }
+  }
+}
