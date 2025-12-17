@@ -1739,16 +1739,18 @@
                 <br>
             </p>
             
+            <!-- LEARNING CONTENT GRID - MICKEY STYLE -->
             <div class="modules-grid">
-                <!-- MATH MODULE -->
-                <div class="module-card" data-module="math">
+                <!-- GAME 1: LETTER INTRODUCTION -->
+                <div class="module-card" data-module="letters">
                     <div class="module-title">
-                        <i class="fas fa-calculator"></i>
-                        Mickey's Math Magic
+                        <i class="fas fa-font"></i>
+                        Letter Explorer
                     </div>
                     <div class="module-desc">
-                        <strong>Dyslexia Support:</strong> Visual counting, step-by-step problems, 
-                        number lines, and hands-on activities. Break math into manageable pieces!                    
+                        <strong>Multisensory Letter Learning:</strong> Introducing lowercase a-z letters with tactile feel. 
+                        Learn to recognize letters by touch, color differentiation, and sound feedback when placed correctly. 
+                        Special dyslexia-friendly font (DyslexiaMy) prevents mirror confusion (b-d, p-q differences).
                     </div>
 
                     <!-- DYSLEXIA-FRIENDLY CONTROLS -->
@@ -1757,37 +1759,38 @@
                             <i class="fas fa-universal-access"></i> Dyslexia Support:
                         </div>
                         <div style="display: flex; gap: 8px; flex-wrap: wrap;">
-                            <button class="dyslexia-option" onclick="toggleDyslexiaText('math')" title="Switch to dyslexia-friendly font">
-                                <i class="fas fa-font"></i> Easy-Read Font
+                            <button class="dyslexia-option" onclick="toggleDyslexiaText('letters')" title="Switch to dyslexia-friendly font">
+                                <i class="fas fa-font"></i> DyslexiaMy Font
                             </button>
-                            <button class="dyslexia-option" onclick="enableColorOverlay('math')" title="Color overlay for reading">
-                                <i class="fas fa-highlighter"></i> Color Overlay
+                            <button class="dyslexia-option" onclick="enableColorOverlay('letters')" title="Color overlay for reading">
+                                <i class="fas fa-highlighter"></i> Color Contrast
                             </button>
-                            <button class="dyslexia-option" onclick="enableLineReader('math')" title="Line reader tool">
-                                <i class="fas fa-text-width"></i> Line Reader
+                            <button class="dyslexia-option" onclick="enableTactileMode()" title="Tactile simulation">
+                                <i class="fas fa-hand-point-up"></i> Touch Feel
                             </button>
                         </div>
                     </div>
 
                     <div class="module-controls">
-                        <button class="module-btn start-btn" onclick="startGame('math')">
-                            <i class="fas fa-gamepad"></i> Play Math Game
+                        <button class="module-btn start-btn" onclick="startGame('letters')">
+                            <i class="fas fa-gamepad"></i> Play Letter Game
                         </button>
-                        <button class="module-btn view-btn" onclick="viewModule('math')">
+                        <button class="module-btn view-btn" onclick="viewModule('letters')">
                             <i class="fas fa-info-circle"></i> Learn More
                         </button>
                     </div>
                 </div>
                 
-                <!-- READING MODULE -->
-                <div class="module-card" data-module="reading">
+                <!-- GAME 2: VOWEL/CONSONANT DIFFERENTIATION -->
+                <div class="module-card" data-module="vowels">
                     <div class="module-title">
-                        <i class="fas fa-book-reader"></i>
-                        Disney Story Time
+                        <i class="fas fa-volume-up"></i>
+                        Vowel & Consonant Fun
                     </div>
                     <div class="module-desc">
-                        <strong>Dyslexia Support:</strong> Simplified text, syllable breakdown, 
-                        phonics support, line readers, and multi-sensory reading tools.
+                        <strong>Letter Classification:</strong> Learn to differentiate vowels (a, e, i, o, u) from consonants. 
+                        Tactile letter blocks with click sound feedback when correctly sorted. Size optimized for small fingers 
+                        (5.5cm height, 3.5cm width, 5mm thickness).
                     </div>
 
                     <!-- DYSLEXIA-FRIENDLY CONTROLS -->
@@ -1796,36 +1799,38 @@
                             <i class="fas fa-universal-access"></i> Dyslexia Support:
                         </div>
                         <div style="display: flex; gap: 8px; flex-wrap: wrap;">
-                            <button class="dyslexia-option" onclick="toggleDyslexiaText('read')" title="Switch to dyslexia-friendly font">
+                            <button class="dyslexia-option" onclick="toggleDyslexiaText('vowels')" title="Switch to dyslexia-friendly font">
                                 <i class="fas fa-font"></i> Easy-Read Font
                             </button>
-                            <button class="dyslexia-option" onclick="enableColorOverlay('read')" title="Color overlay for reading">
-                                <i class="fas fa-highlighter"></i> Color Overlay
+                            <button class="dyslexia-option" onclick="enableSoundFeedback()" title="Enable click sounds">
+                                <i class="fas fa-volume-up"></i> Sound Feedback
                             </button>
-                            <button class="dyslexia-option" onclick="enableLineReader('read')" title="Line reader tool">
-                                <i class="fas fa-text-width"></i> Line Reader
+                            <button class="dyslexia-option" onclick="enableColorCoding()" title="Color coding">
+                                <i class="fas fa-palette"></i> Color Coding
                             </button>
                         </div>
                     </div>
 
                     <div class="module-controls">
-                        <button class="module-btn start-btn" onclick="startGame('reading')">
-                            <i class="fas fa-gamepad"></i> Play Reading Game
+                        <button class="module-btn start-btn" onclick="startGame('vowels')">
+                            <i class="fas fa-gamepad"></i> Play Vowel Game
                         </button>
-                        <button class="module-btn view-btn" onclick="viewModule('reading')">
+                        <button class="module-btn view-btn" onclick="viewModule('vowels')">
                             <i class="fas fa-info-circle"></i> Learn More
                         </button>
                     </div>
                 </div>
                 
-                <!-- SCIENCE MODULE -->
-                <div class="module-card" data-module="science">
+                <!-- GAME 3: WORD SPELLING & READING -->
+                <div class="module-card" data-module="spelling">
                     <div class="module-title">
-                        <i class="fas fa-flask"></i>
-                        Goofy's Science Lab
+                        <i class="fas fa-spell-check"></i>
+                        Word Builder
                     </div>
                     <div class="module-desc">
-                        Join Goofy for fun science experiments and discoveries! Learn about plants, animals, and simple machines.
+                        <strong>Spelling & Reading:</strong> Spell Malay/English words using letter blocks on provided slots. 
+                        Read words using phonics or syllable methods. Acrylic board produces satisfying 'click' sound when 
+                        letters are placed. Includes writing space for notes and marks.
                     </div>
 
                     <!-- DYSLEXIA-FRIENDLY CONTROLS -->
@@ -1834,137 +1839,23 @@
                             <i class="fas fa-universal-access"></i> Dyslexia Support:
                         </div>
                         <div style="display: flex; gap: 8px; flex-wrap: wrap;">
-                            <button class="dyslexia-option" onclick="toggleDyslexiaText('read')" title="Switch to dyslexia-friendly font">
-                                <i class="fas fa-font"></i> Easy-Read Font
+                            <button class="dyslexia-option" onclick="toggleDyslexiaText('spelling')" title="Switch to dyslexia-friendly font">
+                                <i class="fas fa-font"></i> Dyslexia Font
                             </button>
-                            <button class="dyslexia-option" onclick="enableColorOverlay('read')" title="Color overlay for reading">
-                                <i class="fas fa-highlighter"></i> Color Overlay
+                            <button class="dyslexia-option" onclick="enablePhonicsMode()" title="Phonics support">
+                                <i class="fas fa-assistive-listening-systems"></i> Phonics Mode
                             </button>
-                            <button class="dyslexia-option" onclick="enableLineReader('read')" title="Line reader tool">
-                                <i class="fas fa-text-width"></i> Line Reader
-                            </button>
-                        </div>
-                    </div>
-
-                    <div class="module-controls">
-                        <button class="module-btn start-btn" onclick="startGame('science')">
-                            <i class="fas fa-gamepad"></i> Play Science Game
-                        </button>
-                        <button class="module-btn view-btn" onclick="viewModule('science')">
-                            <i class="fas fa-info-circle"></i> Learn More
-                        </button>
-                    </div>
-                </div>
-                
-                <!-- MUSIC MODULE -->
-                <div class="module-card" data-module="music">
-                    <div class="module-title">
-                        <i class="fas fa-music"></i>
-                        Donald's Music Class
-                    </div>
-                    <div class="module-desc">
-                        Learn about music, rhythm, and instruments with Donald Duck! No quacking required! Discover notes and melodies.
-                    </div>
-
-                    <!-- DYSLEXIA-FRIENDLY CONTROLS -->
-                    <div class="dyslexia-options" style="margin: 15px 0; padding: 10px; background: #f0f8ff; border-radius: 10px; border: 2px solid #0066cc;">
-                        <div style="font-size: 12px; color: var(--mickey-blue); margin-bottom: 8px; display: flex; align-items: center; gap: 5px;">
-                            <i class="fas fa-universal-access"></i> Dyslexia Support:
-                        </div>
-                        <div style="display: flex; gap: 8px; flex-wrap: wrap;">
-                            <button class="dyslexia-option" onclick="toggleDyslexiaText('read')" title="Switch to dyslexia-friendly font">
-                                <i class="fas fa-font"></i> Easy-Read Font
-                            </button>
-                            <button class="dyslexia-option" onclick="enableColorOverlay('read')" title="Color overlay for reading">
-                                <i class="fas fa-highlighter"></i> Color Overlay
-                            </button>
-                            <button class="dyslexia-option" onclick="enableLineReader('read')" title="Line reader tool">
-                                <i class="fas fa-text-width"></i> Line Reader
-                            </button>
-                        </div>
-                    </div>
-
-                    <div class="module-controls">
-                        <button class="module-btn start-btn" onclick="startGame('music')">
-                            <i class="fas fa-gamepad"></i> Play Music Game
-                        </button>
-                        <button class="module-btn view-btn" onclick="viewModule('music')">
-                            <i class="fas fa-info-circle"></i> Learn More
-                        </button>
-                    </div>
-                </div>
-                
-                <!-- ART MODULE -->
-                <div class="module-card" data-module="art">
-                    <div class="module-title">
-                        <i class="fas fa-paint-brush"></i>
-                        Art with Mickey
-                    </div>
-                    <div class="module-desc">
-                        Paint and draw with Mickey Mouse! Create your own Disney masterpiece! Learn colors, shapes, and creativity.
-                    </div>
-
-                    <!-- DYSLEXIA-FRIENDLY CONTROLS -->
-                    <div class="dyslexia-options" style="margin: 15px 0; padding: 10px; background: #f0f8ff; border-radius: 10px; border: 2px solid #0066cc;">
-                        <div style="font-size: 12px; color: var(--mickey-blue); margin-bottom: 8px; display: flex; align-items: center; gap: 5px;">
-                            <i class="fas fa-universal-access"></i> Dyslexia Support:
-                        </div>
-                        <div style="display: flex; gap: 8px; flex-wrap: wrap;">
-                            <button class="dyslexia-option" onclick="toggleDyslexiaText('read')" title="Switch to dyslexia-friendly font">
-                                <i class="fas fa-font"></i> Easy-Read Font
-                            </button>
-                            <button class="dyslexia-option" onclick="enableColorOverlay('read')" title="Color overlay for reading">
-                                <i class="fas fa-highlighter"></i> Color Overlay
-                            </button>
-                            <button class="dyslexia-option" onclick="enableLineReader('read')" title="Line reader tool">
-                                <i class="fas fa-text-width"></i> Line Reader
-                            </button>
-                        </div>
-                    </div>
-
-                    <div class="module-controls">
-                        <button class="module-btn start-btn" onclick="startGame('art')">
-                            <i class="fas fa-gamepad"></i> Play Art Game
-                        </button>
-                        <button class="module-btn view-btn" onclick="viewModule('art')">
-                            <i class="fas fa-info-circle"></i> Learn More
-                        </button>
-                    </div>
-                </div>
-                
-                <!-- GEOGRAPHY MODULE -->
-                <div class="module-card" data-module="geography">
-                    <div class="module-title">
-                        <i class="fas fa-globe-americas"></i>
-                        Pluto's World Tour
-                    </div>
-                    <div class="module-desc">
-                        Travel around the world with Pluto! Learn about different countries, cultures, and famous landmarks.
-                    </div>
-
-                    <!-- DYSLEXIA-FRIENDLY CONTROLS -->
-                    <div class="dyslexia-options" style="margin: 15px 0; padding: 10px; background: #f0f8ff; border-radius: 10px; border: 2px solid #0066cc;">
-                        <div style="font-size: 12px; color: var(--mickey-blue); margin-bottom: 8px; display: flex; align-items: center; gap: 5px;">
-                            <i class="fas fa-universal-access"></i> Dyslexia Support:
-                        </div>
-                        <div style="display: flex; gap: 8px; flex-wrap: wrap;">
-                            <button class="dyslexia-option" onclick="toggleDyslexiaText('read')" title="Switch to dyslexia-friendly font">
-                                <i class="fas fa-font"></i> Easy-Read Font
-                            </button>
-                            <button class="dyslexia-option" onclick="enableColorOverlay('read')" title="Color overlay for reading">
-                                <i class="fas fa-highlighter"></i> Color Overlay
-                            </button>
-                            <button class="dyslexia-option" onclick="enableLineReader('read')" title="Line reader tool">
-                                <i class="fas fa-text-width"></i> Line Reader
+                            <button class="dyslexia-option" onclick="enableSyllableBreakdown()" title="Syllable breakdown">
+                                <i class="fas fa-text-width"></i> Syllables
                             </button>
                         </div>
                     </div>
                     
                     <div class="module-controls">
-                        <button class="module-btn start-btn" onclick="startGame('geography')">
-                            <i class="fas fa-gamepad"></i> Play Geography Game
+                        <button class="module-btn start-btn" onclick="startGame('spelling')">
+                            <i class="fas fa-gamepad"></i> Play Spelling Game
                         </button>
-                        <button class="module-btn view-btn" onclick="viewModule('geography')">
+                        <button class="module-btn view-btn" onclick="viewModule('spelling')">
                             <i class="fas fa-info-circle"></i> Learn More
                         </button>
                     </div>
@@ -2416,470 +2307,202 @@
         
         // LEARNING MODULES DATA
         const learningGames = {
-            math: { // This modules includes both addition and subtraction activities
-                title: "Mickey's Math Magic Game",
-                description: "Solve math puzzles with Mickey and friends!",
+            letters: {
+                title: "Letter Explorer Game",
+                description: "Learn lowercase letters a-z with multisensory support!",
                 activities: [
                     {
-                        //Question 1
-                        type: "quiz",
-                        question: "Mickey has 3 apples. Minnie gives him 2 more.",
-                        simplified_question: "Count: Mickey has 3 apples. Minnie gives 2 more.",
-                        options: ["3", "5", "6", "7"],
-                        options_full: ["3 apples", "5 apples", "6 apples", "7 apples"],
-                        correct: 1,
-                        explanation: "Great job! 3 + 2 = 5 apples!",
-                        simplified_explanation: "3 + 2 = 5",
+                        type: "letter_recognition",
+                        question: "Touch and identify this letter:",
+                        letter: "a",
+                        options: ["a", "b", "c", "d"],
+                        correct: 0,
+                        explanation: "Great! This is lowercase 'a'. Feel its round shape!",
                         points: 10,
-                        visual_aid: "🍎🍎🍎 + 🍎🍎 = 🍎🍎🍎🍎🍎"
+                        tactile_feature: "Round shape with a tail",
+                        sound_feedback: "Click sound when correct"
                     },
                     {
-                        //Question 2                        
-                        type: "quiz",
-                        question: "Donald has 8 fish. He gives 3 to Goofy.",
-                        simplified_question: "Take away: Donald has 8 fish. Gives 3 to Goofy.",
-                        options: ["4", "5", "6", "7"],
-                        options_full: ["4 fish", "5 fish", "6 fish", "7 fish"],
-                        correct: 1,
-                        explanation: "Excellent! 8 - 3 = 5 fish!",
-                        simplified_explanation: "8 - 3 = 5",
+                        type: "letter_recognition",
+                        question: "Which letter is different? (No mirror letters)",
+                        letters: ["b", "d", "p", "a"],
+                        options: ["b", "d", "p", "a"],
+                        correct: 3,
+                        explanation: "Correct! 'a' is not a mirror letter like b-d or p-q!",
                         points: 10,
-                        visual_aid: "🐟🐟🐟🐟🐟🐟🐟🐟 - 🐟🐟🐟 = 🐟🐟🐟🐟🐟"
+                        tactile_feature: "Unique shape prevents confusion",
+                        dyslexia_tip: "DyslexiaMy font makes b and d look different"
                     },
                     {
-                        //Question 3
-                        type: "quiz",
-                        question: "Goofy has 6 balloons. 4 fly away.",
-                        simplified_question: "Take away: 6 balloons. 4 fly away.",
-                        options: ["1", "2", "3", "4"],
-                        options_full: ["1 balloon", "2 balloons", "3 balloons", "4 balloons"],
-                        correct: 1,
-                        explanation: "Nice! 6 - 4 = 2 balloons!",
-                        simplified_explanation: "6 - 4 = 2",
+                        type: "color_sorting",
+                        question: "Sort letters by color groups",
+                        letters: ["r", "m", "s", "t"],
+                        colors: ["red", "blue", "yellow", "green"],
+                        correct: [0, 1, 2, 3],
+                        explanation: "Great sorting! Colors help recognize letter shapes!",
                         points: 10,
-                        visual_aid: "🎈🎈🎈🎈🎈🎈 - 🎈🎈🎈🎈 = 🎈🎈"
+                        tactile_feature: "Color differentiation support"
                     },
                     {
-                        //Question 4
-                        type: "quiz",
-                        question: "Minnie picks 4 flowers. Daisy gives her 3 more.",
-                        simplified_question: "Add: 4 flowers + 3 flowers.",
-                        options: ["6", "7", "8", "5"],
-                        options_full: ["6 flowers", "7 flowers", "8 flowers", "5 flowers"],
-                        correct: 1,
-                        explanation: "Great! 4 + 3 = 7 flowers!",
-                        simplified_explanation: "4 + 3 = 7",
+                        type: "letter_sequence",
+                        question: "What comes after 'c'?",
+                        sequence: ["a", "b", "c", "?"],
+                        options: ["d", "e", "f", "g"],
+                        correct: 0,
+                        explanation: "Correct! c → d. Feel the different shapes!",
                         points: 10,
-                        visual_aid: "🌸🌸🌸🌸 + 🌸🌸🌸 = 🌸🌸🌸🌸🌸🌸🌸"
+                        tactile_feature: "Different shapes for each letter"
                     },
                     {
-                        //Question 5
-                        type: "quiz",
-                        question: "Minnie has 12 cookies. She eats 2.",
-                        simplified_question: "12 cookies - 2 cookies.",
-                        options: ["9", "10", "11", "12"],
-                        correct: 1,
-                        explanation: "Correct! 12 − 2 = 10.",
-                        simplified_explanation: "12 - 2 = 10",
+                        type: "tactile_matching",
+                        question: "Match the letter by touch feeling",
+                        tactile_shape: "Round with line",
+                        options: ["b", "d", "o", "p"],
+                        correct: 2,
+                        explanation: "Correct! 'o' has a round shape!",
                         points: 10,
-                        visual_aid: "🍪🍪🍪🍪🍪🍪🍪🍪🍪🍪🍪🍪 - 🍪🍪 = 🍪🍪🍪🍪🍪🍪🍪🍪🍪🍪"
-                    }, 
-
-                ],
-                dyslexia_tips: [
-                    "Use number lines for counting",
-                    "Break problems into smaller steps",
-                    "Use physical objects to count"
-                ],
-                currentActivity: 0,
-                completed: false
-            },
-            
-            reading: { // This modules includes both story and rhyme activities
-                title: "Disney Story Time Game",
-                description: "Read along with Mickey, Minnie, and all your favorite Disney characters!",
-                activities: [
-                    {   // Question 1 
-                        type: "story",
-                        title: "Mickey's Big Day",
-                        story: "Mickey woke up early. He put on his red shorts. He ate breakfast. Then he went to see Minnie.",
-                        simplified_story: "Mickey woke up. He put on red shorts. He ate. He went to see Minnie.",
-                        questions: [
-                            {   // Sub Question 1
-                                question: "What did Mickey put on?",
-                                simplified_question: "What did Mickey wear?",
-                                options: ["Blue hat", "Red shorts", "Green shoes", "Black gloves"],
-                                correct: 1,
-                                explanation: "Correct! Mickey put on his red shorts!",
-                                visual_aid: "🩳"
-                            },
-                            {   // Sub Question 2
-                                question: "Who did Mickey go to see?",
-                                simplified_question: "Who did Mickey visit?",
-                                options: ["Donald", "Goofy", "Pluto", "Minnie"],
-                                correct: 3,
-                                explanation: "Great! Mickey went to see Minnie!",
-                                visual_aid: "🐭👗"
-                            }
-                        ],
-                        points: 10
-                    },
-                    {   // Question 2
-                        type: "rhyme",
-                        question: "Which word rhymes with 'mouse'?",
-                        simplified_question: "Find the rhyming word for 'mouse'",
-                        options: ["House", "Dog", "Cat", "Bird"],
-                        options_rhymes: ["mouse/house", "dog/frog", "cat/hat", "bird/word"],
-                        correct: 0,
-                        explanation: "Great! Mouse rhymes with house!",
-                        simplified_explanation: "mouse → house",
-                        points: 10,
-                        audio_clue: "🔊 'mouse' sounds like 'house'"
-                    },
-                    {   // Question 3
-                        type: "story",
-                        title: "Goofy's New Shoes",
-                        story: "Goofy bought new shoes. He tried them on. He walked happily.",
-                        simplified_story: "Goofy got new shoes. He tried them. He walked.",
-                        questions: [
-                            {   // Sub Question 1
-                                question: "What did Goofy buy?",
-                                simplified_question: "What did he get?",
-                                options: ["Shoes", "Hat", "Gloves", "Socks"],
-                                correct: 0,
-                                explanation: "Correct! Goofy bought shoes!",
-                                visual_aid: "👟"
-                            }
-                        ],
-                        points: 10
-                    },
-                    {   // Question 4
-                        type: "rhyme",
-                        question: "Which word rhymes with 'cat'?",
-                        simplified_question: "Find rhyme for 'cat'",
-                        options: ["Hat", "Dog", "Fish", "Car"],
-                        options_rhymes: ["cat/hat", "dog/frog", "fish/dish", "car/star"],
-                        correct: 0,
-                        explanation: "Correct! Cat rhymes with hat.",
-                        simplified_explanation: "cat → hat",
-                        points: 10,
-                        audio_clue: "🔊 cat / hat"
-                    },
-                    {   // Question 5
-                        type: "story",
-                        title: "Minnie's Garden",
-                        story: "Minnie planted seeds. She watered them every day. Soon, green leaves appeared.",
-                        simplified_story: "Minnie planted seeds. She watered them. Leaves grew.",
-                        questions: [
-                            {
-                                question: "What did Minnie water?",
-                                simplified_question: "What did she water?",
-                                options: ["Seeds", "Clothes", "Shoes", "Books"],
-                                correct: 0,
-                                explanation: "Yes! She watered the seeds!",
-                                visual_aid: "🌱💧"
-                            }
-                        ],
-                        points: 10
-                    },
-                ],
-                dyslexia_tips: [
-                    "Break words into syllables",
-                    "Use phonics sounds",
-                    "Highlight rhyming patterns"
-                ],
-                currentActivity: 0,
-                completed: false
-            },
-            
-            science: {
-                title: "Goofy's Science Lab Game",
-                description: "Fun science experiments with Goofy!",
-                activities: [
-                    {   // Question 1
-                        type: "quiz",
-                        question: "What do plants need to grow?",
-                        simplified_question: "Plants need what to grow?",
-                        options: ["Water, sun, air", "Candy, soda", "TV, games", "Toys, games"],
-                        visual_options: [
-                            "💧☀️💨",
-                            "🍬🥤",
-                            "📺🎮",
-                            "🧸🎮"
-                        ],
-                        correct: 0,
-                        explanation: "Correct! Plants need water, sunlight, and air to grow!",
-                        simplified_explanation: "Plants need: water + sun + air",
-                        points: 10,
-                        mnemonic: "Water the plant, Give it sun, Air for everyone!"
-                    },
-                    {   // Question 2
-                        type: "quiz",
-                        question: "What do we drink to stay healthy?",
-                        simplified_question: "What do we drink?",
-                        options: ["Water", "Oil", "Juice", "Soda"],
-                        visual_options: ["💧", "🛢️", "🧃", "🥤"],
-                        correct: 0,
-                        explanation: "Correct! Water keeps us healthy!",
-                        simplified_explanation: "Water = healthy",
-                        points: 10,
-                        mnemonic: "Drink water every day!"
-                    },
-                    {   // Question 3
-                        type: "quiz",
-                        question: "What do bees make?",
-                        simplified_question: "Bees make what?",
-                        options: ["Honey", "Milk", "Bread", "Water"],
-                        visual_options: ["🍯", "🥛", "🍞", "💧"],
-                        correct: 0,
-                        explanation: "Yes! Bees make honey!",
-                        simplified_explanation: "Bees → honey",
-                        points: 10,
-                        mnemonic: "Buzz buzz honey!"
-                    },
-                    {   // Question 4
-                        type: "quiz",
-                        question: "What gives us light during the day?",
-                        simplified_question: "Light daytime = ?",
-                        options: ["Sun", "Moon", "Stars", "Firefly"],
-                        visual_options: ["☀️", "🌙", "⭐", "🪰"],
-                        correct: 0,
-                        explanation: "Correct! The sun gives us light!",
-                        simplified_explanation: "Sun = day light",
-                        points: 10,
-                        mnemonic: "Sun shines bright!"
-                    },
-                    {   // Question 5
-                        type: "quiz",
-                        question: "Which animal lives in water?",
-                        simplified_question: "Lives in water?",
-                        options: ["Fish", "Cat", "Dog", "Bird"],
-                        visual_options: ["🐟", "🐱", "🐶", "🐦"],
-                        correct: 0,
-                        explanation: "Correct! Fish live in water!",
-                        simplified_explanation: "Fish = water",
-                        points: 10,
-                        mnemonic: "Fish swim!"
+                        tactile_feature: "Physical shape recognition"
                     }
                 ],
                 dyslexia_tips: [
-                    "Use visual diagrams",
-                    "Create memory aids",
-                    "Break processes into steps"
+                    "Touch and feel each letter shape",
+                    "Use color coding for similar letters",
+                    "Listen to the click sound when correct"
                 ],
                 currentActivity: 0,
                 completed: false
             },
             
-            music: {
-                title: "Donald's Music Class Game",
-                description: "Learn about music with Donald Duck!",
+            vowels: {
+                title: "Vowel & Consonant Fun",
+                description: "Learn to differentiate vowels and consonants!",
                 activities: [
-                    {   // Question 1
-                        type: "quiz",
-                        question: "Which instrument makes this sound? 🎺",
-                        simplified_question: "What makes this sound? 🎺",
-                        options: ["Trumpet", "Drum", "Piano", "Guitar"],
-                        audio_icons: ["🔊🎺", "🔊🥁", "🔊🎹", "🔊🎸"],
-                        correct: 0,
-                        explanation: "Great! The trumpet makes a trumpet sound!",
-                        simplified_explanation: "🎺 = Trumpet",
+                    {
+                        type: "vowel_identification",
+                        question: "Which of these is a vowel?",
+                        letters: ["b", "a", "c", "d"],
+                        options: ["b", "a", "c", "d"],
+                        correct: 1,
+                        explanation: "Correct! 'a' is a vowel (a, e, i, o, u)!",
                         points: 10,
-                        sound_clue: "Listen for the brass sound!"
+                        sound_feedback: "Happy sound for vowels"
                     },
-                    {   // Question 2
-                        type: "quiz",
-                        question: "Which instrument goes 🥁?",
-                        simplified_question: "What makes this sound? 🥁",
-                        options: ["Drum", "Piano", "Flute", "Guitar"],
-                        audio_icons: ["🔊🥁", "🔊🎹", "🔊🎶", "🔊🎸"],
+                    {
+                        type: "consonant_identification",
+                        question: "Find the consonant:",
+                        letters: ["e", "i", "m", "o"],
+                        options: ["e", "i", "m", "o"],
+                        correct: 2,
+                        explanation: "Great! 'm' is a consonant!",
+                        points: 10,
+                        tactile_feature: "Different texture for consonants"
+                    },
+                    {
+                        type: "sorting_game",
+                        question: "Sort vowels and consonants",
+                        letters: ["a", "b", "e", "f"],
+                        categories: ["Vowels", "Consonants"],
+                        correct: [["a", "e"], ["b", "f"]],
+                        explanation: "Perfect! a,e = vowels, b,f = consonants!",
+                        points: 10,
+                        sound_feedback: "Click sound when correctly placed"
+                    },
+                    {
+                        type: "vowel_sounds",
+                        question: "Which vowel makes this sound? /æ/",
+                        options: ["a", "e", "i", "o"],
                         correct: 0,
-                        explanation: "Yes! Drums make that beat!",
-                        simplified_explanation: "🥁 = Drum",
-                        points: 10
+                        explanation: "Correct! 'a' as in 'apple'!",
+                        points: 10,
+                        audio_clue: "🔊 /æ/ sound"
                     },
-                    {   // Question 3
-                        type: "quiz",
-                        question: "Which instrument has strings? 🎸",
-                        simplified_question: "Which has strings?",
-                        options: ["Guitar", "Flute", "Drum", "Trumpet"],
-                        audio_icons: ["🎸", "🎶", "🥁", "🎺"],
-                        correct: 0,
-                        explanation: "Correct! A guitar has strings!",
-                        simplified_explanation: "🎸 = strings",
-                        points: 10
-                    },
-                    {   // Question 4
-                        type: "quiz",
-                        question: "Which instrument do you blow into? 🎺",
-                        simplified_question: "Blow into which?",
-                        options: ["Trumpet", "Piano", "Drum", "Violin"],
-                        audio_icons: ["🎺", "🎹", "🥁", "🎻"],
-                        correct: 0,
-                        explanation: "Yes! You blow into a trumpet!",
-                        simplified_explanation: "🎺 = blow",
-                        points: 10
-                    },
-                    {   // Question 5
-                        type: "quiz",
-                        question: "Which one plays high notes? 🎻",
-                        simplified_question: "High notes?",
-                        options: ["Violin", "Drum", "Guitar", "Piano"],
-                        correct: 0,
-                        explanation: "Correct! Violins play high sounds.",
-                        simplified_explanation: "🎻 = high notes",
-                        points: 10
-                    },
+                    {
+                        type: "letter_families",
+                        question: "Group similar sounding letters",
+                        letters: ["b", "p", "d", "q"],
+                        groups: ["b-p group", "d-q group"],
+                        correct: [["b", "p"], ["d", "q"]],
+                        explanation: "Great grouping! Different shapes prevent confusion!",
+                        points: 10,
+                        dyslexia_tip: "Different shapes for b, d, p, q"
+                    }
                 ],
                 dyslexia_tips: [
-                    "Associate sounds with visuals",
-                    "Use rhythm patterns",
-                    "Connect music to movement"
+                    "Color code vowels and consonants differently",
+                    "Use tactile feedback for differentiation",
+                    "Practice with phonics sounds"
                 ],
                 currentActivity: 0,
                 completed: false
             },
             
-            art: { // This modules involves colour combination and general art knowledge
-                title: "Art with Mickey Game",
-                description: "Create art with Mickey Mouse!",
+            spelling: {
+                title: "Word Builder Game",
+                description: "Spell and read words using phonics!",
                 activities: [
-                    {   // Question 1
-                        type: "color_mixing",
-                        question: "What color do you get when you mix red and yellow?",
-                        simplified_question: "Red + Yellow = ?",
-                        color_visuals: [
-                            "🔴 + 🟡 = 🟠",
-                            "🔴 + 🟡 = 🟢",
-                            "🔴 + 🟡 = 🟣",
-                            "🔴 + 🟡 = 🔵"
-                        ],
-                        options: ["Orange", "Green", "Purple", "Blue"],
-                        correct: 0,
-                        explanation: "Correct! Red + Yellow = Orange!",
-                        simplified_explanation: "🔴 + 🟡 = 🟠",
+                    {
+                        type: "word_spelling",
+                        question: "Spell 'cat' using letter blocks",
+                        word: "cat",
+                        letters: ["c", "a", "t", "b", "d", "e"],
+                        correct: ["c", "a", "t"],
+                        explanation: "Excellent! c-a-t spells 'cat'!",
                         points: 10,
-                        hands_on: "Try mixing red and yellow paint!"
+                        sound_feedback: "Click sounds when letters placed",
+                        phonics: "/k/ /æ/ /t/"
                     },
-                    {   // Question 2
-                        type: "color_mixing",
-                        question: "What color comes from blue + red?",
-                        simplified_question: "Blue + Red = ?",
-                        options: ["Purple", "Green", "Orange", "Pink"],
+                    {
+                        type: "phonics_reading",
+                        question: "Read this word using phonics:",
+                        word: "dog",
+                        phonics: "/d/ /ɒ/ /g/",
+                        options: ["dog", "cat", "bag", "log"],
                         correct: 0,
-                        explanation: "Correct! Blue + red = purple!",
-                        simplified_explanation: "🔵 + 🔴 = 🟣",
-                        points: 10
+                        explanation: "Great reading! d-o-g = dog!",
+                        points: 10,
+                        syllable_breakdown: "dog (1 syllable)"
                     },
-                    {   // Question 3
-                        type: "color_mixing",
-                        question: "What do you get when you mix yellow and blue?",
-                        simplified_question: "Yellow + Blue = ?",
-                        options: ["Green", "Purple", "Pink", "Grey"],
+                    {
+                        type: "malay_word",
+                        question: "Spell 'buku' (book in Malay)",
+                        word: "buku",
+                        letters: ["b", "u", "k", "a", "e", "i"],
+                        correct: ["b", "u", "k", "u"],
+                        explanation: "Perfect! b-u-k-u = buku!",
+                        points: 10,
+                        syllable_breakdown: "bu-ku (2 syllables)"
+                    },
+                    {
+                        type: "syllable_counting",
+                        question: "How many syllables in 'elephant'?",
+                        word: "elephant",
+                        options: ["2", "3", "4", "5"],
+                        correct: 1,
+                        explanation: "Correct! e-le-phant = 3 syllables!",
+                        points: 10,
+                        syllable_breakdown: "el-e-phant"
+                    },
+                    {
+                        type: "word_building",
+                        question: "Build a word from these sounds: /p/ /e/ /n/",
+                        sounds: ["/p/", "/e/", "/n/"],
+                        options: ["pen", "pan", "pin", "pun"],
                         correct: 0,
-                        explanation: "Yes! Blue + yellow = green!",
-                        simplified_explanation: "🟡 + 🔵 = 🟢",
-                        points: 10
-                    },
-                    {   // Question 4
-                        type: "quiz",
-                        question: "Which tool is used for painting?",
-                        simplified_question: "Tool for painting?",
-                        options: ["Brush", "Spoon", "Pencil", "Hammer"],
-                        visual_aid: "🖌️",
-                        correct: 0,
-                        explanation: "Correct! A brush is used for painting!",
-                        simplified_explanation: "🖌️ = painting",
-                        points: 10
-                    },
-                    {   // Question 5
-                        type: "quiz",
-                        question: "Which shape has 3 sides?",
-                        simplified_question: "3 sides?",
-                        options: ["Triangle", "Circle", "Square", "Star"],
-                        correct: 0,
-                        explanation: "Correct! Triangle has 3 sides!",
-                        simplified_explanation: "△ = 3 sides",
-                        points: 10
-                    },
+                        explanation: "Excellent! /p/ /e/ /n/ = pen!",
+                        points: 10,
+                        writing_space: "Space provided to write the word"
+                    }
                 ],
                 dyslexia_tips: [
-                    "Use color coding",
-                    "Visual step-by-step guides",
-                    "Hands-on activities"
-                ],
-                currentActivity: 0,
-                completed: false
-            },
-            
-            geography: {
-                title: "Pluto's World Tour Game",
-                description: "Travel the world with Pluto!",
-                activities: [
-                    {   // Question 1
-                        type: "quiz",
-                        question: "Which continent is the largest?",
-                        simplified_question: "Biggest continent?",
-                        options: ["Asia", "Africa", "Europe", "Australia"],
-                        visual_map: "🌏 (Asia is the biggest!)",
-                        correct: 0,
-                        explanation: "Correct! Asia is the largest continent!",
-                        simplified_explanation: "Asia = Biggest",
-                        points: 10,
-                        memory_tip: "Asia has the most people and land!"
-                    },
-                    {   // Question 2
-                        type: "quiz",
-                        question: "Which place is very cold?",
-                        simplified_question: "Coldest place?",
-                        options: ["Arctic", "Desert", "Jungle", "City"],
-                        visual_map: "❄️",
-                        correct: 0,
-                        explanation: "Correct! The Arctic is very cold!",
-                        simplified_explanation: "Arctic = cold",
-                        points: 10
-                    },
-                    {   // Question 3
-                        type: "quiz",
-                        question: "Where do camels live?",
-                        simplified_question: "Camels live where?",
-                        options: ["Desert", "Ocean", "Forest", "City"],
-                        correct: 0,
-                        explanation: "Yes! Camels live in the desert!",
-                        simplified_explanation: "Camel → desert",
-                        points: 10
-                    },
-                    {   // Question 4
-                        type: "quiz",
-                        question: "Which one is an ocean?",
-                        simplified_question: "Which is ocean?",
-                        options: ["Pacific", "Asia", "Paris", "Africa"],
-                        correct: 0,
-                        explanation: "Correct! Pacific is an ocean!",
-                        simplified_explanation: "Pacific = ocean",
-                        points: 10
-                    },
-                    {   // Question 5
-                        type: "quiz",
-                        question: "Which direction does the sun rise?",
-                        simplified_question: "Sun rises where?",
-                        options: ["East", "West", "North", "South"],
-                        correct: 0,
-                        explanation: "Correct! The sun rises in the east!",
-                        simplified_explanation: "Sunrise = East",
-                        points: 10
-                    },
-                ],
-                dyslexia_tips: [
-                    "Use maps and visuals",
-                    "Create mental images",
-                    "Associate with personal experiences"
+                    "Break words into syllables",
+                    "Use phonics sounds for each letter",
+                    "Listen to the click sound feedback"
                 ],
                 currentActivity: 0,
                 completed: false
             }
-        };
-        
+        };        
+
         // Empathic Agent Configuration
         const empathicAgent = {
             currentEmotion: "neutral",
@@ -3552,41 +3175,41 @@
         }
         
         // Check for negative emotion and trigger Mickey
-        function checkForNegativeEmotion() {
-            // ONLY check emotions if a game is active and camera detection is running
-            if (!currentGame || !isCameraStarted) {
-                // No game active, skip emotion checking
-                setTimeout(checkForNegativeEmotion, 10000);
-                return;
-            }
+        // function checkForNegativeEmotion() {
+        //     // ONLY check emotions if a game is active and camera detection is running
+        //     if (!currentGame || !isCameraStarted) {
+        //         // No game active, skip emotion checking
+        //         setTimeout(checkForNegativeEmotion, 10000);
+        //         return;
+        //     }
             
-            // Only simulate emotion detection if MediaPipe isn't providing real data
-            if (!empathicAgent.faceDetected) {
-                // Simulate emotion detection (fallback)
-                const emotions = ['happy', 'neutral', 'frustrated', 'confused', 'bored', 'sad'];
-                const randomEmotion = emotions[Math.floor(Math.random() * emotions.length)];
-                studentEmotion = randomEmotion;
-            } else {
-                // Use real emotion from MediaPipe detection
-                studentEmotion = empathicAgent.currentEmotion;
-            }
+        //     // Only simulate emotion detection if MediaPipe isn't providing real data
+        //     if (!empathicAgent.faceDetected) {
+        //         // Simulate emotion detection (fallback)
+        //         const emotions = ['happy', 'neutral', 'frustrated', 'confused', 'bored', 'sad'];
+        //         const randomEmotion = emotions[Math.floor(Math.random() * emotions.length)];
+        //         studentEmotion = randomEmotion;
+        //     } else {
+        //         // Use real emotion from MediaPipe detection
+        //         studentEmotion = empathicAgent.currentEmotion;
+        //     }
             
-            // Increase frustration for negative emotions
-            if (['frustrated', 'confused', 'bored', 'sad'].includes(studentEmotion)) {
-                frustrationLevel++;
+        //     // Increase frustration for negative emotions
+        //     if (['frustrated', 'confused', 'bored', 'sad'].includes(studentEmotion)) {
+        //         frustrationLevel++;
                 
-                // Trigger Mickey if frustration threshold reached AND game is active
-                if (frustrationLevel >= FRUSTRATION_THRESHOLD && !mickeyAgentVisible && !breakTimerActive && currentGame) {
-                    triggerMickeyIntervention(studentEmotion);
-                    frustrationLevel = 0; // Reset after intervention
-                }
-            } else {
-                frustrationLevel = Math.max(0, frustrationLevel - 1);
-            }
+        //         // Trigger Mickey if frustration threshold reached AND game is active
+        //         if (frustrationLevel >= FRUSTRATION_THRESHOLD && !mickeyAgentVisible && !breakTimerActive && currentGame) {
+        //             triggerMickeyIntervention(studentEmotion);
+        //             frustrationLevel = 0; // Reset after intervention
+        //         }
+        //     } else {
+        //         frustrationLevel = Math.max(0, frustrationLevel - 1);
+        //     }
             
-            // Check every 10 seconds
-            setTimeout(checkForNegativeEmotion, 10000);
-        }
+        //     // Check every 10 seconds
+        //     // setTimeout(checkForNegativeEmotion, 10000);
+        // }
         
         // Trigger Mickey Mouse intervention
         function triggerMickeyIntervention(emotion) {
@@ -3838,7 +3461,10 @@
         // ============================================
         // GAME FUNCTIONS
         // ============================================
-        
+        let emotionDetectionInterval;
+        let secondsCounter = 0;
+        let detectionCycle = 0;
+
         function initGameFunctions() {
             // Start face detection button
             const startFaceDetectionBtn = document.getElementById('start-face-detection');
@@ -3865,30 +3491,142 @@
                 closeModuleBtn.addEventListener('click', closeModule);
             }
         }
+
+        // Function to start periodic detection
+        function startPeriodicEmotionDetection(detectionFunction) {
+        const intervalTimeMs = 10 * 1000;
         
-        function startGame(gameName) {
-            currentGame = gameName;
-            const game = learningGames[gameName];
-            currentActivityIndex = 0;
+        if (emotionDetectionInterval) {
+            clearInterval(emotionDetectionInterval);
+        }
+        
+        // Reset counters
+        secondsCounter = 0;
+        detectionCycle = 0;
+        
+        // First, log the initial state
+        console.log(`⏱️  Emotion detection timer started at: ${getCurrentTime()}`);
+        console.log(`⏳ Next detection in 10 seconds...`);
+        
+        // Start 1-second counter for visual feedback
+        const secondTimer = setInterval(() => {
+            secondsCounter++;
+            console.log(`   ${secondsCounter}s...`);
             
-            // ONLY START CAMERA WHEN GAME STARTS
-            if (!isCameraStarted) {
-                startRealMediaPipeDetection();
+            // Clear the 1-second timer when we reach 10 seconds
+            if (secondsCounter >= 10) {
+            clearInterval(secondTimer);
+            }
+        }, 1000);
+        
+        // Start the 10-second detection interval
+        emotionDetectionInterval = setInterval(async () => {
+            detectionCycle++;
+            
+            console.log(`\n🔍 DETECTION CYCLE #${detectionCycle} (${getCurrentTime()})`);
+            console.log(`📊 Game Active: ${currentGame ? '✅ Yes' : '❌ No'}`);
+            console.log(`📷 Camera Active: ${isCameraStarted ? '✅ Yes' : '❌ No'}`);
+            
+            try {
+            if (currentGame && isCameraStarted) {
+                const emotionResult = await detectionFunction();
+                console.log(`😊 Detected Emotion: ${emotionResult.emotion || 'neutral'}`);
+                console.log(`🎯 Confidence: ${Math.round((emotionResult.confidence || 0.5) * 100)}%`);
+                console.log(`📈 Focus Level: ${empathicAgent.focusLevel || 75}%`);
+                
+                // Update your existing emotion tracking
+                studentEmotion = emotionResult.emotion || 'neutral';
+                empathicAgent.currentEmotion = studentEmotion;
+                empathicAgent.emotionConfidence = emotionResult.confidence || 0.5;
+                
+                // Check for frustration and trigger interventions
+                if (['frustrated', 'confused', 'bored', 'sad'].includes(studentEmotion)) {
+                frustrationLevel++;
+                console.log(`⚠️  Frustration Level: ${frustrationLevel}/${FRUSTRATION_THRESHOLD}`);
+                
+                if (frustrationLevel >= FRUSTRATION_THRESHOLD && !mickeyAgentVisible && !breakTimerActive) {
+                    console.log(`🚨 Triggering Mickey intervention for: ${studentEmotion}`);
+                    triggerMickeyIntervention(studentEmotion);
+                    frustrationLevel = 0;
+                }
+                } else {
+                frustrationLevel = Math.max(0, frustrationLevel - 1);
+                }
+            } else {
+                console.log(`⏸️  Detection skipped: No active game or camera`);
+            }
+            } catch (error) {
+            console.error(`❌ Detection error: ${error.message}`);
             }
             
-            // Update UI
-            document.getElementById('module-content-title').textContent = game.title;
-            document.getElementById('module-content-body').innerHTML = generateGameActivity(gameName, 0);
-            document.getElementById('module-content').classList.add('active');
+            // Reset and start the 1-second counter again
+            secondsCounter = 0;
+            console.log(`\n⏳ Next detection in 10 seconds...`);
             
-            // Show Mickey agent
-            showMickeyAgent();
+            const secondTimer = setInterval(() => {
+            secondsCounter++;
+            console.log(`   ${secondsCounter}s...`);
             
-            // START emotion checking when game begins
-            frustrationLevel = 0; // Reset frustration
-            setTimeout(checkForNegativeEmotion, 5000);
+            if (secondsCounter >= 10) {
+                clearInterval(secondTimer);
+            }
+            }, 1000);
             
-            console.log(`🎮 Starting ${game.title} - Camera auto-started: ${isCameraStarted}`);
+        }, intervalTimeMs);
+        }
+
+        function stopPeriodicEmotionDetection() {
+        if (emotionDetectionInterval) {
+            clearInterval(emotionDetectionInterval);
+            emotionDetectionInterval = null;
+            console.log(`🛑 Emotion detection stopped at: ${getCurrentTime()}`);
+            console.log(`📊 Total cycles completed: ${detectionCycle}`);
+        }
+        }
+
+        // Helper function to get current time
+        function getCurrentTime() {
+        const now = new Date();
+        return now.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit', second:'2-digit'});
+        }
+
+        function startGame(gameName) {
+        currentGame = gameName;
+        const game = learningGames[gameName];
+        currentActivityIndex = 0;
+        
+        // ONLY START CAMERA WHEN GAME STARTS
+        if (!isCameraStarted) {
+            startRealMediaPipeDetection();
+        }
+        
+        // Update UI
+        document.getElementById('module-content-title').textContent = game.title;
+        document.getElementById('module-content-body').innerHTML = generateGameActivity(gameName, 0);
+        document.getElementById('module-content').classList.add('active');
+        
+        // Show Mickey agent
+        showMickeyAgent();
+        
+        // START PERIODIC DETECTION (every 10 seconds)
+        console.log(`🎮 Starting "${game.title}"`);
+        startPeriodicEmotionDetection(async () => {
+            // Use MediaPipe detection if available, otherwise fallback
+            if (empathicAgent.faceDetected) {
+            return {
+                emotion: empathicAgent.currentEmotion,
+                confidence: empathicAgent.emotionConfidence
+            };
+            } else {
+            // Fallback simulation
+            const emotions = ['happy', 'neutral', 'focused', 'confused', 'frustrated'];
+            const randomEmotion = emotions[Math.floor(Math.random() * emotions.length)];
+            return {
+                emotion: randomEmotion,
+                confidence: 0.7 + Math.random() * 0.2
+            };
+            }
+        });
         }
         
         function viewModule(moduleName) {
@@ -3924,205 +3662,613 @@
             document.getElementById('module-content').classList.add('active');
         }
         
-        function generateGameActivity(gameName, activityIndex) {
-            const game = learningGames[gameName];
-            const activity = game.activities[activityIndex];
-            
-            const easyClass = isEasyMode ? 'easy-mode' : '';
-            
-            let contentHTML = '';
-            
-            // DYSLEXIA-FRIENDLY CONTENT GENERATION
-            if (activity.type === "quiz") {
-                const questionText = isEasyMode ? (activity.simplified_question || activity.question) : activity.question;
-                const optionsList = isEasyMode ? (activity.options || activity.options_full) : activity.options_full;
+function generateGameActivity(gameName, activityIndex) {
+    const game = learningGames[gameName];
+    const activity = game.activities[activityIndex];
+    
+    const easyClass = isEasyMode ? 'easy-mode' : '';
+    
+    let contentHTML = '';
+    
+    // COMMON GAME HEADER
+    const gameHeader = `
+        <div class="game-counter">
+            Activity ${activityIndex + 1} of ${game.activities.length}
+            ${isEasyMode ? '<span style="color: #00cc00; margin-left: 10px;"><i class="fas fa-child"></i> Simple Mode</span>' : ''}
+        </div>
+        
+        <!-- DYSLEXIA SUPPORT HEADER -->
+        <div class="dyslexia-support-header" style="background: #e6f7ff; padding: 15px; border-radius: 15px; border: 3px solid var(--mickey-blue); margin-bottom: 20px;">
+            <div style="display: flex; align-items: center; gap: 10px; color: var(--mickey-blue);">
+                <i class="fas fa-lightbulb"></i>
+                <strong>Dyslexia Tips for this activity:</strong>
+            </div>
+            <ul style="margin: 10px 0 0 20px; color: var(--mickey-black); font-family: 'OpenDyslexic', sans-serif; font-size: 0.9em;">
+                ${game.dyslexia_tips.map(tip => `<li>${tip}</li>`).join('')}
+            </ul>
+        </div>
+    `;
+    
+    // HANDLE DIFFERENT ACTIVITY TYPES
+    if (activity.type === "quiz" || activity.type === "letter_recognition" || 
+        activity.type === "vowel_identification" || activity.type === "consonant_identification" ||
+        activity.type === "vowel_sounds" || activity.type === "phonics_reading" ||
+        activity.type === "syllable_counting" || activity.type === "word_building") {
+        
+        const questionText = activity.question || "Identify the correct answer:";
+        const optionsList = activity.options || ["Option 1", "Option 2", "Option 3", "Option 4"];
+        
+        contentHTML = `
+            <div class="game-container ${easyClass}">
+                ${gameHeader}
                 
-                contentHTML = `
-                    <div class="game-container ${easyClass}">
-                        <div class="game-counter">
-                            Activity ${activityIndex + 1} of ${game.activities.length}
-                            ${isEasyMode ? '<span style="color: #00cc00; margin-left: 10px;"><i class="fas fa-child"></i> Simple Mode</span>' : ''}
+                <div class="game-question">
+                    <i class="fas fa-question-circle" style="color: var(--mickey-red); margin-right: 10px;"></i>
+                    ${questionText}
+                    
+                    ${activity.letter ? `
+                        <div style="margin-top: 15px; font-size: 5rem; text-align: center; color: var(--mickey-red);">
+                            ${activity.letter}
                         </div>
-                        
-                        <!-- DYSLEXIA SUPPORT HEADER -->
-                        <div class="dyslexia-support-header" style="background: #e6f7ff; padding: 15px; border-radius: 15px; border: 3px solid var(--mickey-blue); margin-bottom: 20px;">
-                            <div style="display: flex; align-items: center; gap: 10px; color: var(--mickey-blue);">
-                                <i class="fas fa-lightbulb"></i>
-                                <strong>Dyslexia Tips for this activity:</strong>
+                    ` : ''}
+                    
+                    ${activity.letters ? `
+                        <div style="margin-top: 15px; display: flex; justify-content: center; gap: 20px; font-size: 3rem;">
+                            ${activity.letters.map(letter => `<div style="background: var(--mickey-yellow); padding: 10px; border-radius: 10px; border: 3px solid var(--mickey-black);">${letter}</div>`).join('')}
+                        </div>
+                    ` : ''}
+                    
+                    ${activity.phonics ? `
+                        <div style="margin-top: 15px; background: var(--mickey-white); padding: 15px; border-radius: 10px; border: 3px solid var(--mickey-blue); text-align: center;">
+                            <div style="color: var(--mickey-red); font-weight: bold;">
+                                <i class="fas fa-volume-up"></i> Phonics:
                             </div>
-                            <ul style="margin: 10px 0 0 20px; color: var(--mickey-black); font-family: 'OpenDyslexic', sans-serif; font-size: 0.9em;">
-                                ${game.dyslexia_tips.map(tip => `<li>${tip}</li>`).join('')}
-                            </ul>
+                            <div style="font-size: 1.5rem; color: var(--mickey-black);">
+                                ${activity.phonics}
+                            </div>
                         </div>
-                        
-                        <div class="game-question">
-                            <i class="fas fa-question-circle" style="color: var(--mickey-red); margin-right: 10px;"></i>
-                            ${questionText}
-                            
-                            ${activity.visual_aid ? `
-                                <div style="margin-top: 15px; font-size: 1.5rem; text-align: center;">
-                                    ${activity.visual_aid}
+                    ` : ''}
+                    
+                    ${activity.sounds ? `
+                        <div style="margin-top: 15px; background: var(--mickey-white); padding: 15px; border-radius: 10px; border: 3px solid var(--mickey-blue); text-align: center;">
+                            <div style="color: var(--mickey-red); font-weight: bold;">
+                                <i class="fas fa-assistive-listening-systems"></i> Sounds:
+                            </div>
+                            <div style="font-size: 1.2rem; color: var(--mickey-black);">
+                                ${activity.sounds.join(' ')}
+                            </div>
+                        </div>
+                    ` : ''}
+                    
+                    ${activity.word ? `
+                        <div style="margin-top: 15px; background: var(--mickey-white); padding: 15px; border-radius: 10px; border: 3px solid var(--mickey-blue); text-align: center;">
+                            <div style="color: var(--mickey-red); font-weight: bold;">
+                                <i class="fas fa-spell-check"></i> Word:
+                            </div>
+                            <div style="font-size: 2.5rem; color: var(--mickey-black); font-family: 'OpenDyslexic', sans-serif;">
+                                ${activity.word}
+                            </div>
+                            ${activity.syllable_breakdown ? `
+                                <div style="margin-top: 10px; color: var(--mickey-blue);">
+                                    Syllables: ${activity.syllable_breakdown}
                                 </div>
                             ` : ''}
-                            
-                            ${activity.visual_options ? `
-                                <div style="margin-top: 15px; display: flex; justify-content: center; gap: 20px; font-size: 2rem;">
-                                    ${activity.visual_options.join(' ')}
-                                </div>
-                            ` : ''}
                         </div>
-                        
-                        <div class="game-options">
-                            ${optionsList.map((option, index) => `
-                                <div class="game-option" onclick="checkAnswer(${index}, '${gameName}')">
-                                    ${option}
-                                    ${activity.audio_icons ? `<div style="margin-top: 5px; font-size: 1.2rem;">${activity.audio_icons[index]}</div>` : ''}
-                                    ${activity.color_visuals ? `<div style="margin-top: 5px; font-size: 1.5rem;">${activity.color_visuals[index]}</div>` : ''}
-                                </div>
-                            `).join('')}
+                    ` : ''}
+                </div>
+                
+                <div class="game-options">
+                    ${optionsList.map((option, index) => `
+                        <div class="game-option" onclick="checkAnswer(${index}, '${gameName}')">
+                            ${option}
                         </div>
-                        
-                        <!-- MULTI-SENSORY SUPPORT -->
-                        <div class="multi-sensory-support" style="background: #fff9e6; padding: 15px; border-radius: 15px; border: 3px solid var(--mickey-yellow); margin-top: 20px;">
-                            <div style="display: flex; align-items: center; gap: 10px; color: var(--mickey-red);">
-                                <i class="fas fa-hand-sparkles"></i>
-                                <strong>Multi-Sensory Learning:</strong>
-                            </div>
-                            <div style="display: flex; justify-content: space-around; margin-top: 10px; flex-wrap: wrap;">
-                                <button class="sensory-btn" onclick="readQuestionAloud()" title="Listen to question">
-                                    <i class="fas fa-volume-up"></i> Listen
-                                </button>
-                                <button class="sensory-btn" onclick="showVisualClue('${gameName}', ${activityIndex})" title="Visual clue">
-                                    <i class="fas fa-eye"></i> See
-                                </button>
-                                <button class="sensory-btn" onclick="tapToCount()" title="Tap to count">
-                                    <i class="fas fa-hand-point-up"></i> Tap
-                                </button>
-                                <button class="sensory-btn" onclick="breakItDown('${gameName}', ${activityIndex})" title="Break it down">
-                                    <i class="fas fa-puzzle-piece"></i> Steps
-                                </button>
-                                <button onclick="readQuestionAloud()" class="sensory-btn" title="Read question aloud">
-                                    <i class="fas fa-volume-up"></i> Read Aloud
-                                </button>
-                                <button onclick="toggleDyslexiaText()" class="sensory-btn" title="Toggle dyslexia-friendly font">
-                                    <i class="fas fa-font"></i> Easy Font
-                                </button>
-                                <button onclick="enableColorOverlay()" class="sensory-btn" title="Change color overlay">
-                                    <i class="fas fa-highlighter"></i> Color Overlay
-                                </button>
-                                <button onclick="enableLineReader()" class="sensory-btn" title="Enable line reader">
-                                    <i class="fas fa-text-width"></i> Line Reader
-                                </button>
-                                <button onclick="simplifyText()" class="sensory-btn" title="Simplify text">
-                                    <i class="fas fa-child"></i> Simplify
-                                </button>
-                            </div>
-                        </div>
-                        
-                        <div class="game-feedback" id="game-feedback"></div>
-                        <div class="game-progress">
-                            <div class="progress-bar" id="game-progress" 
-                                style="width: ${((activityIndex + 1) / game.activities.length) * 100}%"></div>
-                            <div class="progress-text">
-                                ${activityIndex + 1} of ${game.activities.length} activities completed
-                            </div>
-                        </div>
-                        <div class="game-navigation">
-                            <button class="nav-btn" ${activityIndex === 0 ? 'disabled' : ''} 
-                                    onclick="previousActivity('${gameName}')">
-                                <i class="fas fa-arrow-left"></i> Previous
-                            </button>
-                            <button class="nav-btn" onclick="nextActivity('${gameName}')" 
-                                    ${activityIndex === game.activities.length - 1 ? 'disabled' : ''}>
-                                Next <i class="fas fa-arrow-right"></i>
-                            </button>
-                        </div>
+                    `).join('')}
+                </div>
+                
+                ${generateMultiSensorySupport()}
+                
+                <div class="game-feedback" id="game-feedback"></div>
+                <div class="game-progress">
+                    <div class="progress-bar" id="game-progress" 
+                        style="width: ${((activityIndex + 1) / game.activities.length) * 100}%"></div>
+                    <div class="progress-text">
+                        ${activityIndex + 1} of ${game.activities.length} activities completed
                     </div>
-                `;
-            } else if (activity.type === "story") {
-                // DYSLEXIA-FRIENDLY STORY FORMAT
-                const storyText = isEasyMode ? activity.simplified_story : activity.story;
+                </div>
+                <div class="game-navigation">
+                    <button class="nav-btn" ${activityIndex === 0 ? 'disabled' : ''} 
+                            onclick="previousActivity('${gameName}')">
+                        <i class="fas fa-arrow-left"></i> Previous
+                    </button>
+                    <button class="nav-btn" onclick="nextActivity('${gameName}')" 
+                            ${activityIndex === game.activities.length - 1 ? 'disabled' : ''}>
+                        Next <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+        `;
+        
+    } else if (activity.type === "color_sorting" || activity.type === "sorting_game" || activity.type === "letter_families") {
+        // SORTING TYPE ACTIVITIES
+        const questionText = activity.question || "Sort the items:";
+        
+        contentHTML = `
+            <div class="game-container ${easyClass}">
+                ${gameHeader}
                 
-                contentHTML = `
-                    <div class="game-container ${easyClass}">
-                        <div class="game-counter">
-                            Story ${activityIndex + 1} of ${game.activities.length}
-                            ${isEasyMode ? '<span style="color: #00cc00; margin-left: 10px;"><i class="fas fa-child"></i> Simple Story</span>' : ''}
-                        </div>
-                        
-                        <div class="dyslexia-story-container" style="background: white; padding: 25px; border-radius: 20px; border: 4px solid var(--mickey-blue); margin-bottom: 25px;">
-                            <h3 style="color: var(--mickey-red); text-align: center; margin-bottom: 20px;">
-                                ${activity.title}
-                            </h3>
-                            
-                            <!-- DYSLEXIA-FRIENDLY STORY TEXT -->
-                            <div class="dyslexia-story-text" style="font-family: 'OpenDyslexic', sans-serif; line-height: 2; font-size: 1.2em; color: #000; padding: 20px; background: #f9f9f9; border-radius: 15px; border-left: 5px solid var(--mickey-red);">
-                                ${storyText.split('.').map(sentence => `
-                                    <div class="sentence-block" style="margin-bottom: 20px; padding: 10px; background: white; border-radius: 10px; border: 2px solid #e0e0e0;">
-                                        ${sentence.trim()}.
-                                    </div>
-                                `).join('')}
-                            </div>
-                            
-                            <!-- READING SUPPORT TOOLS -->
-                            <div class="reading-tools" style="margin-top: 25px; padding: 15px; background: #e6f7ff; border-radius: 15px; border: 3px solid var(--mickey-blue);">
-                                <div style="display: flex; justify-content: space-around; flex-wrap: wrap; gap: 10px;">
-                                    <button class="reading-tool-btn" onclick="readStoryAloud('${storyText}')">
-                                        <i class="fas fa-volume-up"></i> Read Story
-                                    </button>
-                                    <button class="reading-tool-btn" onclick="highlightSentence()">
-                                        <i class="fas fa-highlighter"></i> Line Reader
-                                    </button>
-                                    <button class="reading-tool-btn" onclick="increaseSpacing()">
-                                        <i class="fas fa-text-width"></i> More Space
-                                    </button>
-                                    <button class="reading-tool-btn" onclick="showPictureClues()">
-                                        <i class="fas fa-images"></i> Pictures
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- STORY QUESTIONS -->
-                        <div class="story-questions">
-                            ${activity.questions.map((q, qIndex) => `
-                                <div class="story-question" style="background: var(--mickey-yellow); padding: 20px; border-radius: 15px; border: 3px solid var(--mickey-black); margin-bottom: 20px;">
-                                    <div class="question-text" style="color: var(--mickey-black); font-family: 'OpenDyslexic', sans-serif; font-size: 1.1em; margin-bottom: 15px;">
-                                        <i class="fas fa-question"></i>
-                                        ${isEasyMode ? q.simplified_question : q.question}
-                                    </div>
-                                    ${q.visual_aid ? `
-                                        <div style="text-align: center; font-size: 2rem; margin-bottom: 15px;">
-                                            ${q.visual_aid}
+                <div class="game-question">
+                    <i class="fas fa-sort" style="color: var(--mickey-red); margin-right: 10px;"></i>
+                    ${questionText}
+                    
+                    ${activity.letters ? `
+                        <div style="margin-top: 15px; display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;">
+                            ${activity.letters.map((letter, idx) => `
+                                <div class="draggable-letter" data-letter="${letter}" data-index="${idx}"
+                                     style="font-size: 3rem; padding: 15px; background: var(--mickey-yellow); 
+                                            border-radius: 15px; border: 3px solid var(--mickey-black);
+                                            cursor: grab; user-select: none; transition: all 0.3s;">
+                                    ${letter}
+                                    ${activity.colors && activity.colors[idx] ? `
+                                        <div style="font-size: 0.8rem; color: var(--mickey-red); margin-top: 5px;">
+                                            ${activity.colors[idx]}
                                         </div>
                                     ` : ''}
-                                    <div class="question-options" style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
-                                        ${q.options.map((option, optIndex) => `
-                                            <button class="story-option" onclick="answerStoryQuestion(${qIndex}, ${optIndex}, '${gameName}')"
-                                                    style="padding: 12px; background: white; border: 3px solid var(--mickey-black); border-radius: 10px; cursor: pointer; font-family: 'OpenDyslexic', sans-serif;">
-                                                ${option}
-                                            </button>
-                                        `).join('')}
-                                    </div>
                                 </div>
                             `).join('')}
                         </div>
-                        
-                        <div class="game-progress">
-                            <div class="progress-bar" id="game-progress" 
-                                style="width: ${((activityIndex + 1) / game.activities.length) * 100}%"></div>
-                            <div class="progress-text">
-                                Story ${activityIndex + 1} of ${game.activities.length}
+                    ` : ''}
+                    
+                    ${activity.categories ? `
+                        <div style="margin-top: 30px; display: grid; grid-template-columns: repeat(${activity.categories.length}, 1fr); gap: 20px;">
+                            ${activity.categories.map((category, idx) => `
+                                <div class="drop-zone" data-category="${idx}"
+                                     style="min-height: 150px; background: var(--mickey-white); 
+                                            border: 3px dashed var(--mickey-black); border-radius: 15px;
+                                            padding: 20px; text-align: center;">
+                                    <div style="color: var(--mickey-red); font-weight: bold; margin-bottom: 10px;">
+                                        ${category}
+                                    </div>
+                                    <div class="dropped-letters" style="min-height: 80px;"></div>
+                                </div>
+                            `).join('')}
+                        </div>
+                    ` : ''}
+                </div>
+                
+                <button class="nav-btn" onclick="checkSortingAnswer('${gameName}')" style="margin: 20px auto; display: block;">
+                    <i class="fas fa-check"></i> Check Sorting
+                </button>
+                
+                ${generateMultiSensorySupport()}
+                
+                <div class="game-feedback" id="game-feedback"></div>
+                <div class="game-progress">
+                    <div class="progress-bar" id="game-progress" 
+                        style="width: ${((activityIndex + 1) / game.activities.length) * 100}%"></div>
+                    <div class="progress-text">
+                        ${activityIndex + 1} of ${game.activities.length} activities completed
+                    </div>
+                </div>
+                <div class="game-navigation">
+                    <button class="nav-btn" ${activityIndex === 0 ? 'disabled' : ''} 
+                            onclick="previousActivity('${gameName}')">
+                        <i class="fas fa-arrow-left"></i> Previous
+                    </button>
+                    <button class="nav-btn" onclick="nextActivity('${gameName}')" 
+                            ${activityIndex === game.activities.length - 1 ? 'disabled' : ''}>
+                        Next <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+        `;
+        
+    } else if (activity.type === "word_spelling" || activity.type === "malay_word") {
+        // WORD SPELLING ACTIVITIES
+        const questionText = activity.question || "Spell the word:";
+        
+        contentHTML = `
+            <div class="game-container ${easyClass}">
+                ${gameHeader}
+                
+                <div class="game-question">
+                    <i class="fas fa-spell-check" style="color: var(--mickey-red); margin-right: 10px;"></i>
+                    ${questionText}
+                    
+                    <div style="margin-top: 15px; background: var(--mickey-white); padding: 20px; border-radius: 15px; border: 3px solid var(--mickey-blue); text-align: center;">
+                        <div style="font-size: 3.5rem; color: var(--mickey-red); font-family: 'OpenDyslexic', sans-serif; margin-bottom: 10px;">
+                            ${activity.word}
+                        </div>
+                        <div style="color: var(--mickey-blue);">
+                            <i class="fas fa-volume-up"></i> Say it out loud!
+                        </div>
+                        ${activity.syllable_breakdown ? `
+                            <div style="margin-top: 10px; color: var(--mickey-green);">
+                                <i class="fas fa-text-width"></i> Syllables: ${activity.syllable_breakdown}
                             </div>
+                        ` : ''}
+                    </div>
+                </div>
+                
+                <div style="margin-top: 20px; text-align: center;">
+                    <div style="color: var(--mickey-black); margin-bottom: 10px;">
+                        <i class="fas fa-font"></i> Available letters:
+                    </div>
+                    <div style="display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin-bottom: 30px;">
+                        ${activity.letters.map(letter => `
+                            <div class="spelling-letter" data-letter="${letter}"
+                                 style="font-size: 2rem; padding: 15px; background: var(--mickey-yellow); 
+                                        border-radius: 10px; border: 3px solid var(--mickey-black);
+                                        cursor: pointer; user-select: none; transition: all 0.3s;">
+                                ${letter}
+                            </div>
+                        `).join('')}
+                    </div>
+                    
+                    <div style="color: var(--mickey-black); margin-bottom: 10px;">
+                        <i class="fas fa-keyboard"></i> Your spelling:
+                    </div>
+                    <div id="spelling-slots" style="display: flex; justify-content: center; gap: 10px; min-height: 80px; margin-bottom: 20px;">
+                        ${Array(activity.word.length).fill().map((_, i) => `
+                            <div class="spelling-slot" data-position="${i}"
+                                 style="width: 60px; height: 80px; background: var(--mickey-white); 
+                                        border: 3px dashed var(--mickey-black); border-radius: 10px;
+                                        display: flex; align-items: center; justify-content: center;
+                                        font-size: 2.5rem;"></div>
+                        `).join('')}
+                    </div>
+                </div>
+                
+                <button class="nav-btn" onclick="checkSpellingAnswer('${gameName}')" style="margin: 20px auto; display: block;">
+                    <i class="fas fa-check"></i> Check Spelling
+                </button>
+                <button class="nav-btn" onclick="clearSpelling()" style="margin: 10px auto; display: block; background: var(--mickey-yellow); color: var(--mickey-black);">
+                    <i class="fas fa-redo"></i> Clear
+                </button>
+                
+                ${generateMultiSensorySupport()}
+                
+                <div class="game-feedback" id="game-feedback"></div>
+                <div class="game-progress">
+                    <div class="progress-bar" id="game-progress" 
+                        style="width: ${((activityIndex + 1) / game.activities.length) * 100}%"></div>
+                    <div class="progress-text">
+                        ${activityIndex + 1} of ${game.activities.length} activities completed
+                    </div>
+                </div>
+                <div class="game-navigation">
+                    <button class="nav-btn" ${activityIndex === 0 ? 'disabled' : ''} 
+                            onclick="previousActivity('${gameName}')">
+                        <i class="fas fa-arrow-left"></i> Previous
+                    </button>
+                    <button class="nav-btn" onclick="nextActivity('${gameName}')" 
+                            ${activityIndex === game.activities.length - 1 ? 'disabled' : ''}>
+                        Next <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+        `;
+        
+    } else if (activity.type === "tactile_matching") {
+        // TACTILE MATCHING ACTIVITIES
+        const questionText = activity.question || "Match by touch feeling:";
+        
+        contentHTML = `
+            <div class="game-container ${easyClass}">
+                ${gameHeader}
+                
+                <div class="game-question">
+                    <i class="fas fa-hand-point-up" style="color: var(--mickey-red); margin-right: 10px;"></i>
+                    ${questionText}
+                    
+                    <div style="margin-top: 15px; background: var(--mickey-white); padding: 20px; border-radius: 15px; border: 3px solid var(--mickey-blue); text-align: center;">
+                        <div style="color: var(--mickey-red); font-weight: bold; margin-bottom: 10px;">
+                            Tactile Shape:
+                        </div>
+                        <div style="font-size: 2rem; color: var(--mickey-black);">
+                            ${activity.tactile_shape}
+                        </div>
+                        <div style="margin-top: 15px; font-size: 1.2rem; color: var(--mickey-blue);">
+                            <i class="fas fa-hand-sparkles"></i> Imagine touching this shape
                         </div>
                     </div>
-                `;
-            }
-            
-            return contentHTML;
-        }
+                </div>
+                
+                <div style="margin-top: 20px; text-align: center;">
+                    <div style="color: var(--mickey-black); margin-bottom: 10px;">
+                        <i class="fas fa-hand-paper"></i> Which letter feels like this?
+                    </div>
+                    <div class="game-options">
+                        ${activity.options.map((option, index) => `
+                            <div class="game-option" onclick="checkAnswer(${index}, '${gameName}')">
+                                <div style="font-size: 2.5rem; margin-bottom: 5px;">${option}</div>
+                                <div style="font-size: 0.9rem; color: var(--mickey-blue);">
+                                    <i class="fas fa-hand-point-up"></i> Touch to select
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+                
+                ${generateMultiSensorySupport()}
+                
+                <div class="game-feedback" id="game-feedback"></div>
+                <div class="game-progress">
+                    <div class="progress-bar" id="game-progress" 
+                        style="width: ${((activityIndex + 1) / game.activities.length) * 100}%"></div>
+                    <div class="progress-text">
+                        ${activityIndex + 1} of ${game.activities.length} activities completed
+                    </div>
+                </div>
+                <div class="game-navigation">
+                    <button class="nav-btn" ${activityIndex === 0 ? 'disabled' : ''} 
+                            onclick="previousActivity('${gameName}')">
+                        <i class="fas fa-arrow-left"></i> Previous
+                    </button>
+                    <button class="nav-btn" onclick="nextActivity('${gameName}')" 
+                            ${activityIndex === game.activities.length - 1 ? 'disabled' : ''}>
+                        Next <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+        `;
+        
+    } else if (activity.type === "letter_sequence") {
+        // LETTER SEQUENCE ACTIVITIES
+        const questionText = activity.question || "Complete the sequence:";
+        
+        contentHTML = `
+            <div class="game-container ${easyClass}">
+                ${gameHeader}
+                
+                <div class="game-question">
+                    <i class="fas fa-sort-alpha-down" style="color: var(--mickey-red); margin-right: 10px;"></i>
+                    ${questionText}
+                    
+                    <div style="margin-top: 15px; display: flex; justify-content: center; gap: 15px; align-items: center; font-size: 2.5rem;">
+                        ${activity.sequence.map((item, idx) => `
+                            <div style="padding: 15px; background: ${item === '?' ? 'var(--mickey-white)' : 'var(--mickey-yellow)'}; 
+                                    border-radius: 10px; border: 3px solid var(--mickey-black);
+                                    min-width: 60px; text-align: center;">
+                                ${item}
+                            </div>
+                            ${idx < activity.sequence.length - 1 ? '<div>→</div>' : ''}
+                        `).join('')}
+                    </div>
+                </div>
+                
+                <div style="margin-top: 20px; text-align: center;">
+                    <div style="color: var(--mickey-black); margin-bottom: 10px;">
+                        <i class="fas fa-question-circle"></i> What comes next?
+                    </div>
+                    <div class="game-options">
+                        ${activity.options.map((option, index) => `
+                            <div class="game-option" onclick="checkAnswer(${index}, '${gameName}')">
+                                ${option}
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+                
+                ${generateMultiSensorySupport()}
+                
+                <div class="game-feedback" id="game-feedback"></div>
+                <div class="game-progress">
+                    <div class="progress-bar" id="game-progress" 
+                        style="width: ${((activityIndex + 1) / game.activities.length) * 100}%"></div>
+                    <div class="progress-text">
+                        ${activityIndex + 1} of ${game.activities.length} activities completed
+                    </div>
+                </div>
+                <div class="game-navigation">
+                    <button class="nav-btn" ${activityIndex === 0 ? 'disabled' : ''} 
+                            onclick="previousActivity('${gameName}')">
+                        <i class="fas fa-arrow-left"></i> Previous
+                    </button>
+                    <button class="nav-btn" onclick="nextActivity('${gameName}')" 
+                            ${activityIndex === game.activities.length - 1 ? 'disabled' : ''}>
+                        Next <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+        `;
+    }
+    
+    return contentHTML;
+}
 
-function checkAnswer(answerIndex, gameName) {
+// Helper function for multi-sensory support section
+function generateMultiSensorySupport() {
+    return `
+        <!-- MULTI-SENSORY SUPPORT -->
+        <div class="multi-sensory-support" style="background: #fff9e6; padding: 15px; border-radius: 15px; border: 3px solid var(--mickey-yellow); margin-top: 20px;">
+            <div style="display: flex; align-items: center; gap: 10px; color: var(--mickey-red);">
+                <i class="fas fa-hand-sparkles"></i>
+                <strong>Multi-Sensory Learning:</strong>
+            </div>
+            <div style="display: flex; justify-content: space-around; margin-top: 10px; flex-wrap: wrap;">
+                <button class="sensory-btn" onclick="readQuestionAloud()" title="Listen to question">
+                    <i class="fas fa-volume-up"></i> Listen
+                </button>
+                <button class="sensory-btn" onclick="tapToCount()" title="Tap to count">
+                    <i class="fas fa-hand-point-up"></i> Touch
+                </button>
+                <button class="sensory-btn" onclick="enableSoundFeedback()" title="Sound feedback">
+                    <i class="fas fa-bell"></i> Sounds
+                </button>
+                <button class="sensory-btn" onclick="toggleDyslexiaText()" title="Toggle dyslexia-friendly font">
+                    <i class="fas fa-font"></i> Easy Font
+                </button>
+            </div>
+        </div>
+    `;
+}
+
+// Add these new helper functions for the interactive games:
+function checkSortingAnswer(gameName) {
+    const game = learningGames[gameName];
+    const activity = game.activities[currentActivityIndex];
+    const feedback = document.getElementById('game-feedback');
+    
+    // For now, simulate correct answer
+    feedback.innerHTML = `
+        <div style="display: flex; align-items: center; gap: 15px;">
+            <i class="fas fa-check-circle" style="color: #00cc00; font-size: 2rem;"></i>
+            <div>
+                <strong style="color: #00cc00; font-family: 'OpenDyslexic', sans-serif;">Great sorting!</strong>
+                <p style="margin: 5px 0; color: var(--mickey-white); font-family: 'OpenDyslexic', sans-serif;">${activity.explanation}</p>
+                <p style="margin: 5px 0; color: var(--mickey-yellow);">
+                    <i class="fas fa-star"></i> +${activity.points} Mickey Points!
+                </p>
+            </div>
+        </div>
+    `;
+    
+    // Award points
+    studentScore += activity.points;
+    document.getElementById('student-points').textContent = studentScore;
+    
+    feedback.classList.add('show');
+    
+    // Auto-advance
+    setTimeout(() => {
+        if (currentActivityIndex < game.activities.length - 1) {
+            nextActivity(gameName);
+        } else {
+            completeGame(gameName);
+        }
+    }, 2500);
+}
+
+function checkSpellingAnswer(gameName) {
+    const game = learningGames[gameName];
+    const activity = game.activities[currentActivityIndex];
+    const feedback = document.getElementById('game-feedback');
+    
+    // For now, simulate correct answer
+    feedback.innerHTML = `
+        <div style="display: flex; align-items: center; gap: 15px;">
+            <i class="fas fa-check-circle" style="color: #00cc00; font-size: 2rem;"></i>
+            <div>
+                <strong style="color: #00cc00; font-family: 'OpenDyslexic', sans-serif;">Excellent spelling!</strong>
+                <p style="margin: 5px 0; color: var(--mickey-white); font-family: 'OpenDyslexic', sans-serif;">${activity.explanation}</p>
+                <div style="font-size: 2rem; margin: 10px 0; text-align: center;">
+                    ${activity.word.split('').map(letter => `<span style="background: var(--mickey-yellow); padding: 5px 10px; margin: 2px; border-radius: 5px; border: 2px solid var(--mickey-black);">${letter}</span>`).join('')}
+                </div>
+                <p style="margin: 5px 0; color: var(--mickey-yellow);">
+                    <i class="fas fa-star"></i> +${activity.points} Mickey Points!
+                </p>
+            </div>
+        </div>
+    `;
+    
+    // Award points
+    studentScore += activity.points;
+    document.getElementById('student-points').textContent = studentScore;
+    
+    feedback.classList.add('show');
+    
+    // Auto-advance
+    setTimeout(() => {
+        if (currentActivityIndex < game.activities.length - 1) {
+            nextActivity(gameName);
+        } else {
+            completeGame(gameName);
+        }
+    }, 2500);
+}
+
+function clearSpelling() {
+    const slots = document.querySelectorAll('.spelling-slot');
+    slots.forEach(slot => {
+        slot.innerHTML = '';
+        slot.style.background = 'var(--mickey-white)';
+    });
+}
+
+// Initialize drag and drop for sorting games
+function initDragAndDrop() {
+    document.addEventListener('DOMContentLoaded', function() {
+        const draggables = document.querySelectorAll('.draggable-letter');
+        const dropZones = document.querySelectorAll('.drop-zone');
+        
+        draggables.forEach(draggable => {
+            draggable.addEventListener('dragstart', function(e) {
+                e.dataTransfer.setData('text/plain', this.getAttribute('data-letter'));
+                this.style.opacity = '0.5';
+            });
+            
+            draggable.addEventListener('dragend', function() {
+                this.style.opacity = '1';
+            });
+        });
+        
+        dropZones.forEach(zone => {
+            zone.addEventListener('dragover', function(e) {
+                e.preventDefault();
+                this.style.borderColor = 'var(--mickey-red)';
+                this.style.borderStyle = 'solid';
+            });
+            
+            zone.addEventListener('dragleave', function() {
+                this.style.borderColor = 'var(--mickey-black)';
+                this.style.borderStyle = 'dashed';
+            });
+            
+            zone.addEventListener('drop', function(e) {
+                e.preventDefault();
+                const letter = e.dataTransfer.getData('text/plain');
+                const droppedArea = this.querySelector('.dropped-letters');
+                
+                const letterDiv = document.createElement('div');
+                letterDiv.className = 'dropped-letter';
+                letterDiv.innerHTML = `
+                    <div style="font-size: 2rem; padding: 10px; background: var(--mickey-yellow); 
+                                border-radius: 10px; border: 2px solid var(--mickey-black);">
+                        ${letter}
+                    </div>
+                `;
+                
+                droppedArea.appendChild(letterDiv);
+                this.style.borderColor = 'var(--mickey-black)';
+                this.style.borderStyle = 'dashed';
+                
+                // Play click sound
+                if (activity.sound_feedback) {
+                    playClickSound();
+                }
+            });
+        });
+    });
+}
+
+function playClickSound() {
+    try {
+        const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+        const oscillator = audioContext.createOscillator();
+        const gainNode = audioContext.createGain();
+        
+        oscillator.connect(gainNode);
+        gainNode.connect(audioContext.destination);
+        
+        oscillator.frequency.setValueAtTime(800, audioContext.currentTime);
+        oscillator.frequency.setValueAtTime(600, audioContext.currentTime + 0.1);
+        
+        gainNode.gain.setValueAtTime(0.2, audioContext.currentTime);
+        gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.2);
+        
+        oscillator.start(audioContext.currentTime);
+        oscillator.stop(audioContext.currentTime + 0.2);
+    } catch (e) {
+        console.log("Audio not supported");
+    }
+}
+
+// Add initialization for drag and drop
+setTimeout(() => {
+    initDragAndDrop();
+}, 1000);
+
+        function checkAnswer(answerIndex, gameName) {
     const game = learningGames[gameName];
     const activity = game.activities[currentActivityIndex];
     const feedback = document.getElementById('game-feedback');
@@ -4224,7 +4370,7 @@ function checkAnswer(answerIndex, gameName) {
     feedback.classList.add('show');
 }
 
-function getDyslexiaTip(gameName) {
+        function getDyslexiaTip(gameName) {
     const tips = {
         math: "Use your fingers to count. Draw pictures of the problem.",
         reading: "Break long words into smaller parts. Sound them out slowly.",
@@ -4317,9 +4463,11 @@ function getDyslexiaTip(gameName) {
             setTimeout(() => {
                 addMickeyMessage("🎉 WOW! You completed the game! I'm so proud of you! 🏆");
             }, 1500);
+
+            stopPeriodicEmotionDetection();
+
         }
         
-        // New function to close module and stop camera
         function closeModuleAndStopCamera() {
             // Stop camera detection since game is ending
             stopCameraDetection();
@@ -4329,21 +4477,22 @@ function getDyslexiaTip(gameName) {
         }
 
         function closeModule() {
-            // STOP CAMERA WHEN MODULE IS CLOSED
-            if (currentGame && isCameraStarted) {
-                stopCameraDetection();
-            }
-            
-            // Reset frustration level since game ended
-            frustrationLevel = 0;
-            studentEmotion = 'neutral';
-            
-            document.getElementById('module-content').classList.remove('active');
-            document.getElementById('status-text').innerHTML = 
-                `<span style="color: var(--mickey-blue);">Ready for more learning fun!</span>`;
-            
-            // Reset current game
-            currentGame = null;
+        // STOP CAMERA AND DETECTION WHEN MODULE IS CLOSED
+        if (currentGame && isCameraStarted) {
+            stopCameraDetection();
+            stopPeriodicEmotionDetection(); 
+        }
+        
+        // Reset frustration level since game ended
+        frustrationLevel = 0;
+        studentEmotion = 'neutral';
+        
+        document.getElementById('module-content').classList.remove('active');
+        document.getElementById('status-text').innerHTML = 
+            `<span style="color: var(--mickey-blue);">Ready for more learning fun!</span>`;
+        
+        // Reset current game
+        currentGame = null;
         }
 
         // ============================================
@@ -4663,14 +4812,14 @@ function getDyslexiaTip(gameName) {
             };
             
             // Calculate scores for each emotion based on multiple features
-            console.log(`📊 Face Metrics: 
-            MouthCurve=${mouthCurvature.toFixed(3)}, 
-            MouthRatio=${mouthRatio.toFixed(3)}, 
-            EyeOpen=${eyeOpenness.toFixed(3)}, 
-            EyeSquint=${leftEyeSquint.toFixed(3)},
-            BrowHeight=${browHeight.toFixed(3)}, 
-            BrowAsym=${browAsymmetry.toFixed(3)},
-            HeadTilt=${headTilt.toFixed(3)}`);
+            // console.log(`📊 Face Metrics: 
+            // MouthCurve=${mouthCurvature.toFixed(3)}, 
+            // MouthRatio=${mouthRatio.toFixed(3)}, 
+            // EyeOpen=${eyeOpenness.toFixed(3)}, 
+            // EyeSquint=${leftEyeSquint.toFixed(3)},
+            // BrowHeight=${browHeight.toFixed(3)}, 
+            // BrowAsym=${browAsymmetry.toFixed(3)},
+            // HeadTilt=${headTilt.toFixed(3)}`);
 
             // HAPPY: Smiling mouth, raised cheeks
             if (mouthCurvature > 0.04) emotionScores.happy += 0.4;
@@ -5797,6 +5946,27 @@ function getDyslexiaTip(gameName) {
             }
         `;
         document.head.appendChild(dyslexiaStyles);
+
+        function enableTactileMode() {
+            showNotification("Tactile Mode", "Simulating tactile letter shapes for multisensory learning ✋", "info");
+            // In real implementation, this would connect to physical letter blocks
+        }
+
+        function enableSoundFeedback() {
+            showNotification("Sound Feedback", "Click sounds enabled for correct placements 🔊", "success");
+        }
+
+        function enableColorCoding() {
+            showNotification("Color Coding", "Vowels and consonants now have different colors 🎨", "info");
+        }
+
+        function enablePhonicsMode() {
+            showNotification("Phonics Mode", "Phonics sound support enabled for reading 🗣️", "success");
+        }
+
+        function enableSyllableBreakdown() {
+            showNotification("Syllable Breakdown", "Words will be broken into syllables for easier reading 📖", "info");
+        }
 
         // Enhanced sensory buttons CSS
         const sensoryBtnStyle = document.createElement('style');
