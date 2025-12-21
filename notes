@@ -1,138 +1,45 @@
-empathic-learning-agent/
-│
-├── index.html ✅                    # Main landing page
-│
-├── css/                         # 🔥 ALL CSS FILES
-│   ├── global.css  ✅             # ❓ WHY: Global styles used everywhere 
-│   ├── accessibility.css ✅       # ❓ WHY: Accessibility features 
-│   │
-│   ├── student/                 # ❓ WHY: Student-specific styles
-│   │   ├── student-global.css ✅   # Global student styles 
-│   │   ├── dashboard.css  ✅      # Student dashboard only 
-│   │   ├── learning.css  ✅       # Learning page only 
-│   │   ├── agent.css  ✅         # Agent interface only 
-│   │   └── profile.css ✅        # Student profile only 
-│   │
-│   ├── teacher/                # ❓ WHY: Teacher-specific styles
-│   │   ├── teacher-global.css ✅  # Global teacher styles 
-│   │   ├── dashboard.css ✅      # Teacher dashboard only 
-│   │   ├── monitoring.css  ✅    # Monitoring page only 
-│   │   ├── alerts.css  ✅       # Alerts page only 
-│   │   └── analytics.css ✅     # Analytics page only 
-│   │
-│   └── shared/                 # ❓ WHY: Shared component styles
-│       ├── components.css ✅     # Reusable components 
-│       ├── forms.css  ✅        # Form styles 
-│       └── modals.css  ✅       # Modal/popup styles 
-│
-├── js/                         # 🔥 ALL JAVASCRIPT FILES
-│   ├── global.js ✅             # ❓ WHY: Global functions used everywhere 
-│   ├── config.js ✅            # ❓ WHY: Global configuration 
-│   │
-│   ├── modules/              # ❓ WHY: Reusable JS modules
-│   │   ├── auth.js ✅          # Authentication 
-│   │   ├── storage.js  ✅      # Local storage management 
-│   │   ├── api.js   ✅        # API communication 
-│   │   ├── utils.js ✅        # Utility functions 
-│   │   └── accessibility.js ✅ # Accessibility features 
-│   │
-│   ├── ai/                   # ❓ WHY: AI/ML functionality
-│   │   ├── agent-core.js ✅   # Main agent logic 
-│   │   ├── emotion-detector.js ✅
-│   │   ├── emotion-integration.js ✅
-│   │   ├── focus-monitor.js ✅
-│   │   ├── engagement-tracker.js ✅
-│   │   ├── intervention-planner.js ✅
-│   │   ├── webcam-emotion.js ✅        # NEW: Webcam-based detection (the link vladimir is inside here) 
-│   │   ├── privacy-manager.js ✅       
-│   │   └── emotion-fusion.js ✅        # NEW: Fuses multiple emotion sources
-│   │
-│   ├── student/              # ❓ WHY: Student-specific JS
-│   │   ├── student-global.js ✅ # Global student functions 
-│   │   ├── dashboard.js ✅     # Student dashboard only 
-│   │   ├── learning.js ✅      # Learning page only 
-│   │   ├── profile.js ✅      # Profile page only 
-│   │   ├── agent-interaction.js ✅ # Agent chat only 
-│   │   └── progress-tracker.js ✅ # Progress tracking only 
-│   │
-│   ├── teacher/              # ❓ WHY: Teacher-specific JS
-│   │   ├── teacher-global.js ✅ # Global teacher functions 
-│   │   ├── dashboard.js ✅      # Teacher dashboard only 
-│   │   ├── monitoring.js ✅    # Monitoring page only 
-│   │   ├── alerts.js ✅        # Alerts handling only
-│   │   └── analytics.js ✅     # Analytics only 
-│   │
-│   ├── setup/              
-│   │   ├── emotion-setup.js ✅
-│   │
-│   └── shared/               # ❓ WHY: Shared JS components
-│       ├── components.js ✅    # UI components logic ✅
-│       └── messaging.js ✅     # Messaging system ✅
-│
-├── html/                     # 🔥 ALL HTML PAGES
-│   │
-│   ├── student/             # ❓ WHY: Student HTML pages
-│   │   ├── dashboard.html ✅  # Student dashboard 
-│   │   ├── learning.html ✅  # Learning environment 
-│   │   ├── profile.html ✅   # Student profile 
-│   │   ├── achievements.html ✅# Achievements page 
-│   │   └── agent-chat.html ✅ # Chat with agent 
-│   │
-│   ├── teacher/             # ❓ WHY: Teacher HTML pages
-│   │   ├── dashboard.html ✅   # Teacher dashboard 
-│   │   ├── students.html ✅   # Student management 
-│   │   ├── monitoring.html ✅ # Live monitoring 
-│   │   ├── alerts.html ✅     # Alerts inbox 
-│   │   ├── analytics.html ✅  # Analytics dashboard 
-│   │   └── content-editor.html ✅ # Content creation
-│   │
-│   └── shared/              # ❓ WHY: Shared HTML pages
-│       ├── login.html ✅       # Login page for both also
-│       ├── register.html ✅  # Registration of both student and teacher
-│       └── settings.html ✅    # Account settings 
-│
-├── components/              # 🔥 REUSABLE HTML COMPONENTS
-│   ├── header/
-│   │   ├── header.html ✅      # HTML markup 
-│   │   ├── header.css ✅     # Component-specific CSS 
-│   │   └── header.js ✅        # Component-specific JS 
-│   │
-│   ├── agent-avatar/
-│   │   ├── avatar.html ✅
-│   │   ├── avatar.css ✅
-│   │   └── avatar.js ✅
-│   │
-│   ├── progress-bar/
-│   │   ├── progress-bar.html ✅
-│   │   ├── progress-bar.css ✅
-│   │   └── progress-bar.js ✅
-│   │
-│   ├── emotion-camera/
-│   │   ├── camera.html ✅          # Webcam UI component 
-│   │   ├── camera.js ✅            # Camera controls 
-│   │   └── camera.js  ✅           # Camera controls 
-│   │
-│   └── notification-badge/
-│       ├── notification.html ✅
-│       ├── notification.css ✅
-│       └── notification.js ✅
-│
-├── assets/                  # 🔥 STATIC ASSETS
-│   ├── images/
-│   │   ├── student/        # Student interface images
-│   │   ├── teacher/        # Teacher interface images
-│   │   ├── agent/          # Agent avatar/images
-│   │   └── icons/          # Icon sets
-│   │
-│   ├── fonts/              # Custom fonts
-│   └── sounds/             # Audio feedback
-│
-├── data/                   # 🔥 DATA FILES
-│   ├── ai-models/          # TensorFlow.js model files
-│   ├── knowledge-base/     # AI response templates
-│   └── user-data/          # User profiles (if using JSON)
-│
-└── config/                 # 🔥 CONFIGURATION FILES
-    ├── global-config.json ✅  # Global settings 
-    ├── ai-config.json ✅     # AI model settings
-    └── theme-config.json ✅  # UI theme settings
+Help_Score = (Emotion_Score × 0.6) + (Focus_Score × 0.4)
+
+Emotion_Score Mapping:
+- Angry = 90
+- Sad = 70
+- Confused = 50
+- Other = 20
+
+Intervention if: Help_Score ≥ 60 OR Negative_Emotions ≥ 2
+
+
+
+buat 0.1
+Activity_Score = (Keyboard_Score × 0.5) + (Mouse_Score × 0.5)
+Tab_Score = 100 - (Tab_Switches × 5) - (Inactive_Minutes × 2)
+
+Overall_Focus_Score = (Tab_Score × 0.4) + (Eye_Score × 0.3) + (Activity_Score × 0.3)
+
+Cursor_Component:
+- Active < 5s: 100
+- 5-15s inactive: 60
+- 15-30s inactive: 30
+- >30s inactive: 10
+
+Classification:
+- High: Score ≥ 85
+- Medium: 70-84
+- Low: 50-69
+- Unknown: < 50
+
+Additional Penalty: -30 if tab is currently inactive
+
+Weighting:
+- Tab Focus: 40% (most important - staying on task)
+- Eye Tracking: 30% (visual attention)
+- Activity: 30% (keyboard/mouse interaction)
+
+
+
+
+Fixation_Time = Current_Time - Last_Gaze_Change_Time
+Score based on fixation duration:
+- > 3000ms (3+ seconds): Score = 90 (High)
+- 1000-3000ms (1-3 seconds): Score = 70 (Medium)
+- < 1000ms (<1 second): Score = 40 (Low)
