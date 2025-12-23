@@ -1,0 +1,690 @@
+by focusing on the formula part, i think theres some problem in the logic there
+
+-should have on 3 formula, which are 
+1. focus score = (Tab_Score × 0.3) + (Eye_Score × 0.5) + (Activity_Score × 0.2)
+-> Tab_Score = 1 - (Tab_Switches × 0.5) - (Inactive_Minutes × 0.2)
+-> Eye_Score = ((Eye_Component × 0.3) + (Iris_Component × 0.5))/Fixation_Time
+-> Activity_Score = (Keyboard_Score × 0.5) + (Mouse_Score × 0.5)
+2. emotion score
+-> Angry/Frustrated (tracked as same emotion) = 0.25
+-> Sad/Anxious (tracked as same emotion) = 0.25
+-> Happy = 0.25
+-> Bored = 0.25
+3. combined score (this will triggerEmotionIntervention if above threshold)
+-> combined score = (Emotion_Score × 0.6) + (Focus_Score × 0.4)
+
+## 🧠 Emotion × Focus Response Flow Table (Kids Learning Agent)
+
+| Emotion                | Focus State     | What It Means (Kid State)   | Agent Goal                   | Response Flow (Order Matters)                                     | Example Agent Response                                                                                    |
+| ---------------------- | --------------- | --------------------------- | ---------------------------- | ----------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
+| **Anxious / Sad**      | **Focused**     | Feels bad but still trying  | Support + keep learning      | 1. Light empathy → 2. Normalize → 3. Small step                   | “I know this feels hard. You’re still trying. Let’s do one step together.”                                |
+| **Anxious / Sad**      | **Not Focused** | Emotion blocking learning   | Regulate → re-enter learning | 1. Strong empathy → 2. Pause/breath → 3. Reduce task → 4. Restart | “It looks really heavy right now. Let’s pause for one breath. We’ll try one easy step when you’re ready.” |
+| **Angry / Frustrated** | **Focused**     | Engaged but irritated       | Give tools, not comfort      | 1. Reflect feeling → 2. Reframe → 3. Strategy choice              | “That’s frustrating. Want a hint or an example to help?”                                                  |
+| **Angry / Frustrated** | **Not Focused** | Overloaded, reactive        | Calm → regain control        | 1. Acknowledge → 2. Slow down → 3. Choice → 4. Restart            | “This feels too much. Let’s slow down. Do you want a hint or a break?”                                    |
+| **Happy**              | **Focused**     | Learning flow state         | Stretch learning             | 1. Praise effort → 2. Slight challenge                            | “You’re doing great! Want to try a harder one?”                                                           |
+| **Happy**              | **Not Focused** | Excited but distracted      | Channel energy               | 1. Acknowledge → 2. Redirect → 3. Short task                      | “You’re excited! Let’s use that energy for one quick question.”                                           |
+| **Bored**              | **Focused**     | Understimulated but present | Increase engagement          | 1. Acknowledge → 2. Add challenge/choice                          | “This feels easy, huh? Want a challenge version?”                                                         |
+| **Bored**              | **Not Focused** | Disengaged                  | Re-capture attention         | 1. Acknowledge → 2. Relevance/game → 3. Short win                 | “Looks boring right now. Want a quick game or story example?”                                             |
+
+---
+
+## 🔑 Core Rule (Very Important)
+> **Emotion tells you how the child feels**
+> **Focus tells you if learning can continue**
+
+**Never decide response using emotion alone.**
+
+## 🧩 Universal Response Formula
+Detect emotion
+→ Check focus
+→ If focused: light empathy + learning action
+→ If not focused: regulate first + reduce + re-enter
+
+
+## 🧠 Emotion × Focus × **Detailed Response Flow**
+
+### 1️⃣ **Anxious / Sad**
+
+| Focus State     | Child State (What’s Happening)     | Detailed Response Flow (Exact Order)                                                                                                                                                                                                                                                                                                         |
+| --------------- | ---------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Focused**     | Feels worried/sad but still trying | **1. Name emotion** → “I see you’re feeling a bit sad.”<br>**2. Normalize** → “Learning can feel like this sometimes.”<br>**3. Affirm effort** → “You’re still trying — that’s brave.”<br>**4. Narrow task** → Reduce to ONE step<br>**5. Guided support** → Do first step together<br>**6. Check-in** → “Ready to try the next small step?” |
+| **Not Focused** | Emotion blocking learning          | **1. Strong validation** → “That feels really heavy.”<br>**2. Permission to pause** → “It’s okay to stop for a moment.”<br>**3. Regulation** → 1 slow breath / count to 3<br>**4. Safety reassurance** → “I’m here with you.”<br>**5. Task reduction** → Show easiest version<br>**6. Gentle re-entry** → “Let’s try just one tiny step.”    |
+
+---
+
+### 2️⃣ **Angry / Frustrated**
+
+| Focus State     | Child State           | Detailed Response Flow                                                                                                                                                                                                                                                                                                |
+| --------------- | --------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Focused**     | Engaged but irritated | **1. Reflect feeling** → “This is frustrating.”<br>**2. Normalize struggle** → “That happens when learning something new.”<br>**3. Restore control** → Offer choices (hint / example / break into parts)<br>**4. Apply chosen strategy**<br>**5. Highlight progress** → Point out what worked<br>**6. Continue task** |
+| **Not Focused** | Overwhelmed, reactive | **1. Acknowledge intensity** → “This feels really annoying.”<br>**2. Slow the pace** → “Let’s stop for a moment.”<br>**3. Grounding** → Breath / count / short pause<br>**4. Reduce demand** → Remove extra info<br>**5. Choice to re-engage** → “Hint or try later?”<br>**6. Restart gently**                        |
+
+---
+
+### 3️⃣ **Happy**
+
+| Focus State     | Child State            | Detailed Response Flow                                                                                                                                                                                                         |
+| --------------- | ---------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **Focused**     | Confident, in flow     | **1. Specific praise** → “You solved that clearly.”<br>**2. Reinforce effort** → “Your thinking is working.”<br>**3. Stretch offer** → Slightly harder task<br>**4. Autonomy** → Let child choose<br>**5. Celebrate progress** |
+| **Not Focused** | Excited but distracted | **1. Acknowledge excitement** → “You’re feeling excited!”<br>**2. Redirect energy** → “Let’s use it here.”<br>**3. Short task** → Quick win activity<br>**4. Immediate feedback**<br>**5. Refocus check**                      |
+
+---
+
+### 4️⃣ **Bored**
+
+| Focus State     | Child State      | Detailed Response Flow                                                                                                                                                                                                                      |
+| --------------- | ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Focused**     | Under-challenged | **1. Acknowledge boredom** → “This feels easy.”<br>**2. Validate** → “That can feel boring.”<br>**3. Increase challenge** → Harder version / timer<br>**4. Choice** → “Challenge or speed round?”<br>**5. Continue learning**               |
+| **Not Focused** | Disengaged       | **1. Name disengagement** → “Looks like your mind wandered.”<br>**2. No blame reassurance** → “That’s okay.”<br>**3. Relevance hook** → Game / story / real-life link<br>**4. Micro-task** → Very short activity<br>**5. Engagement check** |
+
+---
+
+## 🔑 Global Priority Rule (DO NOT SKIP)
+Emotion acknowledgment ALWAYS comes before instruction
+Focus decides depth, not emotion
+
+
+## 🧩 Agent Logic Summary
+
+* **Focused** → Minimal emotion + continue learning
+* **Not focused** → Regulate → reduce → re-enter
+* **Never push when not focused**
+* **Never ignore emotion when focused**
+
+
+
+## 📊 **CALCULATION 1: COMBINED HELP SCORE**
+
+### **Formula:**
+```
+Help_Score = (Emotion_Score × 0.6) + (Focus_Score × 0.4)
+
+Emotion_Score Mapping:
+- Angry = 90
+- Sad = 70
+- Confused = 50
+- Other = 20
+
+Intervention if: Help_Score ≥ 60 OR Negative_Emotions ≥ 2
+```
+
+### **Code:**
+```javascript
+calculateCombinedHelpScore(emotion, focusScore, negativeEmotionCount, overallFocus) {
+    const startTime = performance.now();
+    
+    // EMOTION SCORE CALCULATION
+    let emotionScore = 0;
+    if (emotion === "angry") emotionScore = 90;
+    else if (emotion === "sad") emotionScore = 70;
+    else if (emotion === "confused") emotionScore = 50;
+    else emotionScore = 20;
+    
+    // WEIGHTED COMBINATION
+    const combinedScore = (emotionScore * 0.6) + ((focusScore || 0) * 0.4);
+    
+    const result = {
+        helpNeeded: (combinedScore >= 60 || (negativeEmotionCount || 0) >= 2),
+        score: combinedScore,
+        mainReason: combinedScore >= 60 ? "low_attention" : "frustrated",
+        emotion: emotion,
+        focus: overallFocus
+    };
+    
+    this.trackPerformance(startTime);
+    return result;
+}
+```
+
+---
+
+## 📊 **CALCULATION 2: FOCUS SCORE**
+
+### **Formula:**
+```
+Focus_Score = (Eye_Component × 0.4) + (Cursor_Component × 0.3) + (Iris_Component × 0.3)
+
+Eye_Component = max(0, 100 - (Eye_Distance × 200))
+
+Cursor_Component:
+- Active < 5s: 100
+- 5-15s inactive: 60
+- 15-30s inactive: 30
+- >30s inactive: 10
+
+Iris_Component = Iris_Confidence × 100
+
+Classification:
+- High: Score ≥ 85
+- Medium: 70-84
+- Low: 50-69
+- Unknown: < 50
+```
+
+### **Code:**
+```javascript
+calculateFocusScore(eyeDistance, cursorInactivityTime, irisConfidence) {
+    const startTime = performance.now();
+    
+    // EYE COMPONENT
+    const eyeComponent = Math.max(0, 100 - (eyeDistance * 200));
+    
+    // CURSOR COMPONENT (time-based decay)
+    let cursorComponent = 100;
+    if (cursorInactivityTime > 5000) cursorComponent = 60;
+    if (cursorInactivityTime > 15000) cursorComponent = 30;
+    if (cursorInactivityTime > 30000) cursorComponent = 10;
+    
+    // IRIS COMPONENT
+    const irisComponent = (irisConfidence || 0) * 100;
+    
+    // WEIGHTED COMBINATION
+    const totalScore = (eyeComponent * 0.4) + (cursorComponent * 0.3) + (irisComponent * 0.3);
+    
+    // CLASSIFICATION
+    let focusLevel = 'unknown';
+    if (totalScore >= 85) focusLevel = 'high';
+    else if (totalScore >= 70) focusLevel = 'medium';
+    else if (totalScore >= 50) focusLevel = 'low';
+    
+    this.trackPerformance(startTime);
+    
+    return {
+        score: Math.round(totalScore),
+        level: focusLevel,
+        components: {
+            eye: Math.round(eyeComponent),
+            cursor: Math.round(cursorComponent),
+            iris: Math.round(irisComponent)
+        }
+    };
+}
+```
+
+---
+
+## 📊 **CALCULATION 3: TRACING ACCURACY**
+
+### **Formula:**
+```
+For each point i:
+Distance_i = √[(x_user_i - x_target_i)² + (y_user_i - y_target_i)²]
+
+Match_i = 1 if Distance_i < Tolerance (20px)
+Match_i = 0 if Distance_i ≥ Tolerance
+
+Accuracy = (∑Match_i / Total_Points) × 100%
+
+Points earned:
+- ≥ 90% → 20 points
+- ≥ 80% → 15 points
+- ≥ 70% → 10 points
+- ≥ 60% → 5 points
+- < 60% → 0 points
+```
+
+### **Code:**
+```javascript
+calculateTracingAccuracy(userPoints, targetPoints, tolerance = 20) {
+    if (userPoints.length < 2 || targetPoints.length < 2) {
+        return { accuracy: 0, matchScore: 0, averageDistance: 0 };
+    }
+    
+    let matchScore = 0;
+    let totalDistance = 0;
+    const pointsToCheck = Math.min(userPoints.length, targetPoints.length);
+    
+    // POINT-BY-POINT COMPARISON
+    for (let i = 0; i < pointsToCheck; i++) {
+        const tracePoint = userPoints[i];
+        const targetPoint = targetPoints[i];
+        
+        // EUCLIDEAN DISTANCE
+        const distance = Math.sqrt(
+            Math.pow(tracePoint.x - targetPoint.x, 2) + 
+            Math.pow(tracePoint.y - targetPoint.y, 2)
+        );
+        
+        totalDistance += distance;
+        if (distance < tolerance) matchScore++;
+    }
+    
+    // ACCURACY PERCENTAGE
+    const accuracy = Math.round((matchScore / pointsToCheck) * 100);
+    
+    return {
+        accuracy: accuracy,
+        matchScore: matchScore,
+        averageDistance: totalDistance / pointsToCheck,
+        points: this.calculatePointsFromAccuracy(accuracy)
+    };
+}
+
+// POINTS CALCULATION BASED ON ACCURACY
+calculatePointsFromAccuracy(accuracy) {
+    if (accuracy >= 90) return 20;
+    if (accuracy >= 80) return 15;
+    if (accuracy >= 70) return 10;
+    if (accuracy >= 60) return 5;
+    return 0;
+}
+```
+
+---
+
+## 📊 **CALCULATION 4: TAB FOCUS SCORE**
+
+### **Formula:**
+```
+Tab_Score = 100 - (Tab_Switches × 5) - (Inactive_Minutes × 2)
+
+Additional Penalty: -30 if tab is currently inactive
+
+Score clamped between 0-100
+```
+
+### **Code:**
+```javascript
+calculateTabFocusScore(tabSwitchCount, inactiveTimeMs, isCurrentlyActive) {
+    let score = 100;
+    
+    // PENALTIES
+    score -= tabSwitchCount * 5;                    // -5 per tab switch
+    score -= (inactiveTimeMs / (1000 * 60)) * 2;    // -2 per minute inactive
+    
+    if (!isCurrentlyActive) score -= 30;            // -30 if currently inactive
+    
+    // CLAMP BETWEEN 0-100
+    score = Math.max(0, Math.min(100, score));
+    
+    return {
+        score: Math.round(score),
+        level: this.getFocusLevel(score)
+    };
+}
+```
+
+---
+
+## 📊 **CALCULATION 5: OVERALL FOCUS SCORE**
+
+### **Formula:**
+```
+Overall_Focus = (Tab_Score × 0.4) + (Eye_Score × 0.3) + (Activity_Score × 0.3)
+
+Activity_Score = (Keyboard_Score × 0.5) + (Mouse_Score × 0.5)
+
+Weighting:
+- Tab Focus: 40% (most important - staying on task)
+- Eye Tracking: 30% (visual attention)
+- Activity: 30% (keyboard/mouse interaction)
+```
+
+### **Code:**
+```javascript
+calculateOverallFocus() {
+    // GET INDIVIDUAL SCORES
+    const tabScore = this.calculateTabFocusScore();
+    const eyeScore = this.calculateEyeFocusScore();
+    const activityScore = this.calculateActivityScore();
+    
+    // WEIGHTED AVERAGE
+    const overallScore = 
+        (tabScore * 0.4) +      // 40% - tab staying
+        (eyeScore * 0.3) +      // 30% - eye position
+        (activityScore * 0.3);   // 30% - keyboard/mouse
+    
+    return {
+        score: Math.round(overallScore),
+        level: this.getFocusLevel(overallScore),
+        details: {
+            tabScore,
+            eyeScore,
+            activityScore,
+            tabSwitches: this.tabTracker.tabSwitchCount,
+            isCurrentlyActive: this.tabTracker.isTabActive
+        }
+    };
+}
+```
+
+---
+
+## 📊 **CALCULATION 6: PERFORMANCE TREND**
+
+### **Formula:**
+```
+Recent_Avg = average of last 10 calculation times
+Older_Avg = average of calculation times 11-20 (if available)
+
+Change = [(Recent_Avg - Older_Avg) / Older_Avg] × 100%
+
+Trend Classification:
+- Improving: Change < -10%
+- Worsening: Change > 10%
+- Stable: -10% ≤ Change ≤ 10%
+```
+
+### **Code:**
+```javascript
+getPerformanceTrend() {
+    if (this.performanceStats.history.length < 2) {
+        return { trend: 'stable', direction: 'none', change: 0 };
+    }
+    
+    // GET RECENT VS OLDER AVERAGES
+    const recent = this.performanceStats.history.slice(-10);
+    const older = this.performanceStats.history.slice(-20, -10);
+    
+    const recentAvg = recent.reduce((a, b) => a + b, 0) / recent.length;
+    const olderAvg = older.length > 0 ? 
+        older.reduce((a, b) => a + b, 0) / older.length : recentAvg;
+    
+    // PERCENTAGE CHANGE
+    const change = ((recentAvg - olderAvg) / olderAvg) * 100;
+    
+    // TREND CLASSIFICATION
+    let trend = 'stable';
+    let direction = 'none';
+    
+    if (change < -10) {
+        trend = 'improving';
+        direction = 'down'; // Lower times are better
+    } else if (change > 10) {
+        trend = 'worsening';
+        direction = 'up'; // Higher times are worse
+    }
+    
+    return {
+        trend: trend,
+        direction: direction,
+        change: Math.round(change * 100) / 100,
+        recentAverage: Math.round(recentAvg * 100) / 100
+    };
+}
+```
+
+---
+
+## 📊 **CALCULATION 7: SYSTEM HEALTH**
+
+### **Formula:**
+```
+System_Health = 100 - Sum_of_Penalties
+
+Penalties:
+- Avg calculation time > 50ms: -20
+- Avg calculation time > 100ms: -30
+- No focus detections: -10
+- No emotion detections: -10
+
+Clamped between 0-100
+```
+
+### **Code:**
+```javascript
+getProfilePerformanceData() {
+    // START WITH PERFECT SCORE
+    let systemHealth = 100;
+    
+    // PENALTIES FOR SLOW CALCULATIONS
+    if (this.performanceStats.averageTime > 50) systemHealth -= 20;
+    if (this.performanceStats.averageTime > 100) systemHealth -= 30;
+    
+    // PENALTIES FOR LOW DETECTION RATES
+    if (this.focusDetectionStats.totalDetections === 0) systemHealth -= 10;
+    if (this.emotionDetectionStats.totalDetections === 0) systemHealth -= 10;
+    
+    // CLAMP BETWEEN 0-100
+    systemHealth = Math.max(0, Math.min(100, systemHealth));
+    
+    return {
+        systemHealth: systemHealth,
+        focusAccuracy: this.calculateFocusAccuracy(),
+        emotionConfidence: Math.round(this.emotionDetectionStats.averageConfidence * 100)
+    };
+}
+```
+
+---
+
+## 📊 **CALCULATION 8: EYE FIXATION SCORE**
+
+### **Formula:**
+```
+Fixation_Time = Current_Time - Last_Gaze_Change_Time
+
+Score based on fixation duration:
+- > 3000ms (3+ seconds): Score = 90 (High)
+- 1000-3000ms (1-3 seconds): Score = 70 (Medium)
+- < 1000ms (<1 second): Score = 40 (Low)
+```
+
+### **Code:**
+```javascript
+getFocusByFixation() {
+    if (!this.irisData) return { level: 'unknown', score: 0 };
+    
+    // TRACK GAZE CHANGE
+    const now = Date.now();
+    const gazeChanged = Math.abs(this.irisData.center.x - this.lastGazePosition.x) > 0.1 ||
+                        Math.abs(this.irisData.center.y - this.lastGazePosition.y) > 0.1;
+    
+    if (gazeChanged) {
+        this.lastGazeChangeTime = now;
+        this.lastGazePosition = this.irisData.center;
+    }
+    
+    // CALCULATE FIXATION TIME
+    const fixationTime = now - this.lastGazeChangeTime;
+    
+    // SCORE BASED ON DURATION
+    if (fixationTime > 3000) return { level: 'high', score: 90 };
+    if (fixationTime > 1000) return { level: 'medium', score: 70 };
+    return { level: 'low', score: 40 };
+}
+```
+
+---
+
+## 📊 **CALCULATION 9: FRUSTRATION ESCALATION**
+
+### **Formula:**
+```
+Frustration_Level starts at 0
+Each wrong answer: Frustration_Level++
+
+Intervention if: Frustration_Level ≥ 5
+
+Reset conditions:
+- Correct answer → reset to 0
+- Skip/help accepted → reset to 0
+- Game change → reset to 0
+```
+
+### **Code:**
+```javascript
+// GLOBAL VARIABLES
+let frustrationLevel = 0;
+const FRUSTRATION_THRESHOLD = 5;
+
+// INCREMENT ON WRONG ANSWER
+if (answerIndex !== activity.correct) {
+    frustrationLevel++;
+    
+    // CHECK FOR INTERVENTION
+    if (frustrationLevel >= FRUSTRATION_THRESHOLD) {
+        console.log('🚨 High frustration detected, triggering intervention');
+        
+        // TRIGGER INTERVENTION
+        if (dualCameraDetection) {
+            dualCameraDetection.triggerEmotionIntervention("frustrated");
+        }
+        frustrationLevel = 0; // Reset after intervention
+    }
+}
+
+// RESET ON CORRECT ANSWER
+if (answerIndex === activity.correct) {
+    frustrationLevel = 0;
+}
+```
+
+---
+
+## 📊 **CALCULATION 10: EMOTION INTERVENTION**
+
+### **Formula:**
+```
+Track emotions over last 10 seconds
+Count negative emotions (angry, sad, confused)
+
+Intervention if: Negative_Count ≥ 3
+
+Cooldown: 15 seconds between interventions
+```
+
+### **Code:**
+```javascript
+trackEmotionForIntervention(emotion) {
+    const now = Date.now();
+    
+    // ADD TO HISTORY (LAST 10 SECONDS)
+    this.emotionInterventionData.emotionHistory.push({
+        emotion: emotion,
+        timestamp: now
+    });
+    
+    // FILTER TO KEEP ONLY LAST 10 SECONDS
+    this.emotionInterventionData.emotionHistory = 
+        this.emotionInterventionData.emotionHistory.filter(
+            entry => (now - entry.timestamp) < 10000
+        );
+    
+    // COUNT NEGATIVE EMOTIONS
+    const negativeEmotions = this.emotionInterventionData.emotionHistory.filter(
+        entry => ['angry', 'sad', 'confused'].includes(entry.emotion)
+    ).length;
+    
+    this.emotionInterventionData.negativeEmotionCount = negativeEmotions;
+    
+    // CHECK INTERVENTION CONDITIONS
+    if (negativeEmotions >= this.emotionInterventionData.NEGATIVE_THRESHOLD && 
+        (now - this.emotionInterventionData.lastInterventionTime) > 
+        this.emotionInterventionData.interventionCooldown) {
+        
+        this.triggerEmotionIntervention(emotion);
+    }
+}
+```
+
+---
+
+## 📊 **CALCULATION 11: MOVING AVERAGE (SMOOTHING)**
+
+### **Formula:**
+```
+For last 5 emotion detections:
+Weight_i = 0.7 × (i / n)  // i = position in array (0=oldest, n-1=newest)
+
+Count_emotion = Σ Weight_i for each emotion type
+
+Final_Emotion = emotion with highest weighted count
+Only change if max_count > 0.6
+```
+
+### **Code:**
+```javascript
+updateEmotionWithSmoothing(newEmotion, confidence) {
+    const now = Date.now();
+    
+    // ADD TO HISTORY (LIMIT TO 10 ENTRIES)
+    this.emotionHistory.push({
+        emotion: newEmotion,
+        confidence: confidence,
+        timestamp: now
+    });
+    
+    while (this.emotionHistory.length > this.MAX_HISTORY) {
+        this.emotionHistory.shift();
+    }
+    
+    // WEIGHTED SMOOTHING WITH LAST 5 ENTRIES
+    if (this.emotionHistory.length >= 3) {
+        const recentEmotions = this.emotionHistory.slice(-5);
+        const emotionCounts = {};
+        
+        // WEIGHTED COUNTING (RECENT = MORE WEIGHT)
+        recentEmotions.forEach((entry, index) => {
+            const weight = 0.7 * (index / recentEmotions.length);
+            emotionCounts[entry.emotion] = (emotionCounts[entry.emotion] || 0) + weight;
+        });
+        
+        // FIND DOMINANT EMOTION
+        let smoothedEmotion = newEmotion;
+        let maxCount = 0;
+        
+        for (const [emote, count] of Object.entries(emotionCounts)) {
+            if (count > maxCount) {
+                maxCount = count;
+                smoothedEmotion = emote;
+            }
+        }
+        
+        // ONLY CHANGE IF STRONG ENOUGH CONSENSUS
+        if (maxCount > 0.6 && smoothedEmotion !== newEmotion) {
+            newEmotion = smoothedEmotion;
+        }
+    }
+    
+    this.studentEmotion = newEmotion;
+}
+```
+
+---
+
+## 📊 **CALCULATION 12: CURSOR ACTIVITY**
+
+### **Formula:**
+```
+Time_Since_Last_Move = Current_Time - Last_Cursor_Move_Time
+
+Cursor_Component:
+- < 1000ms: 90 (High)
+- 1000-5000ms: 60 (Medium)
+- 5000-30000ms: 30 (Low)
+- > 30000ms: 0 (Unknown)
+```
+
+### **Code:**
+```javascript
+getCursorFocusLevel() {
+    const now = Date.now();
+    const timeSinceMove = now - this.focusData.lastCursorMove;
+    
+    // TIME-BASED SCORING
+    if (timeSinceMove < 1000) return { level: 'high', score: 90 };
+    if (timeSinceMove < 5000) return { level: 'medium', score: 60 };
+    if (timeSinceMove < 30000) return { level: 'low', score: 30 };
+    return { level: 'unknown', score: 0 };
+}
+```
+
+## 🎯 **SUMMARY OF ALL FORMULAS**
+
+| # | Formula Name | Key Equation | Purpose |
+|---|--------------|--------------|---------|
+| 1 | Combined Help | `(Emotion×0.6)+(Focus×0.4) ≥ 60` | Decide when to help |
+| 2 | Focus Score | `(Eye×0.4)+(Cursor×0.3)+(Iris×0.3)` | Measure attention |
+| 3 | Tracing Accuracy | `∑(distance < 20px)/total × 100%` | Letter quality |
+| 4 | Tab Focus | `100 - (switches×5) - (minutes×2)` | Window attention |
+| 5 | Overall Focus | `(Tab×0.4)+(Eye×0.3)+(Activity×0.3)` | Combined attention |
+| 6 | Performance Trend | `(recent - old)/old × 100%` | System improvement |
+| 7 | System Health | `100 - penalties(slow,no_detections)` | System status |
+| 8 | Eye Fixation | `score based on gaze duration` | Sustained attention |
+| 9 | Frustration | `wrong_answers ≥ 5 → intervention` | Emotional buildup |
+| 10| Emotion Intervention | `negative_emotions ≥ 3 → help` | Emotional support |
+| 11| Moving Average | `weighted average of last 5` | Smooth detection |
+| 12| Cursor Activity | `score based on time since move` | Physical engagement |
+
+Each formula works together to create an **intelligent, empathetic tutoring system** that understands both **cognitive focus** and **emotional state**!
